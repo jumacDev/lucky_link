@@ -109,7 +109,7 @@ class _LoginContainerState extends State<LoginContainer> {
                         },
                       )),
                 ),
-                const Gap(32),
+                const Gap(24),
                 BlocBuilder<LoginBloc, LoginState>(
                   builder: (context, state) {
                     if (state is LoginLoading) {
@@ -122,9 +122,13 @@ class _LoginContainerState extends State<LoginContainer> {
                     }
                     return ElevatedButton(
                         onPressed: () {
-                          _loginBloc.add(LoginPress(
-                              vcUser: _userController.text,
-                              vcPass: _passController.text));
+                          if(_userController.text.isNotEmpty && _passController.text.isNotEmpty){
+                            _loginBloc.add(LoginPress(
+                                vcUser: _userController.text,
+                                vcPass: _passController.text));
+                          }else{
+                            showCoolAlert(context, CoolAlertType.warning, 'Cuidado', 'Alguno de los campos está vacío');
+                          }
                         },
                         child: const Text('Ingresar'));
                   },
