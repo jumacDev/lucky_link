@@ -5,7 +5,7 @@ import 'package:vende_bet/presentation/bloc/blocs.dart';
 import '/config/router/app_router.dart';
 
 void main() async {
-  await dotenv.load(fileName: '.env');
+  //await dotenv.load(fileName: '.env');
   WidgetsFlutterBinding.ensureInitialized();
   runApp(MultiBlocProvider(
     providers: [
