@@ -1,4 +1,12 @@
 part of 'login_bloc.dart';
 
-@immutable
-sealed class LoginEvent {}
+
+abstract class LoginEvent {}
+
+class LoginPress extends LoginEvent {
+  final String vcUser;
+  final String vcPass;
+
+  LoginPress({required this.vcUser, required this.vcPass});
+}
+

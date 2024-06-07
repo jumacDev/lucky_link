@@ -17,15 +17,18 @@ class _LoginScreenState extends State<LoginScreen> {
         mobile: SingleChildScrollView(
           child: Padding(
             padding: EdgeInsets.symmetric(vertical: 300),
-              child: LoginContainer(width: 300)),
+              child: LoginContainer(width: 250)),
         ),
         tablet: SingleChildScrollView(
-          child: LoginContainer(width: 600),
+          child: Padding(
+            padding: EdgeInsets.symmetric(vertical: 300),
+            child: LoginContainer(width: 450),
+          ),
         ),
         desktop: SingleChildScrollView(
           child: Padding(
-            padding: EdgeInsets.symmetric(vertical: 200),
-            child: LoginContainer(width: 500),
+            padding: EdgeInsets.symmetric(vertical: 180),
+            child: LoginContainer(width: 400),
           ),
         ),
       ),
