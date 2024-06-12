@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:vende_bet/data/datasources/loteria_datasource.dart';
-import 'package:vende_bet/data/repositories/loteria_repository_impl.dart';
+import '/data/datasources/loteria_datasource.dart';
+import '/data/repositories/loteria_repository_impl.dart';
 
 import '../../../domain/entities/loteria.dart';
 import '../../../domain/entities/salida.dart';
@@ -25,8 +25,6 @@ class LoteriaBloc extends Bloc<LoteriaEvent, LoteriaState> {
       emit(LoteriasError(vcMensaje: voSalida.vcMensaje!));
     }
 
-
   }
-
 
 }
