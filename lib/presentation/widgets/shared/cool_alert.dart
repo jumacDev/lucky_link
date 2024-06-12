@@ -8,8 +8,8 @@ void showCoolAlert(BuildContext context, CoolAlertType type, String vcTitle, Str
     title: vcTitle,
     text: vcMensaje,
     textTextStyle: const TextStyle(fontSize: 15, color: Colors.black),
-    confirmBtnColor: Colors.blueAccent.withOpacity(0.7),
-    backgroundColor: Colors.blueAccent.withOpacity(0.7),
+    confirmBtnColor: Colors.lightGreen,
+    backgroundColor: Colors.lightGreen,
     width: 200
   );
 }

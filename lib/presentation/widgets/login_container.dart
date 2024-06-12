@@ -3,9 +3,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:vende_bet/presentation/widgets/shared/cool_alert.dart';
 
+import '/presentation/widgets/shared/cool_alert.dart';
 import '../bloc/blocs.dart';
 
 class LoginContainer extends StatefulWidget {
@@ -25,7 +26,6 @@ class _LoginContainerState extends State<LoginContainer> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _loginBloc = context.read<LoginBloc>();
   }
@@ -37,12 +37,14 @@ class _LoginContainerState extends State<LoginContainer> {
         if(state is LoginError) {
           debugPrint(state.vcMensaje);
           showCoolAlert(context, CoolAlertType.error, 'Error de Login', state.vcMensaje);
+        } else if(state is LoginOk){
+          context.pushReplacement('/');
         }
       },
       child: Center(
         child: Container(
           decoration: BoxDecoration(
-              color: Colors.blueAccent.withOpacity(0.7),
+              color: Colors.lightGreen,
               borderRadius: BorderRadius.circular(20)),
           width: widget.width,
           child: Padding(
@@ -130,7 +132,7 @@ class _LoginContainerState extends State<LoginContainer> {
                             showCoolAlert(context, CoolAlertType.warning, 'Cuidado', 'Alguno de los campos está vacío');
                           }
                         },
-                        child: const Text('Ingresar'));
+                        child: const Text('Ingresar', style: TextStyle(color: Colors.lightGreen),));
                   },
                 )
               ],
