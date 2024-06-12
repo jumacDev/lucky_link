@@ -23,11 +23,14 @@ class _LoginContainerState extends State<LoginContainer> {
   final TextEditingController _passController = TextEditingController();
   bool _obscureText = true;
   late LoginBloc _loginBloc;
+  late LoteriaBloc _loteriaBloc;
 
   @override
   void initState() {
     super.initState();
     _loginBloc = context.read<LoginBloc>();
+    _loteriaBloc = context.read<LoteriaBloc>();
+    _loteriaBloc.add(ObtenerLoteria());
   }
 
   @override
