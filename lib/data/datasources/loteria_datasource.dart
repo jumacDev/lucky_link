@@ -25,7 +25,7 @@ class LoteriaDataSource extends LoteriaDatasource{
       final response = await _dio.get(vcUrl);
 
       voSalida = Salida(vnCodigo: response.data['codigo'], vcMensaje: response.data['mensaje'],
-          voData: List<Loteria>.from(response.data["data"].map((x) => Loteria.fromJson(x)))
+          voData: List<Loteria>.from(response.data["data"].map((loteria) => Loteria.fromJson(loteria)))
       );
 
     }
@@ -33,7 +33,7 @@ class LoteriaDataSource extends LoteriaDatasource{
       if(e is DioException){
         voSalida = Salida<List<Loteria>>(
             vnCodigo: 0,
-            vcMensaje: e.response?.data,
+            vcMensaje: 'Error ${e.message}',
             voData: <Loteria>[]
         );
       }
