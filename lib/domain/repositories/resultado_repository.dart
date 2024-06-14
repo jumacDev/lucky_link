@@ -1,0 +1,9 @@
+
+import '../entities/resultado.dart';
+import '../entities/salida.dart';
+
+abstract class ResultadoRepository{
+
+  Future<Salida<List<Resultado>>> traerResultados(String pcFecha);
+
+}
