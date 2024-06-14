@@ -85,13 +85,15 @@ class _ResultPageState extends State<ResultPage> {
                   Resultado voResultado = state.voResuList[vnIndex];
                   return Padding(
                     padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 32),
-                    child: ListTile(
-                      contentPadding: const EdgeInsets.symmetric(horizontal: 8),
-                      title: Text('Lotería: ${voResultado.vcLoteria}'),
-                      titleTextStyle: GoogleFonts.openSans(fontSize: 20),
-                      subtitle: Text('Número: ${voResultado.vnNumero}'),
-                      subtitleTextStyle: GoogleFonts.openSans(fontSize: 20),
-                      leading: const Icon(Icons.fact_check, color: Colors.lightGreen,),
+                    child: Center(
+                      child: ListTile(
+                        contentPadding: const EdgeInsets.symmetric(horizontal: 8),
+                        title: Text('Lotería: ${voResultado.vcLoteria}'),
+                        titleTextStyle: GoogleFonts.openSans(fontSize: 20, color: Colors.black),
+                        subtitle: Text('Número: ${voResultado.vnNumero}'),
+                        subtitleTextStyle: GoogleFonts.openSans(fontSize: 20, color: Colors.black),
+                        leading: const Icon(Icons.fact_check, color: Colors.lightGreen,size: 50),
+                      ),
                     ),
                   );
                 });
