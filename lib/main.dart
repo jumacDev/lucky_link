@@ -8,7 +8,8 @@ void main() async {
   runApp(MultiBlocProvider(
     providers: [
       BlocProvider<LoginBloc>(create: (context) => LoginBloc()),
-      BlocProvider<LoteriaBloc>(create: (context) => LoteriaBloc())
+      BlocProvider<LoteriaBloc>(create: (context) => LoteriaBloc()),
+      BlocProvider<ResultadosBloc>(create: (context) => ResultadosBloc()),
     ],
       child: const MyApp()));
 }
@@ -23,7 +24,7 @@ class MyApp extends StatelessWidget {
       routerConfig: appRouter,
       title: 'Lucky Link',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.lightGreen),
         useMaterial3: true,
       ),
     );
