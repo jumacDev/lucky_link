@@ -10,3 +10,5 @@ class LoginPress extends LoginEvent {
   LoginPress({required this.vcUser, required this.vcPass});
 }
 
+class LogOutPress extends LoginEvent{}
+

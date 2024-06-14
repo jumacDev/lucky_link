@@ -10,6 +10,7 @@ part 'login_state.dart';
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
   LoginBloc() : super(LoginInitial()) {
     on<LoginPress>(_onLoginPress);
+    on<LogOutPress>(_onLogOutPress);
   }
 
   final SesionRepositoryImpl _sesionRepositoryImpl = SesionRepositoryImpl(SesionDataSource());
@@ -25,6 +26,10 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     }else if(voSalida.vnCodigo == 0){
       emit(LoginError(vcMensaje: voSalida.vcMensaje?? 'Error inesperado'));
     }
+  }
+
+  _onLogOutPress(LogOutPress event, Emitter<LoginState> emit){
+    emit(LoginOff());
   }
 
 }

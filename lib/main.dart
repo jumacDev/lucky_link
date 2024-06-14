@@ -24,8 +24,19 @@ class MyApp extends StatelessWidget {
       routerConfig: appRouter,
       title: 'Lucky Link',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.lightGreen),
-        useMaterial3: true,
+        primarySwatch: Colors.lightGreen,
+        primaryColor: Colors.lightGreen,
+        buttonTheme: const ButtonThemeData(
+          buttonColor: Colors.lightGreen, // Cambiar color de los botones
+        ),
+        colorScheme: const ColorScheme.light(
+          surface: Colors.white,
+          primary: Colors.lightGreen,
+          // Color del header
+          onPrimary: Colors.white, // Color del texto en el header
+          onSurface: Colors.black, // Color del texto en las fechas
+        ),
+        dialogBackgroundColor: Colors.white, // Color del fondo del diálogo
       ),
     );
   }
