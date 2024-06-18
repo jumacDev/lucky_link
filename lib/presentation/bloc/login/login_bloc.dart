@@ -20,7 +20,6 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
 
     final voSalida = await _sesionRepositoryImpl.datasource.sesion(event.vcUser, event.vcPass);
 
-
     if(voSalida.vnCodigo == 1){
       emit(LoginOk(voSesion: voSalida.voData!));
     }else if(voSalida.vnCodigo == 0){

@@ -34,6 +34,9 @@ class _SalePageState extends State<SalePage> {
                             return Padding(
                               padding: const EdgeInsets.symmetric(horizontal: 8.0),
                               child: ActionChip(
+                                side: const BorderSide(
+                                  color: Colors.transparent
+                                ),
                                   backgroundColor: voSeleList[vnIndeSele]
                                       ? Colors.lightGreen
                                       : Colors.grey,
