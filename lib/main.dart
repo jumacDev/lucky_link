@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:vende_bet/presentation/bloc/blocs.dart';
 import '/config/router/app_router.dart';
 
@@ -7,6 +8,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(MultiBlocProvider(
     providers: [
+      BlocProvider<HistorialBloc>(create: (context) => HistorialBloc()),
       BlocProvider<LoginBloc>(create: (context) => LoginBloc()),
       BlocProvider<LoteriaBloc>(create: (context) => LoteriaBloc()),
       BlocProvider<ResultadosBloc>(create: (context) => ResultadosBloc()),
@@ -38,6 +40,14 @@ class MyApp extends StatelessWidget {
         ),
         dialogBackgroundColor: Colors.white, // Color del fondo del diálogo
       ),
+      localizationsDelegates: const [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: const [
+        Locale('es'),
+      ],
     );
   }
 }
