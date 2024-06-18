@@ -4,4 +4,6 @@ class Environment{
   String loterias = '/Loterias';
   String sesiones = '/Sesiones';
   String resultados = '/Resultados';
+  String pagos = '/Pagos';
+  String ventas = '/Ventas';
 }
