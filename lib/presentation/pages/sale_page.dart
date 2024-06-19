@@ -61,10 +61,10 @@ class _SalePageState extends State<SalePage> {
                         Column(
                           children: [
                             const Gap(8),
-                            const Center(
+                            Center(
                               child: Text(
                                 "Número",
-                                style: TextStyle(fontSize: 25),
+                                style: GoogleFonts.openSans(color: Colors.black, fontSize: 24),
                               ),
                             ),
                             const Gap(8),
@@ -82,11 +82,12 @@ class _SalePageState extends State<SalePage> {
                                     keyboardType: TextInputType.number,
                                     onTapOutside: _onTapOutside,
                                     controller: _numberText,
-                                    decoration: const InputDecoration(
+                                    decoration: InputDecoration(
+                                      labelStyle: GoogleFonts.openSans(color: Colors.white),
                                       isDense: true,
                                       labelText: 'Número',
-                                      border: OutlineInputBorder(),
-                                      focusedBorder: OutlineInputBorder(
+                                      border: const OutlineInputBorder(),
+                                      focusedBorder: const OutlineInputBorder(
                                         borderSide:
                                             BorderSide(color: Colors.black),
                                       ),
@@ -114,11 +115,12 @@ class _SalePageState extends State<SalePage> {
                                     keyboardType: TextInputType.number,
                                     onTapOutside: _onTapOutside,
                                     controller: _numberText2,
-                                    decoration: const InputDecoration(
+                                    decoration: InputDecoration(
+                                      labelStyle: GoogleFonts.openSans(color: Colors.white),
                                       labelText: 'Número',
                                       isDense: true,
-                                      border: OutlineInputBorder(),
-                                      focusedBorder: OutlineInputBorder(
+                                      border: const OutlineInputBorder(),
+                                      focusedBorder: const OutlineInputBorder(
                                         borderSide:
                                             BorderSide(color: Colors.black),
                                       ),
@@ -145,11 +147,12 @@ class _SalePageState extends State<SalePage> {
                                     keyboardType: TextInputType.number,
                                     onTapOutside: _onTapOutside,
                                     controller: _numberText3,
-                                    decoration: const InputDecoration(
+                                    decoration: InputDecoration(
                                       labelText: 'Número',
+                                      labelStyle: GoogleFonts.openSans(color: Colors.black),
                                       isDense: true,
-                                      border: OutlineInputBorder(),
-                                      focusedBorder: OutlineInputBorder(
+                                      border: const OutlineInputBorder(),
+                                      focusedBorder: const OutlineInputBorder(
                                         borderSide:
                                             BorderSide(color: Colors.black),
                                       ),
@@ -169,9 +172,9 @@ class _SalePageState extends State<SalePage> {
                         Column(
                           children: [
                             const Gap(8),
-                            const Center(
+                            Center(
                               child:
-                                  Text("Valor", style: TextStyle(fontSize: 25)),
+                                  Text("Valor", style: GoogleFonts.openSans(color: Colors.black, fontSize: 24)),
                             ),
                             const Gap(8),
                             SizedBox(
@@ -195,11 +198,12 @@ class _SalePageState extends State<SalePage> {
                                     },
                                     keyboardType: TextInputType.number,
                                     controller: _priceText,
-                                    decoration: const InputDecoration(
+                                    decoration: InputDecoration(
                                       labelText: 'Valor',
+                                      labelStyle: GoogleFonts.openSans(color: Colors.black),
                                       isDense: true,
-                                      border: OutlineInputBorder(),
-                                      focusedBorder: OutlineInputBorder(
+                                      border: const OutlineInputBorder(),
+                                      focusedBorder: const OutlineInputBorder(
                                         borderSide:
                                             BorderSide(color: Colors.black),
                                       ),
@@ -233,11 +237,12 @@ class _SalePageState extends State<SalePage> {
                                     },
                                     keyboardType: TextInputType.number,
                                     controller: _priceText2,
-                                    decoration: const InputDecoration(
+                                    decoration: InputDecoration(
                                       labelText: 'Valor',
+                                      labelStyle: GoogleFonts.openSans(color: Colors.black),
                                       isDense: true,
-                                      border: OutlineInputBorder(),
-                                      focusedBorder: OutlineInputBorder(
+                                      border: const OutlineInputBorder(),
+                                      focusedBorder: const OutlineInputBorder(
                                         borderSide:
                                             BorderSide(color: Colors.black),
                                       ),
@@ -271,11 +276,12 @@ class _SalePageState extends State<SalePage> {
                                     },
                                     keyboardType: TextInputType.number,
                                     controller: _priceText3,
-                                    decoration: const InputDecoration(
+                                    decoration: InputDecoration(
                                       labelText: 'Valor',
+                                      labelStyle: GoogleFonts.openSans(color: Colors.black),
                                       isDense: true,
-                                      border: OutlineInputBorder(),
-                                      focusedBorder: OutlineInputBorder(
+                                      border: const OutlineInputBorder(),
+                                      focusedBorder: const OutlineInputBorder(
                                         borderSide:
                                             BorderSide(color: Colors.black),
                                       ),
@@ -297,7 +303,7 @@ class _SalePageState extends State<SalePage> {
                     //total
                     Center(
                         child: Text("Total a pagar: ${_totalPrice.toString()}",
-                            style: const TextStyle(fontSize: 15))),
+                            style: GoogleFonts.openSans(color: Colors.black))),
                     const Gap(32),
                     //botones
                     Row(
@@ -315,9 +321,9 @@ class _SalePageState extends State<SalePage> {
                               onPressed: () {
                                 _ventaBloc.add(Atras());
                               },
-                              child: const Text(
+                              child: Text(
                                 'Atrás',
-                                style: TextStyle(color: Colors.white),
+                                style: GoogleFonts.openSans(color: Colors.white),
                               ),
                             )),
                         Container(
@@ -360,9 +366,9 @@ class _SalePageState extends State<SalePage> {
                                     voVentList: voVentList,
                                     voLoteList: voLoteSele));
                               },
-                              child: const Text(
+                              child: Text(
                                 'Registrar',
-                                style: TextStyle(color: Colors.white),
+                                style: GoogleFonts.openSans(color: Colors.white),
                               ),
                             )),
                       ],
