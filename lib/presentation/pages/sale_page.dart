@@ -6,6 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:vende_bet/presentation/bloc/blocs.dart';
 import 'package:vende_bet/presentation/widgets/shared/cool_alert.dart';
 
+import '../../domain/entities/loteria.dart';
 import '../../domain/entities/venta.dart';
 
 class SalePage extends StatefulWidget {
@@ -26,6 +27,7 @@ class _SalePageState extends State<SalePage> {
   List<bool> voSeleList = [];
   List<Venta> voVentList = [];
   List<int> voLoteSele = [];
+  List<Loteria> voLoteList = [];
   late VentaBloc _ventaBloc;
 
   @override
@@ -83,7 +85,7 @@ class _SalePageState extends State<SalePage> {
                                     onTapOutside: _onTapOutside,
                                     controller: _numberText,
                                     decoration: InputDecoration(
-                                      labelStyle: GoogleFonts.openSans(color: Colors.white),
+                                      labelStyle: GoogleFonts.openSans(color: Colors.black),
                                       isDense: true,
                                       labelText: 'Número',
                                       border: const OutlineInputBorder(),
@@ -116,7 +118,7 @@ class _SalePageState extends State<SalePage> {
                                     onTapOutside: _onTapOutside,
                                     controller: _numberText2,
                                     decoration: InputDecoration(
-                                      labelStyle: GoogleFonts.openSans(color: Colors.white),
+                                      labelStyle: GoogleFonts.openSans(color: Colors.black),
                                       labelText: 'Número',
                                       isDense: true,
                                       border: const OutlineInputBorder(),
@@ -381,7 +383,7 @@ class _SalePageState extends State<SalePage> {
           if (state is NumerosAgregados) {
             return Column(
               children: [
-                const Gap(16),
+                const Gap(24),
                 Text('Números Agregados',
                     style: GoogleFonts.openSans(
                         fontSize: 22, color: Colors.black)),
@@ -390,6 +392,12 @@ class _SalePageState extends State<SalePage> {
                   itemCount: state.voVentList.length,
                   itemBuilder: (BuildContext context, int vnIndex) {
                     var voVenta = state.voVentList[vnIndex];
+                    String vcLoteria = '';
+                    for(var voLote in voLoteList){
+                      if(voLote.vnId == voVenta.vnLoteId){
+                        vcLoteria = voLote.vcNombre;
+                      }
+                    }
                     return Padding(
                       padding: const EdgeInsets.symmetric(
                           vertical: 0, horizontal: 8),
@@ -401,7 +409,7 @@ class _SalePageState extends State<SalePage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text('Número: ${voVenta.vnNumero}'),
-                            Text('Lotería: Cundinamarca',
+                            Text('Lotería: $vcLoteria',
                                 style: GoogleFonts.openSans(
                                     fontSize: 20,
                                     color: Colors.black,
@@ -448,6 +456,7 @@ class _SalePageState extends State<SalePage> {
             children: [
               BlocBuilder<LoteriaBloc, LoteriaState>(builder: (context, state) {
                 if (state is LoteriasOk) {
+                  voLoteList = state.voListLote;
                   if (voSeleList.length != state.voListLote.length) {
                     voSeleList = List.generate(
                         state.voListLote.length, (index) => false);
