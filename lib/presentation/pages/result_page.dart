@@ -90,14 +90,14 @@ class _ResultPageState extends State<ResultPage> {
                 itemBuilder: (BuildContext context, int vnIndex) {
                   Resultado voResultado = state.voResuList[vnIndex];
                   return Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 8),
+                    padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 4),
                     child: ListTile(
-                      contentPadding: const EdgeInsets.symmetric(horizontal: 64),
-                      title: Text('Lotería: ${voResultado.vcLoteria}'),
-                      titleTextStyle: GoogleFonts.openSans(fontSize: 20, color: Colors.black),
+                      contentPadding: const EdgeInsets.symmetric(horizontal: 54),
+                      title: Text('Lotería: ${voResultado.vcLoteria}', textAlign: TextAlign.left,),
+                      titleTextStyle: GoogleFonts.openSans(fontSize: 18, color: Colors.black),
                       subtitle: Text('Número: ${voResultado.vnNumero}'),
-                      subtitleTextStyle: GoogleFonts.openSans(fontSize: 20, color: Colors.black),
-                      leading: const Icon(Icons.fact_check, color: Colors.lightGreen,size: 50),
+                      subtitleTextStyle: GoogleFonts.openSans(fontSize: 18, color: Colors.black, fontWeight: FontWeight.w300),
+                      leading: const Icon(Icons.fact_check, color: Colors.lightGreen,size: 55),
                     ),
                   );
                 });

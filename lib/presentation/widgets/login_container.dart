@@ -25,6 +25,13 @@ class _LoginContainerState extends State<LoginContainer> {
   late LoginBloc _loginBloc;
   late LoteriaBloc _loteriaBloc;
 
+  _onTapOutside(pointer){
+    final FocusScopeNode focus = FocusScope.of(context);
+    if (!focus.hasPrimaryFocus && focus.hasFocus) {
+      FocusManager.instance.primaryFocus?.unfocus();
+    }
+  }
+
   @override
   void initState() {
     super.initState();
@@ -65,6 +72,8 @@ class _LoginContainerState extends State<LoginContainer> {
                 TextFormField(
                   controller: _userController,
                   cursorColor: Colors.white,
+                  onTapOutside: _onTapOutside,
+                  textInputAction: TextInputAction.next,
                   style: const TextStyle(
                     color: Colors.white,
                   ),
@@ -87,6 +96,7 @@ class _LoginContainerState extends State<LoginContainer> {
                   controller: _passController,
                   cursorColor: Colors.white,
                   obscureText: _obscureText,
+                  onTapOutside: _onTapOutside,
                   style: const TextStyle(
                     color: Colors.white,
                   ),

@@ -16,7 +16,7 @@ class _HistoPageState extends State<HistoPage> {
   late HistorialBloc _histoBloc;
   DateTime? _vdFechSele;
   final DateFormat _dateFormat = DateFormat('yyyy/MM/dd');
-  late String vcFecha;
+  String vcFecha = '';
 
   @override
   void initState() {
@@ -103,7 +103,7 @@ class _HistoPageState extends State<HistoPage> {
                           style: GoogleFonts.openSans(fontSize: 20, fontWeight: FontWeight.bold),
                           textAlign: TextAlign.center,
                         )),
-                        const Gap(8),
+                        const Gap(16),
                         state.voVentas.isEmpty ? Center(
                             child: Text('No tiene ventas para el día seleccionado',
                                 style: GoogleFonts.openSans(fontSize: 20),
@@ -112,14 +112,28 @@ class _HistoPageState extends State<HistoPage> {
                           itemBuilder: (BuildContext context, int vnIndex){
                             var voVenta = state.voVentas[vnIndex];
                             return Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+                              padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 8),
                               child: ListTile(
-                                dense: true,
-                                contentPadding: const EdgeInsets.symmetric(horizontal: 56),
-                                title: Text('Número: ${voVenta.vnNumero}'),
+                                visualDensity: VisualDensity.compact,
+                                contentPadding: const EdgeInsets.symmetric(horizontal: 16),
+                                title: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text('Número: ${voVenta.vnNumero}'),
+                                    Text('Lotería: Cundinamarca', style: GoogleFonts.openSans(
+                                      fontSize: 20,
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.w400
+                                    )),
+                                  ],
+                                ),
                                 subtitle: Text('Precio: ${voVenta.vnPrecio}'),
-                                subtitleTextStyle: GoogleFonts.openSans(fontSize: 28),
-                                titleTextStyle: GoogleFonts.openSans(fontSize: 28),
+                                subtitleTextStyle: GoogleFonts.openSans(fontSize: 20, color: Colors.black, fontWeight: FontWeight.w100),
+                                titleTextStyle: GoogleFonts.openSans(fontSize: 20, color: Colors.black, fontWeight: FontWeight.w700),
+                                leading: const Padding(
+                                  padding: EdgeInsets.symmetric(horizontal: 24.0),
+                                  child: Icon(Icons.sell, color: Colors.lightGreen, size: 40,),
+                                ),
                               ),
                             );
 

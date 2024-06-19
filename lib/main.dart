@@ -12,6 +12,7 @@ void main() async {
       BlocProvider<LoginBloc>(create: (context) => LoginBloc()),
       BlocProvider<LoteriaBloc>(create: (context) => LoteriaBloc()),
       BlocProvider<ResultadosBloc>(create: (context) => ResultadosBloc()),
+      BlocProvider<VentaBloc>(create: (context) => VentaBloc()),
     ],
       child: const MyApp()));
 }
