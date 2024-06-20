@@ -19,4 +19,3 @@ class LoginError extends LoginState{
   LoginError({required this.vcMensaje});
 }
 
-class LoginOff extends LoginState { }

@@ -18,12 +18,15 @@ class _ResultPageState extends State<ResultPage> {
   late ResultadosBloc _resultadosBloc;
   DateTime? _vdFechSele;
   final DateFormat _dateFormat = DateFormat('yyyy/MM/dd');
-  late String vcFecha;
+  late String _vcFecha;
 
   @override
   void initState() {
     super.initState();
     _resultadosBloc = context.read<ResultadosBloc>();
+    _vdFechSele = DateTime.now();
+    _vcFecha = _dateFormat.format(_vdFechSele!);
+    _resultadosBloc.add(TraerResultadosEvent(_vcFecha));
   }
 
   Future<void> _selectDate(BuildContext context) async {
@@ -36,7 +39,7 @@ class _ResultPageState extends State<ResultPage> {
     if (vdFecha != null && vdFecha != _vdFechSele) {
       setState(() {
         _vdFechSele = vdFecha;
-        vcFecha = _dateFormat.format(_vdFechSele!);
+        _vcFecha = _dateFormat.format(_vdFechSele!);
       });
     }
   }
@@ -57,10 +60,10 @@ class _ResultPageState extends State<ResultPage> {
               ),
               onPressed: () {
                 _selectDate(context).then((value) =>
-                    _resultadosBloc.add(TraerResultadosEvent(vcFecha)));
+                    _resultadosBloc.add(TraerResultadosEvent(_vcFecha)));
               },
               child:
-                  Text(_vdFechSele == null ? 'Seleccione una fecha' : vcFecha,
+                  Text(_vdFechSele == null ? 'Seleccione una fecha' : _vcFecha,
                     style: GoogleFonts.openSans(fontSize: 20),
                     textAlign: TextAlign.center,
                   ),

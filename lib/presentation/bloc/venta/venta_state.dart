@@ -5,17 +5,28 @@ abstract class VentaState {}
 final class VentaInitial extends VentaState {}
 
 class LoteriaSeleccionada extends VentaState{
-  List<int> voLoterias;
+  List<Loteria> voLoterias;
 
   LoteriaSeleccionada({required this.voLoterias});
 }
 
-class NumerosAgregados extends VentaState {
+class NumerosAAgregar extends VentaState {
   List<Venta> voVentList;
-  List<int> voLoteList;
-
-  NumerosAgregados({required this.voVentList, required this.voLoteList});
+  List<Loteria> voLoteList;
+  int vnPagoTota;
+  NumerosAAgregar({required this.voVentList, required this.voLoteList, required this.vnPagoTota});
 }
 
-class VentaConfirmada extends VentaState {}
+class VentaConfirmada extends VentaState {
+  String vcMensaje;
 
+  VentaConfirmada({required this.vcMensaje});
+}
+
+class VentaError extends VentaState {
+  String vcMensaje;
+
+  VentaError({required this.vcMensaje});
+}
+
+class VentaLoading extends VentaState {}

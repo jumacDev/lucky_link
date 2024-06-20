@@ -6,7 +6,8 @@ import 'package:intl/intl.dart';
 import 'package:vende_bet/presentation/bloc/blocs.dart';
 
 class HistoPage extends StatefulWidget {
-  const HistoPage({super.key});
+  final int vnUsuaId;
+  const HistoPage({super.key, required this.vnUsuaId});
 
   @override
   State<HistoPage> createState() => _HistoPageState();
@@ -16,12 +17,17 @@ class _HistoPageState extends State<HistoPage> {
   late HistorialBloc _histoBloc;
   DateTime? _vdFechSele;
   final DateFormat _dateFormat = DateFormat('yyyy/MM/dd');
-  String vcFecha = '';
+  String _vcFecha = '';
+  late int _vnUsuaId;
 
   @override
   void initState() {
     super.initState();
     _histoBloc = context.read<HistorialBloc>();
+    _vdFechSele = DateTime.now();
+    _vcFecha = _dateFormat.format(_vdFechSele!);
+    _vnUsuaId = widget.vnUsuaId;
+    _histoBloc.add(ConsultarHistorial(vcFecha: _vcFecha, vnUsuaId: _vnUsuaId));
   }
 
   Future<void> _selectDate(BuildContext context) async {
@@ -34,19 +40,18 @@ class _HistoPageState extends State<HistoPage> {
     if (vdFecha != null && vdFecha != _vdFechSele) {
       setState(() {
         _vdFechSele = vdFecha;
-        vcFecha = _dateFormat.format(_vdFechSele!);
+        _vcFecha = _dateFormat.format(_vdFechSele!);
       });
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    int vnUsuaId = 0;
 
     return BlocBuilder<LoginBloc, LoginState>(
       builder: (context, state) {
         if(state is LoginOk){
-          vnUsuaId = state.voSesion.vnUsuario;
+          _vnUsuaId = state.voSesion.vnUsuario;
         }
         return Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -63,10 +68,10 @@ class _HistoPageState extends State<HistoPage> {
                   onPressed: () {
                     _selectDate(context).then((value) =>
                         _histoBloc.add(
-                            ConsultarHistorial(vcFecha: vcFecha, vnUsuaId: vnUsuaId)));
+                            ConsultarHistorial(vcFecha: _vcFecha, vnUsuaId: _vnUsuaId)));
                   },
                   child:
-                  Text(_vdFechSele == null ? 'Seleccione una fecha' : vcFecha,
+                  Text(_vdFechSele == null ? 'Seleccione una fecha' : _vcFecha,
                     style: GoogleFonts.openSans(fontSize: 20),
                     textAlign: TextAlign.center,
                   ),
@@ -120,7 +125,7 @@ class _HistoPageState extends State<HistoPage> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text('Número: ${voVenta.vnNumero}'),
-                                    Text('Lotería: Cundinamarca', style: GoogleFonts.openSans(
+                                    Text('Lotería: ${voVenta.vcLoteria}', style: GoogleFonts.openSans(
                                       fontSize: 20,
                                       color: Colors.black,
                                       fontWeight: FontWeight.w400

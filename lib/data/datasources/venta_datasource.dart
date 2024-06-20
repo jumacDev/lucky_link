@@ -21,14 +21,19 @@ class VentaDataSource extends VentaDatasource{
     try{
       final vcUrl = '${_environment.base}${_environment.ventas}';
 
+      List<Map<String, dynamic>> voVentJson = poList.map((voVenta) => voVenta.toJson()).toList();
+
+      print(voVentJson.first);
 
       final response = await _dio.post(vcUrl,
-          data: null,
+          data: voVentJson,
           options: Options(
             headers: {
               "pn_usua_id" : pnUsuaId
             }
       ));
+
+      print(response.data);
 
       voSalida = Salida(vnCodigo: response.data['codigo'], vcMensaje: response.data['mensaje'],
           voData: response.data['data']
