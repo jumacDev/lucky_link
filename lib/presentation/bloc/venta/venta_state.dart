@@ -14,7 +14,9 @@ class NumerosAAgregar extends VentaState {
   List<Venta> voVentList;
   List<Loteria> voLoteList;
   int vnPagoTota;
+
   NumerosAAgregar({required this.voVentList, required this.voLoteList, required this.vnPagoTota});
+
 }
 
 class VentaConfirmada extends VentaState {

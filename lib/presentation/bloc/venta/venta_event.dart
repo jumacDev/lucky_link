@@ -25,9 +25,19 @@ class AgregarNumero extends VentaEvent {
 
 class EnviarVenta extends VentaEvent {
   List<Venta> voVentList;
-  int pnUsuaId;
+  int vnUsuaId;
 
-  EnviarVenta({required this.voVentList, required this.pnUsuaId});
+  EnviarVenta({required this.voVentList, required this.vnUsuaId});
+}
+
+class EliminarVenta extends VentaEvent {
+  List<Venta> voVentList;
+  Venta voVenta;
+  List<Loteria> voLoteList;
+  int vnPagoTota;
+
+  EliminarVenta({required this.voVentList, required this.voVenta, required this.vnPagoTota, required this.voLoteList});
+
 }
 
 class LogOutVenta extends VentaEvent {}

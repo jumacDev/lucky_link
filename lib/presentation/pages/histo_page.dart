@@ -53,124 +53,125 @@ class _HistoPageState extends State<HistoPage> {
         if(state is LoginOk){
           _vnUsuaId = state.voSesion.vnUsuario;
         }
-        return Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Center(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 16.0),
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.lightGreen,
-                      foregroundColor: Colors.white,
-                      minimumSize: const Size(80, 40)
-                  ),
-                  onPressed: () {
-                    _selectDate(context).then((value) =>
-                        _histoBloc.add(
-                            ConsultarHistorial(vcFecha: _vcFecha, vnUsuaId: _vnUsuaId)));
-                  },
-                  child:
-                  Text(_vdFechSele == null ? 'Seleccione una fecha' : _vcFecha,
-                    style: GoogleFonts.openSans(fontSize: 20),
-                    textAlign: TextAlign.center,
+        return SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Center(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 16.0),
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.lightGreen,
+                        foregroundColor: Colors.white,
+                        minimumSize: const Size(80, 40)
+                    ),
+                    onPressed: () {
+                      _selectDate(context).then((value) =>
+                          _histoBloc.add(
+                              ConsultarHistorial(vcFecha: _vcFecha, vnUsuaId: _vnUsuaId)));
+                    },
+                    child:
+                    Text(_vdFechSele == null ? 'Seleccione una fecha' : _vcFecha,
+                      style: GoogleFonts.openSans(fontSize: 20),
+                      textAlign: TextAlign.center,
+                    ),
                   ),
                 ),
               ),
-            ),
-            BlocListener<HistorialBloc, HistorialState>(listener: (context, state){
+              BlocListener<HistorialBloc, HistorialState>(listener: (context, state){
 
-            },
-              child: BlocBuilder<HistorialBloc, HistorialState>(
-                builder: (context, state){
-                  if(state is HistorialOk){
-                    return Column(
-                      children: [
-                        const Gap(8),
-                        Center(child: Text(
-                          'Total Ventas: ${state.voPago.vnVentTota}',
-                          style: GoogleFonts.openSans(fontSize: 20),
-                          textAlign: TextAlign.center,
-                        )),
-                        const Gap(8),
-                        Center(child: Text(
-                          'Mi porcentaje: ${state.voPago.vnMiPorc}',
-                          style: GoogleFonts.openSans(fontSize: 20),
-                          textAlign: TextAlign.center,
-                        )),
-                        const Padding(
-                          padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 24),
-                          child: Divider(),
+              },
+                child: BlocBuilder<HistorialBloc, HistorialState>(
+                  builder: (context, state){
+                    if(state is HistorialOk){
+                      return Column(
+                        children: [
+                          const Gap(8),
+                          Center(child: Text(
+                            'Total Ventas: ${state.voPago.vnVentTota}',
+                            style: GoogleFonts.openSans(fontSize: 20),
+                            textAlign: TextAlign.center,
+                          )),
+                          const Gap(8),
+                          Center(child: Text(
+                            'Mi porcentaje: ${state.voPago.vnMiPorc}',
+                            style: GoogleFonts.openSans(fontSize: 20),
+                            textAlign: TextAlign.center,
+                          )),
+                          const Padding(
+                            padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 24),
+                            child: Divider(),
+                          ),
+                          const Gap(4),
+                          Center(child: Text(
+                            'Historial de Ventas',
+                            style: GoogleFonts.openSans(fontSize: 20, fontWeight: FontWeight.bold),
+                            textAlign: TextAlign.center,
+                          )),
+                          const Gap(16),
+                          state.voVentas.isEmpty ? Center(
+                              child: Text('No tiene ventas para el día seleccionado',
+                                  style: GoogleFonts.openSans(fontSize: 20),
+                                  textAlign: TextAlign.center)) :
+                          ListView.builder(
+                            itemBuilder: (BuildContext context, int vnIndex){
+                              var voVenta = state.voVentas[vnIndex];
+                              return Padding(
+                                padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 8),
+                                child: ListTile(
+                                  visualDensity: VisualDensity.compact,
+                                  contentPadding: const EdgeInsets.symmetric(horizontal: 16),
+                                  title: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text('Número: ${voVenta.vnNumero}'),
+                                      Text('Lotería: ${voVenta.vcLoteria}', style: GoogleFonts.openSans(
+                                        fontSize: 20,
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.w400
+                                      )),
+                                    ],
+                                  ),
+                                  subtitle: Text('Precio: ${voVenta.vnPrecio}'),
+                                  subtitleTextStyle: GoogleFonts.openSans(fontSize: 20, color: Colors.black, fontWeight: FontWeight.w100),
+                                  titleTextStyle: GoogleFonts.openSans(fontSize: 20, color: Colors.black, fontWeight: FontWeight.w700),
+                                  leading: const Padding(
+                                    padding: EdgeInsets.symmetric(horizontal: 24.0),
+                                    child: Icon(Icons.sell, color: Colors.lightGreen, size: 40,),
+                                  ),
+                                ),
+                              );
+                            },
+                            itemCount: state.voVentas.length,
+                            shrinkWrap: true,
+                            physics: const NeverScrollableScrollPhysics()
+                          )
+                        ],
+                      );
+                    }
+                    if(state is HistorialLoading){
+                      return const Center(
+                        child: CircularProgressIndicator(
+                          color: Colors.lightGreen,
+                          strokeWidth: 2,
                         ),
-                        const Gap(4),
-                        Center(child: Text(
-                          'Historial de Ventas',
-                          style: GoogleFonts.openSans(fontSize: 20, fontWeight: FontWeight.bold),
-                          textAlign: TextAlign.center,
-                        )),
-                        const Gap(16),
-                        state.voVentas.isEmpty ? Center(
-                            child: Text('No tiene ventas para el día seleccionado',
-                                style: GoogleFonts.openSans(fontSize: 20),
-                                textAlign: TextAlign.center)) :
-                        ListView.builder(
-                          itemBuilder: (BuildContext context, int vnIndex){
-                            var voVenta = state.voVentas[vnIndex];
-                            return Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 8),
-                              child: ListTile(
-                                visualDensity: VisualDensity.compact,
-                                contentPadding: const EdgeInsets.symmetric(horizontal: 16),
-                                title: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text('Número: ${voVenta.vnNumero}'),
-                                    Text('Lotería: ${voVenta.vcLoteria}', style: GoogleFonts.openSans(
-                                      fontSize: 20,
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.w400
-                                    )),
-                                  ],
-                                ),
-                                subtitle: Text('Precio: ${voVenta.vnPrecio}'),
-                                subtitleTextStyle: GoogleFonts.openSans(fontSize: 20, color: Colors.black, fontWeight: FontWeight.w100),
-                                titleTextStyle: GoogleFonts.openSans(fontSize: 20, color: Colors.black, fontWeight: FontWeight.w700),
-                                leading: const Padding(
-                                  padding: EdgeInsets.symmetric(horizontal: 24.0),
-                                  child: Icon(Icons.sell, color: Colors.lightGreen, size: 40,),
-                                ),
-                              ),
-                            );
-
-                          },
-                          itemCount: state.voVentas.length,
-                          shrinkWrap: true,
-                        )
-
-                      ],
-                    );
-                  }
-                  if(state is HistorialLoading){
-                    return const Center(
-                      child: CircularProgressIndicator(
-                        color: Colors.lightGreen,
-                        strokeWidth: 2,
+                      );
+                    }
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 56.0, horizontal: 16),
+                      child: Center(
+                          child: Text('Seleccione una fecha para ver Ventas y Pagos',
+                            style: GoogleFonts.openSans(fontSize: 22),
+                            textAlign: TextAlign.center,
+                          )
                       ),
                     );
-                  }
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 56.0, horizontal: 16),
-                    child: Center(
-                        child: Text('Seleccione una fecha para ver Ventas y Pagos',
-                          style: GoogleFonts.openSans(fontSize: 22),
-                          textAlign: TextAlign.center,
-                        )
-                    ),
-                  );
-                },
-              ),
-            )
-          ],
+                  },
+                ),
+              )
+            ],
+          ),
         );
       },
     );

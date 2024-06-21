@@ -1,4 +1,5 @@
 import 'package:cool_alert/cool_alert.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
@@ -61,16 +62,25 @@ class _SalePageState extends State<SalePage> {
         if (state is LoginOk) {
           _vnUsuaId = state.voSesion.vnUsuario;
           return SafeArea(
+            minimum: const EdgeInsets.symmetric(vertical: 8),
               child: Center(
             child: BlocListener<VentaBloc, VentaState>(
               listener: (context, state) {
                 if(state is VentaError){
                   showCoolAlert(context, CoolAlertType.error, 'No se pudo realizar la venta', state.vcMensaje);
+                  Future.delayed(const Duration(seconds: 3));
+                  _ventaBloc.add(LogOutVenta());
                   _clearText();
                 }
                 if(state is VentaConfirmada){
                   showCoolAlert(context, CoolAlertType.success, 'Venta Exitosa', state.vcMensaje);
+                  _ventaBloc.add(LogOutVenta());
                   _clearText();
+                }
+                if(state is VentaInitial){
+                  voSeleList.clear();
+                  voVentList.clear();
+                  voLoteSele.clear();
                 }
               },
               child: BlocBuilder<VentaBloc, VentaState>(
@@ -82,7 +92,7 @@ class _SalePageState extends State<SalePage> {
                         ListView(
                           shrinkWrap: true,
                           children: [
-                            const Gap(24),
+                            const Gap(20),
                             //inputs
                             Row(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -237,13 +247,12 @@ class _SalePageState extends State<SalePage> {
                                                 TextInputAction.next,
                                             onTapOutside: _onTapOutside,
                                             onChanged: (value) {
-                                              if (value.length >= 3) {
-                                                vnTotalPrice +=
-                                                    (int.parse(value) *
-                                                        voLoteSele.length);
+                                              if (value.length > 3) {
+                                                vnTotalPrice += (int.parse(value) * voLoteSele.length);
                                               } else if (value.isEmpty) {
                                                 vnTotalPrice = 0;
                                               }
+                                              setState(() {});
                                             },
                                             keyboardType: TextInputType.number,
                                             controller: _priceText,
@@ -261,8 +270,7 @@ class _SalePageState extends State<SalePage> {
                                               ),
                                             ),
                                             validator: (value) {
-                                              if (value!.toString().length <
-                                                  3) {
+                                              if (value!.toString().length < 3) {
                                                 return 'Inválido';
                                               }
                                               return null;
@@ -282,13 +290,12 @@ class _SalePageState extends State<SalePage> {
                                                 TextInputAction.next,
                                             onTapOutside: _onTapOutside,
                                             onChanged: (value) {
-                                              if (value.length >= 3) {
-                                                vnTotalPrice +=
-                                                    (int.parse(value) *
-                                                        voLoteSele.length);
+                                              if (value.length > 3) {
+                                                vnTotalPrice += (int.parse(value) * voLoteSele.length);
                                               } else if (value.isEmpty) {
                                                 vnTotalPrice = 0;
                                               }
+                                              setState(() {});
                                             },
                                             keyboardType: TextInputType.number,
                                             controller: _priceText2,
@@ -306,9 +313,7 @@ class _SalePageState extends State<SalePage> {
                                               ),
                                             ),
                                             validator: (value) {
-                                              if (value!.toString().length <
-                                                      3 ||
-                                                  value.isEmpty) {
+                                              if (value!.toString().length < 3 || value.isEmpty) {
                                                 return 'Inválido';
                                               }
                                               return null;
@@ -326,13 +331,12 @@ class _SalePageState extends State<SalePage> {
                                                 .onUserInteraction,
                                             onTapOutside: _onTapOutside,
                                             onChanged: (value) {
-                                              if (value.length >= 3) {
-                                                vnTotalPrice +=
-                                                    (int.parse(value) *
-                                                        voLoteSele.length);
+                                              if (value.length > 3) {
+                                                vnTotalPrice += (int.parse(value) * voLoteSele.length);
                                               } else if (value.isEmpty) {
                                                 vnTotalPrice = 0;
                                               }
+                                              setState(() {});
                                             },
                                             keyboardType: TextInputType.number,
                                             controller: _priceText3,
@@ -350,9 +354,7 @@ class _SalePageState extends State<SalePage> {
                                               ),
                                             ),
                                             validator: (value) {
-                                              if (value!.toString().length <
-                                                      3 ||
-                                                  value.isEmpty) {
+                                              if (value!.toString().length < 3 || value.isEmpty) {
                                                 return 'Inválido';
                                               }
                                               return null;
@@ -363,7 +365,7 @@ class _SalePageState extends State<SalePage> {
                                 )
                               ],
                             ),
-                            const Gap(32),
+                            const Gap(24),
                             //total
                             Center(
                                 child: Text(
@@ -387,6 +389,7 @@ class _SalePageState extends State<SalePage> {
                                                   BorderRadius.circular(10))),
                                       onPressed: () {
                                         _ventaBloc.add(Atras());
+                                        _clearText();
                                       },
                                       child: Text(
                                         'Atrás',
@@ -460,106 +463,120 @@ class _SalePageState extends State<SalePage> {
                   }
                   if (state is NumerosAAgregar) {
                     return SingleChildScrollView(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Text('Números A Agregar',
-                              style: GoogleFonts.openSans(
-                                  fontSize: 22, color: Colors.black)),
-                          const Gap(8),
-                          ListView.builder(
-                            shrinkWrap: true,
-                            itemCount: state.voVentList.length,
-                            itemBuilder: (BuildContext context, int vnIndex) {
-                              var voVenta = state.voVentList[vnIndex];
-                              String vcLoteria = '';
-                              for (var voLote in voLoteList) {
-                                if (voLote.vnId == voVenta.vnLoteId) {
-                                  vcLoteria = voLote.vcNombre;
+                      physics: const NeverScrollableScrollPhysics(),
+                      child: Padding(
+                        padding: const EdgeInsets.only(bottom: 40.0),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Text('Números A Agregar',
+                                style: GoogleFonts.openSans(
+                                    fontSize: 22, color: Colors.black)),
+                            const Gap(8),
+                            ListView.builder(
+                              shrinkWrap: true,
+                              itemCount: state.voVentList.length,
+                              itemBuilder: (BuildContext context, int vnIndex) {
+                                var voVenta = state.voVentList[vnIndex];
+                                String vcLoteria = '';
+                                for (var voLote in voLoteList) {
+                                  if (voLote.vnId == voVenta.vnLoteId) {
+                                    vcLoteria = voLote.vcNombre;
+                                  }
                                 }
-                              }
-                              return Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    vertical: 0, horizontal: 8),
-                                child: ListTile(
-                                  visualDensity: VisualDensity.compact,
-                                  contentPadding:
-                                      const EdgeInsets.symmetric(horizontal: 16),
-                                  title: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      Text('Número: ${voVenta.vnNumero}'),
-                                      Text('Lotería: $vcLoteria',
-                                          style: GoogleFonts.openSans(
-                                              fontSize: 20,
-                                              color: Colors.black,
-                                              fontWeight: FontWeight.w400)),
-                                    ],
-                                  ),
-                                  subtitle: Text('Precio: ${voVenta.vnPrecio}'),
-                                  subtitleTextStyle: GoogleFonts.openSans(
-                                      fontSize: 20,
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.w100),
-                                  titleTextStyle: GoogleFonts.openSans(
-                                      fontSize: 20,
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.w700),
-                                  leading: const Padding(
-                                    padding:
-                                        EdgeInsets.symmetric(horizontal: 24.0),
-                                    child: Icon(
-                                      Icons.sell,
-                                      color: Colors.lightGreen,
-                                      size: 40,
+                                return Padding(
+                                  padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 32),
+                                  child: ListTile(
+                                    visualDensity: VisualDensity.compact,
+                                    dense: true,
+                                    contentPadding: const EdgeInsets.symmetric(horizontal: 16),
+                                    title: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Text('Número: ${voVenta.vnNumero}'),
+                                        Text('Lotería: $vcLoteria',
+                                            style: GoogleFonts.openSans(
+                                                color: Colors.black,
+                                                fontWeight: FontWeight.w400)),
+                                      ],
+                                    ),
+                                    subtitle: Text('Precio: ${voVenta.vnPrecio}'),
+                                    subtitleTextStyle: GoogleFonts.openSans(
+                                        fontSize: 20,
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.w100),
+                                    titleTextStyle: GoogleFonts.openSans(
+                                        fontSize: 20,
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.w700),
+                                    leading: const Padding(
+                                      padding:
+                                          EdgeInsets.symmetric(horizontal: 24.0),
+                                      child: Icon(
+                                        Icons.sell,
+                                        color: Colors.lightGreen,
+                                        size: 40,
+                                      ),
+                                    ),
+                                    trailing: IconButton(
+                                      icon: const Icon(CupertinoIcons.minus_circle, color: Colors.grey),
+                                      onPressed: (){
+                                        _ventaBloc.add(EliminarVenta(
+                                            voVentList: voVentList,
+                                            voVenta: voVenta,
+                                            vnPagoTota: vnTotalPrice,
+                                            voLoteList: voLoteList
+                                        ));
+                                      },
                                     ),
                                   ),
+                                );
+                              },
+                            ),
+                            const Gap(16),
+                            Text('Total a Pagar: ${state.vnPagoTota}',
+                                style: GoogleFonts.openSans(
+                                    fontSize: 22, color: Colors.black)),
+                            const Gap(24),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                      backgroundColor: Colors.lightGreen,
+                                      minimumSize: const Size(100, 40),
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(10))),
+                                  onPressed: () {
+                                    _ventaBloc.add(Atras2(voLoterias: voLoteSele));
+                                  },
+                                  child: const Text(
+                                    'Atrás',
+                                    style: TextStyle(color: Colors.white),
+                                  ),
                                 ),
-                              );
-                            },
-                          ),
-                          const Gap(16),
-                          Text('Total a Pagar: ${state.vnPagoTota}',
-                              style: GoogleFonts.openSans(
-                                  fontSize: 22, color: Colors.black)),
-                          const Gap(24),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                    backgroundColor: Colors.lightGreen,
-                                    minimumSize: const Size(100, 40),
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(10))),
-                                onPressed: () {
-                                  _ventaBloc.add(Atras2(voLoterias: voLoteSele));
-                                },
-                                child: const Text(
-                                  'Atrás',
-                                  style: TextStyle(color: Colors.white),
+                                const Gap(16),
+                                ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                      backgroundColor: Colors.lightGreen,
+                                      minimumSize: const Size(100, 40),
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(10))),
+                                  onPressed: () {
+                                    _ventaBloc.add(EnviarVenta(
+                                        voVentList: voVentList,
+                                        vnUsuaId: _vnUsuaId));
+                                  },
+                                  child: const Text(
+                                    'Finalizar',
+                                    style: TextStyle(color: Colors.white),
+                                  ),
                                 ),
-                              ),
-                              const Gap(16),
-                              ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                    backgroundColor: Colors.lightGreen,
-                                    minimumSize: const Size(100, 40),
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(10))),
-                                onPressed: () {
-                                  _ventaBloc.add(EnviarVenta(
-                                      voVentList: voVentList,
-                                      pnUsuaId: _vnUsuaId));
-                                },
-                                child: const Text(
-                                  'Finalizar',
-                                  style: TextStyle(color: Colors.white),
-                                ),
-                              ),
-                            ],
-                          )
-                        ],
+                              ],
+                            )
+                          ],
+                        ),
                       ),
                     );
                   }

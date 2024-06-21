@@ -16,6 +16,7 @@ class VentaBloc extends Bloc<VentaEvent, VentaState> {
     on<AgregarNumero>(_onAgregarNumeros);
     on<EnviarVenta>(_onEnviarVenta);
     on<LogOutVenta>(_onLogOutVenta);
+    on<EliminarVenta>(_onEliminarVenta);
   }
 
   final VentaRepositoryImpl _repositoryImpl = VentaRepositoryImpl(VentaDataSource());
@@ -39,17 +40,23 @@ class VentaBloc extends Bloc<VentaEvent, VentaState> {
   _onEnviarVenta(EnviarVenta event, Emitter<VentaState> emit) async {
     emit(VentaLoading());
 
-    final voSalida = await _repositoryImpl.enviarVenta(event.voVentList, event.pnUsuaId);
+    final voSalida = await _repositoryImpl.enviarVenta(event.voVentList, event.vnUsuaId);
 
     if(voSalida.vnCodigo == 1){
       emit(VentaConfirmada(vcMensaje: voSalida.vcMensaje!));
-      Future.delayed(const Duration(seconds: 5));
-      emit(VentaInitial());
     }else{
       emit(VentaError(vcMensaje: voSalida.vcMensaje!));
-      Future.delayed(const Duration(seconds: 5));
-      emit(VentaInitial());
     }
+  }
+
+  _onEliminarVenta(EliminarVenta event, Emitter<VentaState>emit){
+    List<Venta> voVentaList = event.voVentList;
+
+    voVentaList.remove(event.voVenta);
+    int vnTotalPrice = event.vnPagoTota - event.voVenta.vnPrecio;
+
+    emit(NumerosAAgregar(voVentList: voVentaList, voLoteList: event.voLoteList, vnPagoTota: vnTotalPrice));
+
   }
 
   _onLogOutVenta(LogOutVenta event, Emitter<VentaState> emit){
