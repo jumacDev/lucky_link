@@ -9,3 +9,4 @@ class ConsultarHistorial extends HistorialEvent {
   ConsultarHistorial({required this.vcFecha, required this.vnUsuaId});
 }
 
+class LogOutHisto extends HistorialEvent {}

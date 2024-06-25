@@ -1,8 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:vende_bet/data/datasources/sesion_datasource.dart';
-import 'package:vende_bet/data/repositories/sesion_repository_impl.dart';
 
-import '../../../domain/entities/sesion.dart';
+import '/data/datasources/sesion_datasource.dart';
+import '/data/repositories/sesion_repository_impl.dart';
+import '/domain/entities/sesion.dart';
 
 part 'login_event.dart';
 part 'login_state.dart';
@@ -28,7 +28,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   }
 
   _onLogOutPress(LogOutPress event, Emitter<LoginState> emit){
-    emit(LoginOff());
+    emit(LoginInitial());
   }
 
 }
