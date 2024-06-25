@@ -9,3 +9,5 @@ class TraerResultadosEvent extends ResultadosEvent{
   TraerResultadosEvent(this.vcFecha);
 }
 
+class LogOutResul extends ResultadosEvent{}
+
