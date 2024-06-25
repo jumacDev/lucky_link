@@ -103,7 +103,8 @@ class _SalePageState extends State<SalePage> {
                               const Gap(20),
                               //inputs
                               Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   //Números
                                   Column(
