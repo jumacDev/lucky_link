@@ -11,6 +11,7 @@ part 'resultados_state.dart';
 class ResultadosBloc extends Bloc<ResultadosEvent, ResultadosState> {
   ResultadosBloc() : super(ResultadosInitial()) {
     on<TraerResultadosEvent>(_onTraerResultadosEvent);
+    on<LogOutResul>(_onLogOutResul);
   }
 
   final ResultadoRepositoryImpl _repositoryImpl = ResultadoRepositoryImpl(ResultadoDataSource());
@@ -29,5 +30,8 @@ class ResultadosBloc extends Bloc<ResultadosEvent, ResultadosState> {
     }
   }
 
+  _onLogOutResul(LogOutResul event, Emitter<ResultadosState> emit){
+    emit(ResultadosInitial());
+  }
 
 }

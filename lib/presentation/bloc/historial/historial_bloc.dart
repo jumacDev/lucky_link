@@ -13,6 +13,7 @@ part 'historial_state.dart';
 class HistorialBloc extends Bloc<HistorialEvent, HistorialState> {
   HistorialBloc() : super(HistorialInitial()) {
     on<ConsultarHistorial>(_onConsultarHistorial);
+    on<LogOutHisto>(_onLogOutHisto);
   }
 
   final PagoRepositoryImpl _pagoRepositoryImpl = PagoRepositoryImpl(PagoDataSource());
@@ -32,5 +33,9 @@ class HistorialBloc extends Bloc<HistorialEvent, HistorialState> {
       emit(HistorialError(vcMensPago: voSaliPago.vcMensaje!, vcMensVent: voSaliVentas.vcMensaje!));
     }
 
+  }
+
+  _onLogOutHisto(LogOutHisto event, Emitter<HistorialState> emit){
+    emit(HistorialInitial());
   }
 }
