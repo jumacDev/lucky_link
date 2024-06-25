@@ -8,6 +8,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(MultiBlocProvider(
     providers: [
+      BlocProvider<BloqueoBloc>(create: (context) => BloqueoBloc()),
       BlocProvider<HistorialBloc>(create: (context) => HistorialBloc()),
       BlocProvider<LoginBloc>(create: (context) => LoginBloc()),
       BlocProvider<LoteriaBloc>(create: (context) => LoteriaBloc()),
