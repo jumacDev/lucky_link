@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:cool_alert/cool_alert.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -49,81 +50,93 @@ class _ResultPageState extends State<ResultPage> {
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        Center(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 16.0),
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.lightGreen,
-                foregroundColor: Colors.white,
-                minimumSize: const Size(80, 40)
+        FadeIn(
+          child: Center(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 16.0),
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.lightGreen,
+                  foregroundColor: Colors.white,
+                  minimumSize: const Size(80, 40)
+                ),
+                onPressed: () {
+                  _selectDate(context).then((value) =>
+                      _resultadosBloc.add(TraerResultadosEvent(_vcFecha)));
+                },
+                child:
+                    Text(_vdFechSele == null ? 'Seleccione una fecha' : _vcFecha,
+                      style: GoogleFonts.openSans(fontSize: 20),
+                      textAlign: TextAlign.center,
+                    ),
               ),
-              onPressed: () {
-                _selectDate(context).then((value) =>
-                    _resultadosBloc.add(TraerResultadosEvent(_vcFecha)));
-              },
-              child:
-                  Text(_vdFechSele == null ? 'Seleccione una fecha' : _vcFecha,
-                    style: GoogleFonts.openSans(fontSize: 20),
-                    textAlign: TextAlign.center,
-                  ),
             ),
           ),
         ),
-        BlocBuilder<ResultadosBloc, ResultadosState>(builder: (context, state) {
-          if(state is ResultadosError){
-            showCoolAlert(context, CoolAlertType.error, 'Error', state.vcMensaje);
-          }
-          if (state is ResultadosOk) {
-            if (state.voResuList.isEmpty) {
-              return Padding(
-                padding: const EdgeInsets.symmetric(vertical: 56.0, horizontal: 24),
-                child: Center(
-                  child: Text(
-                    state.vcMensaje,
-                    style: GoogleFonts.openSans(fontSize: 20),
-                    textAlign: TextAlign.center,
+        FadeIn(
+          child: BlocBuilder<ResultadosBloc, ResultadosState>(builder: (context, state) {
+            if(state is ResultadosError){
+              showCoolAlert(context, CoolAlertType.error, 'Error', state.vcMensaje);
+            }
+            if (state is ResultadosOk) {
+              if (state.voResuList.isEmpty) {
+                return FadeIn(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 56.0, horizontal: 24),
+                    child: Center(
+                      child: Text(
+                        state.vcMensaje,
+                        style: GoogleFonts.openSans(fontSize: 20),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
                   ),
+                );
+              }
+              return FadeIn(
+                child: ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: state.voResuList.length,
+                    itemBuilder: (BuildContext context, int vnIndex) {
+                      Resultado voResultado = state.voResuList[vnIndex];
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 4),
+                        child: ListTile(
+                          contentPadding: const EdgeInsets.symmetric(horizontal: 54),
+                          title: Text('Lotería: ${voResultado.vcLoteria}', textAlign: TextAlign.left,),
+                          titleTextStyle: GoogleFonts.openSans(fontSize: 18, color: Colors.black),
+                          subtitle: Text('Número: ${voResultado.vnNumero}'),
+                          subtitleTextStyle: GoogleFonts.openSans(fontSize: 18, color: Colors.black, fontWeight: FontWeight.w300),
+                          leading: const Icon(Icons.fact_check, color: Colors.lightGreen,size: 55),
+                        ),
+                      );
+                    }),
+              );
+            }
+            if (state is ResultadosLoading) {
+              return FadeIn(
+                child: const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 40),
+                  child: Center(
+                      child: CircularProgressIndicator(
+                    color: Colors.lightGreen,
+                  )),
                 ),
               );
             }
-            return ListView.builder(
-                shrinkWrap: true,
-                itemCount: state.voResuList.length,
-                itemBuilder: (BuildContext context, int vnIndex) {
-                  Resultado voResultado = state.voResuList[vnIndex];
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 4),
-                    child: ListTile(
-                      contentPadding: const EdgeInsets.symmetric(horizontal: 54),
-                      title: Text('Lotería: ${voResultado.vcLoteria}', textAlign: TextAlign.left,),
-                      titleTextStyle: GoogleFonts.openSans(fontSize: 18, color: Colors.black),
-                      subtitle: Text('Número: ${voResultado.vnNumero}'),
-                      subtitleTextStyle: GoogleFonts.openSans(fontSize: 18, color: Colors.black, fontWeight: FontWeight.w300),
-                      leading: const Icon(Icons.fact_check, color: Colors.lightGreen,size: 55),
-                    ),
-                  );
-                });
-          }
-          if (state is ResultadosLoading) {
-            return const Padding(
-              padding: EdgeInsets.symmetric(vertical: 40),
-              child: Center(
-                  child: CircularProgressIndicator(
-                color: Colors.lightGreen,
-              )),
+            return FadeIn(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 80.0, horizontal: 16),
+                child: Center(
+                    child: Text('Seleccione una fecha para ver resultados',
+                        style: GoogleFonts.openSans(fontSize: 22),
+                      textAlign: TextAlign.center,
+                    )
+                ),
+              ),
             );
-          }
-          return Padding(
-            padding: const EdgeInsets.symmetric(vertical: 80.0, horizontal: 16),
-            child: Center(
-                child: Text('Seleccione una fecha para ver resultados',
-                    style: GoogleFonts.openSans(fontSize: 22),
-                  textAlign: TextAlign.center,
-                )
-            ),
-          );
-        })
+          }),
+        )
       ],
     );
   }
