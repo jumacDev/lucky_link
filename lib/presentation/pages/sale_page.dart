@@ -149,6 +149,9 @@ class _SalePageState extends State<SalePage> {
                                             padding: const EdgeInsets.symmetric(
                                                 vertical: 10, horizontal: 50),
                                             child: TextFormField(
+                                                buildCounter: (BuildContext context, {int? currentLength, bool? isFocused, int? maxLength}) {
+                                                  return null;
+                                                },
                                                 autovalidateMode: AutovalidateMode
                                                     .onUserInteraction,
                                                 maxLength: 4,
@@ -189,6 +192,9 @@ class _SalePageState extends State<SalePage> {
                                             padding: const EdgeInsets.symmetric(
                                                 vertical: 10, horizontal: 50),
                                             child: TextFormField(
+                                                buildCounter: (BuildContext context, {int? currentLength, bool? isFocused, int? maxLength}) {
+                                                  return null;
+                                                },
                                                 autovalidateMode: AutovalidateMode
                                                     .onUserInteraction,
                                                 maxLength: 4,
@@ -229,6 +235,9 @@ class _SalePageState extends State<SalePage> {
                                             padding: const EdgeInsets.symmetric(
                                                 vertical: 10, horizontal: 50),
                                             child: TextFormField(
+                                                buildCounter: (BuildContext context, {int? currentLength, bool? isFocused, int? maxLength}) {
+                                                  return null;
+                                                },
                                                 autovalidateMode: AutovalidateMode
                                                     .onUserInteraction,
                                                 maxLength: 4,
