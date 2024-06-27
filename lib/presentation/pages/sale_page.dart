@@ -37,6 +37,9 @@ class _SalePageState extends State<SalePage> {
   DateTime? _vdFechSele;
   final DateFormat _dateFormat = DateFormat('yyyy/MM/dd');
   String _vcFecha = '';
+  int tempValue1 = 0;
+  int tempValue2 = 0;
+  int tempValue3 = 0;
 
   @override
   void initState() {
@@ -55,6 +58,12 @@ class _SalePageState extends State<SalePage> {
     }
   }
 
+  void _updateTotalPrice() {
+    setState(() {
+      vnTotalPrice = (tempValue1 + tempValue2 + tempValue3) * voLoteSele.length;
+    });
+  }
+
   _clearText() {
     _priceText.clear();
     _priceText2.clear();
@@ -63,6 +72,13 @@ class _SalePageState extends State<SalePage> {
     _numberText2.clear();
     _numberText3.clear();
     vnTotalPrice = 0;
+  }
+
+  _clearPrice(){
+    vnTotalPrice = 0;
+    tempValue1 = 0;
+    tempValue2 = 0;
+    tempValue3 = 0;
   }
 
   @override
@@ -77,16 +93,18 @@ class _SalePageState extends State<SalePage> {
                 if (state is VentaError) {
                   _showAlert(CoolAlertType.error,
                       'No se pudo realizar la venta', state.vcMensaje);
-                  await Future.delayed(const Duration(seconds: 4));
+                  await Future.delayed(const Duration(seconds: 2));
                   _ventaBloc.add(LogOutVenta());
                   _clearText();
+                  _clearPrice();
                 }
                 if (state is VentaConfirmada) {
                   _showAlert(
                       CoolAlertType.success, 'Venta Exitosa', state.vcMensaje);
-                  await Future.delayed(const Duration(seconds: 4));
+                  await Future.delayed(const Duration(seconds: 2));
                   _ventaBloc.add(LogOutVenta());
                   _clearText();
+                  _clearPrice();
                 }
                 if (state is VentaInitial) {
                   voSeleList.clear();
@@ -264,21 +282,19 @@ class _SalePageState extends State<SalePage> {
                                             padding: const EdgeInsets.symmetric(
                                                 vertical: 10, horizontal: 60),
                                             child: TextFormField(
+                                                onChanged: (value) {
+                                                  if (value.length >= 3 && value.length <= 4) {
+                                                    tempValue1 = int.parse(value);
+                                                  } else {
+                                                    tempValue1 = 0;
+                                                  }
+                                                  _updateTotalPrice();
+                                                },
                                                 autovalidateMode: AutovalidateMode
                                                     .onUserInteraction,
                                                 textInputAction:
                                                     TextInputAction.next,
                                                 onTapOutside: _onTapOutside,
-                                                onChanged: (value) {
-                                                  if (value.length > 3) {
-                                                    vnTotalPrice +=
-                                                        (int.parse(value) *
-                                                            voLoteSele.length);
-                                                  } else if (value.isEmpty) {
-                                                    vnTotalPrice = 0;
-                                                  }
-                                                  setState(() {});
-                                                },
                                                 keyboardType:
                                                     TextInputType.number,
                                                 controller: _priceText,
@@ -312,21 +328,19 @@ class _SalePageState extends State<SalePage> {
                                             padding: const EdgeInsets.symmetric(
                                                 vertical: 10, horizontal: 60),
                                             child: TextFormField(
+                                                onChanged: (value) {
+                                                  if (value.length >= 3 && value.length <= 4) {
+                                                    tempValue2 = int.parse(value);
+                                                  } else {
+                                                    tempValue2 = 0;
+                                                  }
+                                                  _updateTotalPrice();
+                                                },
                                                 autovalidateMode: AutovalidateMode
                                                     .onUserInteraction,
                                                 textInputAction:
                                                     TextInputAction.next,
                                                 onTapOutside: _onTapOutside,
-                                                onChanged: (value) {
-                                                  if (value.length > 3) {
-                                                    vnTotalPrice +=
-                                                        (int.parse(value) *
-                                                            voLoteSele.length);
-                                                  } else if (value.isEmpty) {
-                                                    vnTotalPrice = 0;
-                                                  }
-                                                  setState(() {});
-                                                },
                                                 keyboardType:
                                                     TextInputType.number,
                                                 controller: _priceText2,
@@ -361,19 +375,17 @@ class _SalePageState extends State<SalePage> {
                                             padding: const EdgeInsets.symmetric(
                                                 vertical: 10, horizontal: 60),
                                             child: TextFormField(
+                                                onChanged: (value) {
+                                                  if (value.length >= 3 && value.length <= 4) {
+                                                    tempValue3 = int.parse(value);
+                                                  } else {
+                                                    tempValue3 = 0;
+                                                  }
+                                                  _updateTotalPrice();
+                                                },
                                                 autovalidateMode: AutovalidateMode
                                                     .onUserInteraction,
                                                 onTapOutside: _onTapOutside,
-                                                onChanged: (value) {
-                                                  if (value.length > 3) {
-                                                    vnTotalPrice +=
-                                                        (int.parse(value) *
-                                                            voLoteSele.length);
-                                                  } else if (value.isEmpty) {
-                                                    vnTotalPrice = 0;
-                                                  }
-                                                  setState(() {});
-                                                },
                                                 keyboardType:
                                                     TextInputType.number,
                                                 controller: _priceText3,
@@ -585,7 +597,7 @@ class _SalePageState extends State<SalePage> {
                                                 _ventaBloc.add(EliminarVenta(
                                                     voVentList: voVentList,
                                                     voVenta: voVenta,
-                                                    vnPagoTota: vnTotalPrice,
+                                                    vnPagoTota: state.vnPagoTota,
                                                     voLoteList: voLoteList));
                                               },
                                             ),
@@ -658,6 +670,7 @@ class _SalePageState extends State<SalePage> {
                         BlocBuilder<LoteriaBloc, LoteriaState>(
                             builder: (context, state) {
                           if (state is LoteriasOk) {
+                            vnTotalPrice = 0;
                             voLoteList = state.voListLote;
                             if (voSeleList.length != state.voListLote.length) {
                               voSeleList = List.generate(
