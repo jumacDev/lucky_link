@@ -83,6 +83,8 @@ class _SalePageState extends State<SalePage> {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+
     return BlocBuilder<LoginBloc, LoginState>(
       builder: (context, state) {
         if (state is LoginOk) {
@@ -711,28 +713,28 @@ class _SalePageState extends State<SalePage> {
                                                     ),
                                                     const Gap(8),
                                                     SizedBox(
-                                                      height: 70,
+                                                      height: 20,
+                                                      width: size.width * 0.95,
                                                       child: Center(
                                                         child: ListView.builder(
+                                                          scrollDirection: Axis.horizontal,
                                                           shrinkWrap: true,
-                                                          itemCount: state
-                                                              .voListBloq.length,
-                                                          itemBuilder:
-                                                              (BuildContext
-                                                                      context,
-                                                                  int vnIndex) {
-                                                            return ListTile(
-                                                              title: Text(
-                                                                '${state.voListBloq[vnIndex].vnNumero}',
-                                                                style: GoogleFonts
-                                                                    .openSans(
-                                                                        fontSize:
-                                                                            16,
-                                                                        color: Colors
-                                                                            .black),
-                                                                textAlign:
-                                                                    TextAlign
-                                                                        .center,
+                                                          itemCount: state.voListBloq.length,
+                                                          itemBuilder: (BuildContext context, int vnIndex) {
+                                                            return SizedBox(
+                                                              width: 80,
+                                                              child: ListTile(
+                                                                visualDensity: VisualDensity.compact,
+                                                                dense: true,
+                                                                title: Text(
+                                                                  '${state.voListBloq[vnIndex].vnNumero}',
+                                                                  style: GoogleFonts.openSans(
+                                                                          fontSize: 16,
+                                                                          color: Colors.black),
+                                                                  textAlign:
+                                                                      TextAlign
+                                                                          .center,
+                                                                ),
                                                               ),
                                                             );
                                                           },
