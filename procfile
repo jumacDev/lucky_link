@@ -1,2 +1,2 @@
-web: python3 -m http.server $PORT -d build/web
+web: python3 -m http.server 8080 -d /usr/share/nginx/html
 
