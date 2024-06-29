@@ -47,3 +47,5 @@ COPY --from=build-env /app/build/web /usr/share/nginx/html
 
 # Comando por defecto para iniciar nginx
 CMD ["nginx", "-g", "daemon off;"]
+`` RouteServiceProvider
+
