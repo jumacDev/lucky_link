@@ -44,7 +44,7 @@ FROM nginx:1.21.1-alpine
 COPY --from=build-env /app/build/web /usr/share/nginx/html
 
 # Exponer el puerto 80
-#EXPOSE 80
+EXPOSE 80
 
 # Comando por defecto para iniciar nginx
 CMD ["nginx", "-g", "daemon off;"]
