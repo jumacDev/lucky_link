@@ -1,0 +1,6 @@
+build:
+  docker:
+    web: Dockerfile
+
+run:
+  web: python3 -m http.server $PORT -d build/web
