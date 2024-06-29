@@ -581,11 +581,11 @@ class _SalePageState extends State<SalePage> {
                                             subtitle:
                                                 Text('Precio: ${voVenta.vnPrecio}'),
                                             subtitleTextStyle: GoogleFonts.openSans(
-                                                fontSize: 14,
+                                                fontSize: 12,
                                                 color: Colors.black,
                                                 fontWeight: FontWeight.w100),
                                             titleTextStyle: GoogleFonts.openSans(
-                                                fontSize: 14,
+                                                fontSize: 12,
                                                 color: Colors.black,
                                                 fontWeight: FontWeight.w700),
                                             leading: const Padding(
@@ -758,7 +758,7 @@ class _SalePageState extends State<SalePage> {
                                             crossAxisCount: 2,
                                             mainAxisSpacing: 0,
                                             crossAxisSpacing: 0,
-                                            childAspectRatio: 3,
+                                            childAspectRatio: 2,
                                           ),
                                           itemCount: state.voListLote.length,
                                           itemBuilder: (BuildContext context,
@@ -780,7 +780,7 @@ class _SalePageState extends State<SalePage> {
                                                   label: Text(
                                                     voLoteria.vcNombre,
                                                     style: GoogleFonts.openSans(
-                                                        fontSize: 14,
+                                                        fontSize: 10,
                                                         color: Colors.white),
                                                   ),
                                                   onPressed: () {
