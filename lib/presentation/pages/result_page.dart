@@ -47,6 +47,8 @@ class _ResultPageState extends State<ResultPage> {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
@@ -94,23 +96,26 @@ class _ResultPageState extends State<ResultPage> {
                 );
               }
               return FadeIn(
-                child: ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: state.voResuList.length,
-                    itemBuilder: (BuildContext context, int vnIndex) {
-                      Resultado voResultado = state.voResuList[vnIndex];
-                      return Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 4),
-                        child: ListTile(
-                          contentPadding: const EdgeInsets.symmetric(horizontal: 54),
-                          title: Text('Lotería: ${voResultado.vcLoteria}', textAlign: TextAlign.left,),
-                          titleTextStyle: GoogleFonts.openSans(fontSize: 18, color: Colors.black),
-                          subtitle: Text('Número: ${voResultado.vnNumero}'),
-                          subtitleTextStyle: GoogleFonts.openSans(fontSize: 18, color: Colors.black, fontWeight: FontWeight.w300),
-                          leading: const Icon(Icons.fact_check, color: Colors.lightGreen,size: 55),
-                        ),
-                      );
-                    }),
+                child: SizedBox(
+                  height: size.height * 0.7,
+                  child: ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: state.voResuList.length,
+                      itemBuilder: (BuildContext context, int vnIndex) {
+                        Resultado voResultado = state.voResuList[vnIndex];
+                        return Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 4),
+                          child: ListTile(
+                            contentPadding: const EdgeInsets.symmetric(horizontal: 54),
+                            title: Text('Lotería: ${voResultado.vcLoteria}', textAlign: TextAlign.left,),
+                            titleTextStyle: GoogleFonts.openSans(fontSize: 14, color: Colors.black),
+                            subtitle: Text('Número: ${voResultado.vnNumero}'),
+                            subtitleTextStyle: GoogleFonts.openSans(fontSize: 14, color: Colors.black, fontWeight: FontWeight.w300),
+                            leading: const Icon(Icons.fact_check, color: Colors.lightGreen,size: 55),
+                          ),
+                        );
+                      }),
+                ),
               );
             }
             if (state is ResultadosLoading) {

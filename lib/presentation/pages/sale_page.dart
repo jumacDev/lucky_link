@@ -575,20 +575,17 @@ class _SalePageState extends State<SalePage> {
                                                   CrossAxisAlignment.start,
                                               children: [
                                                 Text('Número: ${voVenta.vnNumero}'),
-                                                Text('Lotería: $vcLoteria',
-                                                    style: GoogleFonts.openSans(
-                                                        color: Colors.black,
-                                                        fontWeight: FontWeight.w400)),
+                                                Text('Lotería: $vcLoteria')
                                               ],
                                             ),
                                             subtitle:
                                                 Text('Precio: ${voVenta.vnPrecio}'),
                                             subtitleTextStyle: GoogleFonts.openSans(
-                                                fontSize: 20,
+                                                fontSize: 14,
                                                 color: Colors.black,
                                                 fontWeight: FontWeight.w100),
                                             titleTextStyle: GoogleFonts.openSans(
-                                                fontSize: 20,
+                                                fontSize: 14,
                                                 color: Colors.black,
                                                 fontWeight: FontWeight.w700),
                                             leading: const Padding(
@@ -713,7 +710,7 @@ class _SalePageState extends State<SalePage> {
                                                     ),
                                                     const Gap(8),
                                                     SizedBox(
-                                                      height: 20,
+                                                      height: 30,
                                                       width: size.width * 0.95,
                                                       child: Center(
                                                         child: ListView.builder(
