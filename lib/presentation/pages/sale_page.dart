@@ -90,6 +90,7 @@ class _SalePageState extends State<SalePage> {
         if (state is LoginOk) {
           _vnUsuaId = state.voSesion.vnUsuario;
           return SingleChildScrollView(
+            physics: const NeverScrollableScrollPhysics(),
             child: BlocListener<VentaBloc, VentaState>(
               listener: (context, state) async {
                 if (state is VentaError) {
@@ -548,71 +549,74 @@ class _SalePageState extends State<SalePage> {
                                         fontSize: 22, color: Colors.black)),
                                 const Gap(8),
                                 FadeIn(
-                                  child: ListView.builder(
-                                    shrinkWrap: true,
-                                    itemCount: state.voVentList.length,
-                                    itemBuilder:
-                                        (BuildContext context, int vnIndex) {
-                                      var voVenta = state.voVentList[vnIndex];
-                                      String vcLoteria = '';
-                                      for (var voLote in voLoteList) {
-                                        if (voLote.vnId == voVenta.vnLoteId) {
-                                          vcLoteria = voLote.vcNombre;
+                                  child: SizedBox(
+                                    height: size.height * 0.6,
+                                    child: ListView.builder(
+                                      shrinkWrap: true,
+                                      itemCount: state.voVentList.length,
+                                      itemBuilder:
+                                          (BuildContext context, int vnIndex) {
+                                        var voVenta = state.voVentList[vnIndex];
+                                        String vcLoteria = '';
+                                        for (var voLote in voLoteList) {
+                                          if (voLote.vnId == voVenta.vnLoteId) {
+                                            vcLoteria = voLote.vcNombre;
+                                          }
                                         }
-                                      }
-                                      return Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                            vertical: 0, horizontal: 32),
-                                        child: FadeIn(
-                                          child: ListTile(
-                                            visualDensity: VisualDensity.compact,
-                                            dense: true,
-                                            contentPadding:
-                                                const EdgeInsets.symmetric(
-                                                    horizontal: 16),
-                                            title: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Text('Número: ${voVenta.vnNumero}'),
-                                                Text('Lotería: $vcLoteria')
-                                              ],
-                                            ),
-                                            subtitle:
-                                                Text('Precio: ${voVenta.vnPrecio}'),
-                                            subtitleTextStyle: GoogleFonts.openSans(
-                                                fontSize: 12,
-                                                color: Colors.black,
-                                                fontWeight: FontWeight.w100),
-                                            titleTextStyle: GoogleFonts.openSans(
-                                                fontSize: 12,
-                                                color: Colors.black,
-                                                fontWeight: FontWeight.w700),
-                                            leading: const Padding(
-                                              padding: EdgeInsets.symmetric(
-                                                  horizontal: 24.0),
-                                              child: Icon(
-                                                Icons.sell,
-                                                color: Colors.lightGreen,
-                                                size: 40,
+                                        return Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                              vertical: 0, horizontal: 32),
+                                          child: FadeIn(
+                                            child: ListTile(
+                                              visualDensity: VisualDensity.compact,
+                                              dense: true,
+                                              contentPadding:
+                                                  const EdgeInsets.symmetric(
+                                                      horizontal: 16),
+                                              title: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Text('Número: ${voVenta.vnNumero}'),
+                                                  Text('Lotería: $vcLoteria')
+                                                ],
+                                              ),
+                                              subtitle:
+                                                  Text('Precio: ${voVenta.vnPrecio}'),
+                                              subtitleTextStyle: GoogleFonts.openSans(
+                                                  fontSize: 12,
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.w100),
+                                              titleTextStyle: GoogleFonts.openSans(
+                                                  fontSize: 12,
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.w700),
+                                              leading: const Padding(
+                                                padding: EdgeInsets.symmetric(
+                                                    horizontal: 24.0),
+                                                child: Icon(
+                                                  Icons.sell,
+                                                  color: Colors.lightGreen,
+                                                  size: 40,
+                                                ),
+                                              ),
+                                              trailing: IconButton(
+                                                icon: const Icon(
+                                                    CupertinoIcons.minus_circle,
+                                                    color: Colors.grey),
+                                                onPressed: () {
+                                                  _ventaBloc.add(EliminarVenta(
+                                                      voVentList: voVentList,
+                                                      voVenta: voVenta,
+                                                      vnPagoTota: state.vnPagoTota,
+                                                      voLoteList: voLoteList));
+                                                },
                                               ),
                                             ),
-                                            trailing: IconButton(
-                                              icon: const Icon(
-                                                  CupertinoIcons.minus_circle,
-                                                  color: Colors.grey),
-                                              onPressed: () {
-                                                _ventaBloc.add(EliminarVenta(
-                                                    voVentList: voVentList,
-                                                    voVenta: voVenta,
-                                                    vnPagoTota: state.vnPagoTota,
-                                                    voLoteList: voLoteList));
-                                              },
-                                            ),
                                           ),
-                                        ),
-                                      );
-                                    },
+                                        );
+                                      },
+                                    ),
                                   ),
                                 ),
                                 const Gap(16),
