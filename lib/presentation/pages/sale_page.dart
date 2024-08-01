@@ -85,12 +85,15 @@ class _SalePageState extends State<SalePage> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
 
+    debugPrint('width: ${size.width}');
+    debugPrint('height: ${size.height}');
+
     return BlocBuilder<LoginBloc, LoginState>(
       builder: (context, state) {
         if (state is LoginOk) {
           _vnUsuaId = state.voSesion.vnUsuario;
           return SingleChildScrollView(
-            physics: const NeverScrollableScrollPhysics(),
+            physics: size.height < 800 ? const AlwaysScrollableScrollPhysics() : const NeverScrollableScrollPhysics(),
             child: BlocListener<VentaBloc, VentaState>(
               listener: (context, state) async {
                 if (state is VentaError) {
@@ -539,7 +542,7 @@ class _SalePageState extends State<SalePage> {
                         child: SingleChildScrollView(
                           physics: const NeverScrollableScrollPhysics(),
                           child: Padding(
-                            padding: const EdgeInsets.only(bottom: 40.0),
+                            padding: const EdgeInsets.only(bottom: 48.0, top: 8),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.center,
@@ -550,7 +553,12 @@ class _SalePageState extends State<SalePage> {
                                 const Gap(8),
                                 FadeIn(
                                   child: SizedBox(
-                                    height: size.height * 0.6,
+                                    height: size.height < 670? size.height * 0.51 :
+                                    size.height >= 670 && size.height < 740? size.height * 0.52 :
+                                    size.height >= 740 && size.height < 840? size.height * 0.5 :
+                                        size.height == 844 || size.height == 812 ? size.height * 0.54 :
+                                    size.height >= 854 && size.height < 890 || size.height == 960? size.height * 0.65 :
+                                    size.height == 916? size.height * 0.58 : size.height * 0.59,
                                     child: ListView.builder(
                                       shrinkWrap: true,
                                       itemCount: state.voVentList.length,
@@ -625,7 +633,7 @@ class _SalePageState extends State<SalePage> {
                                       style: GoogleFonts.openSans(
                                           fontSize: 22, color: Colors.black)),
                                 ),
-                                const Gap(24),
+                                const Gap(16),
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
@@ -724,6 +732,7 @@ class _SalePageState extends State<SalePage> {
                                                           itemBuilder: (BuildContext context, int vnIndex) {
                                                             return SizedBox(
                                                               width: 80,
+                                                              height: 16,
                                                               child: ListTile(
                                                                 visualDensity: VisualDensity.compact,
                                                                 dense: true,
@@ -748,14 +757,13 @@ class _SalePageState extends State<SalePage> {
                                       }
                                       return const Center();
                                     }),
-                                    const Gap(80),
+                                    Gap(size.height < 800? 16: 40),
                                     FadeIn(
                                       child: Padding(
                                         padding: const EdgeInsets.symmetric(
                                             horizontal: 24.0),
                                         child: GridView.builder(
-                                          physics:
-                                              const NeverScrollableScrollPhysics(),
+                                          physics: const NeverScrollableScrollPhysics(),
                                           shrinkWrap: true,
                                           gridDelegate:
                                               const SliverGridDelegateWithFixedCrossAxisCount(
@@ -808,8 +816,8 @@ class _SalePageState extends State<SalePage> {
                                     ),
                                     FadeIn(
                                       child: Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                            vertical: 50),
+                                        padding: EdgeInsets.symmetric(
+                                            vertical: size.height < 800? 8 : 48),
                                         child: ElevatedButton(
                                             style: ElevatedButton.styleFrom(
                                                 backgroundColor: Colors.lightGreen,

@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 
 import '/presentation/widgets/shared/cool_alert.dart';
 import '../bloc/blocs.dart';
@@ -24,6 +25,7 @@ class _LoginContainerState extends State<LoginContainer> {
   bool _obscureText = true;
   late LoginBloc _loginBloc;
   late LoteriaBloc _loteriaBloc;
+  PackageInfo _appInfo = PackageInfo(appName: '', packageName: '', version: '', buildNumber: '');
 
   _onTapOutside(pointer){
     final FocusScopeNode focus = FocusScope.of(context);
@@ -38,6 +40,12 @@ class _LoginContainerState extends State<LoginContainer> {
     _loginBloc = context.read<LoginBloc>();
     _loteriaBloc = context.read<LoteriaBloc>();
     _loteriaBloc.add(ObtenerLoteria());
+    _getInfo();
+  }
+
+
+  void _getInfo() async{
+    _appInfo = await PackageInfo.fromPlatform();
   }
 
   @override
@@ -68,6 +76,9 @@ class _LoginContainerState extends State<LoginContainer> {
                   style: GoogleFonts.openSans(
                       fontSize: 25, color: Colors.white),
                 ),
+                const Gap(8),
+                Text('${_appInfo.version}+${_appInfo.buildNumber}',style: GoogleFonts.openSans(
+                    fontSize: 16, color: Colors.white),),
                 const Gap(16),
                 TextFormField(
                   controller: _userController,

@@ -49,6 +49,9 @@ class _ResultPageState extends State<ResultPage> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
 
+    debugPrint('width: ${size.width}');
+    debugPrint('height: ${size.height}');
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
@@ -97,7 +100,11 @@ class _ResultPageState extends State<ResultPage> {
               }
               return FadeIn(
                 child: SizedBox(
-                  height: size.height * 0.7,
+                  height: size.height < 670? size.height * 0.56 :
+                  size.height >= 670 && size.height < 740? size.height * 0.63 :
+                  size.height >= 740 && size.height < 850? size.height * 0.6 :
+                  size.height == 960? size.height * 0.7 :
+                  size.height == 916 || size.height == 926? size.height * 0.66 : size.height * 0.68,
                   child: ListView.builder(
                       shrinkWrap: true,
                       itemCount: state.voResuList.length,

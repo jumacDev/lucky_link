@@ -53,6 +53,9 @@ class _HistoPageState extends State<HistoPage> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
 
+    debugPrint('width: ${size.width}');
+    debugPrint('height: ${size.height}');
+
     return BlocBuilder<LoginBloc, LoginState>(
       builder: (context, state) {
         if(state is LoginOk){
@@ -123,13 +126,15 @@ class _HistoPageState extends State<HistoPage> {
                                     style: GoogleFonts.openSans(fontSize: 20),
                                     textAlign: TextAlign.center)) :
                             SizedBox(
-                              height: size.height * 0.6,
+                              height: size.height < 670? size.height * 0.37 :
+                              size.height >= 670 && size.height < 740? size.height * 0.43 :
+                              size.height >= 740 && size.height < 850? size.height * 0.42 : size.height * 0.5,
                               child: SingleChildScrollView(
                                 child: ListView.builder(
                                   itemBuilder: (BuildContext context, int vnIndex){
                                     var voVenta = state.voVentas[vnIndex];
                                     return Padding(
-                                      padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 8),
+                                      padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
                                       child: ListTile(
                                         visualDensity: VisualDensity.compact,
                                         contentPadding: const EdgeInsets.symmetric(horizontal: 16),
