@@ -111,7 +111,7 @@ class _SalePageState extends State<SalePage> {
         if (state is LoginOk) {
           _vnUsuaId = state.voSesion.vnUsuario;
           return SingleChildScrollView(
-            physics: size.height < 870 ? const AlwaysScrollableScrollPhysics() : const NeverScrollableScrollPhysics(),
+            //physics: size.height < 870 ? const AlwaysScrollableScrollPhysics() : const NeverScrollableScrollPhysics(),
             child: BlocListener<VentaBloc, VentaState>(
               listener: (context, state) async {
                 if (state is VentaError) {
@@ -179,10 +179,8 @@ class _SalePageState extends State<SalePage> {
                                                 autovalidateMode: AutovalidateMode
                                                     .onUserInteraction,
                                                 maxLength: 4,
-                                                textInputAction:
-                                                    TextInputAction.next,
-                                                keyboardType:
-                                                    TextInputType.number,
+                                                textInputAction: TextInputAction.next,
+                                                keyboardType: TextInputType.number,
                                                 onTapOutside: _onTapOutside,
                                                 controller: _numberText,
                                                 decoration: InputDecoration(
@@ -219,33 +217,25 @@ class _SalePageState extends State<SalePage> {
                                                 buildCounter: (BuildContext context, {int? currentLength, bool? isFocused, int? maxLength}) {
                                                   return null;
                                                 },
-                                                autovalidateMode: AutovalidateMode
-                                                    .onUserInteraction,
+                                                autovalidateMode: AutovalidateMode.onUserInteraction,
                                                 maxLength: 4,
-                                                textInputAction:
-                                                    TextInputAction.next,
-                                                keyboardType:
-                                                    TextInputType.number,
+                                                textInputAction: TextInputAction.next,
+                                                keyboardType: TextInputType.number,
                                                 onTapOutside: _onTapOutside,
                                                 controller: _numberText2,
                                                 decoration: InputDecoration(
                                                   labelStyle:
-                                                      GoogleFonts.openSans(
-                                                          color: Colors.black),
+                                                      GoogleFonts.openSans(color: Colors.black),
                                                   labelText: 'Número',
                                                   isDense: true,
-                                                  border:
-                                                      const OutlineInputBorder(),
-                                                  focusedBorder:
-                                                      const OutlineInputBorder(
+                                                  border: const OutlineInputBorder(),
+                                                  focusedBorder: const OutlineInputBorder(
                                                     borderSide: BorderSide(
                                                         color: Colors.black),
                                                   ),
                                                 ),
                                                 validator: (value) {
-                                                  if (value!.toString().length <
-                                                          3 ||
-                                                      value.isEmpty) {
+                                                  if (value!.toString().length < 3 || value.isEmpty) {
                                                     return 'Inválido';
                                                   }
                                                   return null;
@@ -262,11 +252,10 @@ class _SalePageState extends State<SalePage> {
                                                 buildCounter: (BuildContext context, {int? currentLength, bool? isFocused, int? maxLength}) {
                                                   return null;
                                                 },
-                                                autovalidateMode: AutovalidateMode
-                                                    .onUserInteraction,
+                                                autovalidateMode: AutovalidateMode.onUserInteraction,
                                                 maxLength: 4,
-                                                keyboardType:
-                                                    TextInputType.number,
+                                                keyboardType: TextInputType.number,
+                                                textInputAction: TextInputAction.next,
                                                 onTapOutside: _onTapOutside,
                                                 controller: _numberText3,
                                                 decoration: InputDecoration(
@@ -275,18 +264,14 @@ class _SalePageState extends State<SalePage> {
                                                       GoogleFonts.openSans(
                                                           color: Colors.black),
                                                   isDense: true,
-                                                  border:
-                                                      const OutlineInputBorder(),
-                                                  focusedBorder:
-                                                      const OutlineInputBorder(
+                                                  border: const OutlineInputBorder(),
+                                                  focusedBorder: const OutlineInputBorder(
                                                     borderSide: BorderSide(
                                                         color: Colors.black),
                                                   ),
                                                 ),
                                                 validator: (value) {
-                                                  if (value!.toString().length <
-                                                          3 ||
-                                                      value.isEmpty) {
+                                                  if (value!.toString().length < 3 || value.isEmpty) {
                                                     return 'Inválido';
                                                   }
                                                   return null;
@@ -297,17 +282,15 @@ class _SalePageState extends State<SalePage> {
                                           width: 170,
                                           height: 80,
                                           child: Container(
-                                            padding: const EdgeInsets.symmetric(
-                                                vertical: 10, horizontal: 50),
+                                            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 50),
                                             child: TextFormField(
                                                 buildCounter: (BuildContext context, {int? currentLength, bool? isFocused, int? maxLength}) {
                                                   return null;
                                                 },
-                                                autovalidateMode: AutovalidateMode
-                                                    .onUserInteraction,
+                                                autovalidateMode: AutovalidateMode.onUserInteraction,
                                                 maxLength: 4,
-                                                keyboardType:
-                                                TextInputType.number,
+                                                keyboardType: TextInputType.number,
+                                                textInputAction: TextInputAction.next,
                                                 onTapOutside: _onTapOutside,
                                                 controller: _numberText4,
                                                 decoration: InputDecoration(
@@ -316,18 +299,14 @@ class _SalePageState extends State<SalePage> {
                                                   GoogleFonts.openSans(
                                                       color: Colors.black),
                                                   isDense: true,
-                                                  border:
-                                                  const OutlineInputBorder(),
-                                                  focusedBorder:
-                                                  const OutlineInputBorder(
+                                                  border: const OutlineInputBorder(),
+                                                  focusedBorder: const OutlineInputBorder(
                                                     borderSide: BorderSide(
                                                         color: Colors.black),
                                                   ),
                                                 ),
                                                 validator: (value) {
-                                                  if (value!.toString().length <
-                                                      3 ||
-                                                      value.isEmpty) {
+                                                  if (value!.toString().length < 3 || value.isEmpty) {
                                                     return 'Inválido';
                                                   }
                                                   return null;
@@ -344,23 +323,19 @@ class _SalePageState extends State<SalePage> {
                                                 buildCounter: (BuildContext context, {int? currentLength, bool? isFocused, int? maxLength}) {
                                                   return null;
                                                 },
-                                                autovalidateMode: AutovalidateMode
-                                                    .onUserInteraction,
+                                                autovalidateMode: AutovalidateMode.onUserInteraction,
                                                 maxLength: 4,
-                                                keyboardType:
-                                                TextInputType.number,
+                                                keyboardType: TextInputType.number,
+                                                textInputAction: TextInputAction.next,
                                                 onTapOutside: _onTapOutside,
                                                 controller: _numberText5,
                                                 decoration: InputDecoration(
                                                   labelText: 'Número',
-                                                  labelStyle:
-                                                  GoogleFonts.openSans(
+                                                  labelStyle: GoogleFonts.openSans(
                                                       color: Colors.black),
                                                   isDense: true,
-                                                  border:
-                                                  const OutlineInputBorder(),
-                                                  focusedBorder:
-                                                  const OutlineInputBorder(
+                                                  border: const OutlineInputBorder(),
+                                                  focusedBorder: const OutlineInputBorder(
                                                     borderSide: BorderSide(
                                                         color: Colors.black),
                                                   ),
@@ -385,31 +360,24 @@ class _SalePageState extends State<SalePage> {
                                                 buildCounter: (BuildContext context, {int? currentLength, bool? isFocused, int? maxLength}) {
                                                   return null;
                                                 },
-                                                autovalidateMode: AutovalidateMode
-                                                    .onUserInteraction,
+                                                autovalidateMode: AutovalidateMode.onUserInteraction,
                                                 maxLength: 4,
-                                                keyboardType:
-                                                TextInputType.number,
+                                                keyboardType: TextInputType.number,
                                                 onTapOutside: _onTapOutside,
                                                 controller: _numberText6,
                                                 decoration: InputDecoration(
                                                   labelText: 'Número',
-                                                  labelStyle:
-                                                  GoogleFonts.openSans(
+                                                  labelStyle: GoogleFonts.openSans(
                                                       color: Colors.black),
                                                   isDense: true,
-                                                  border:
-                                                  const OutlineInputBorder(),
-                                                  focusedBorder:
-                                                  const OutlineInputBorder(
+                                                  border: const OutlineInputBorder(),
+                                                  focusedBorder: const OutlineInputBorder(
                                                     borderSide: BorderSide(
                                                         color: Colors.black),
                                                   ),
                                                 ),
                                                 validator: (value) {
-                                                  if (value!.toString().length <
-                                                      3 ||
-                                                      value.isEmpty) {
+                                                  if (value!.toString().length < 3 || value.isEmpty) {
                                                     return 'Inválido';
                                                   }
                                                   return null;
@@ -446,31 +414,24 @@ class _SalePageState extends State<SalePage> {
                                                   }
                                                   _updateTotalPrice();
                                                 },
-                                                autovalidateMode: AutovalidateMode
-                                                    .onUserInteraction,
-                                                textInputAction:
-                                                    TextInputAction.next,
+                                                autovalidateMode: AutovalidateMode.onUserInteraction,
+                                                textInputAction: TextInputAction.next,
                                                 onTapOutside: _onTapOutside,
-                                                keyboardType:
-                                                    TextInputType.number,
+                                                keyboardType: TextInputType.number,
                                                 controller: _priceText,
                                                 decoration: InputDecoration(
                                                   labelText: 'Valor',
-                                                  labelStyle:
-                                                      GoogleFonts.openSans(
+                                                  labelStyle: GoogleFonts.openSans(
                                                           color: Colors.black),
                                                   isDense: true,
-                                                  border:
-                                                      const OutlineInputBorder(),
-                                                  focusedBorder:
-                                                      const OutlineInputBorder(
+                                                  border: const OutlineInputBorder(),
+                                                  focusedBorder: const OutlineInputBorder(
                                                     borderSide: BorderSide(
                                                         color: Colors.black),
                                                   ),
                                                 ),
                                                 validator: (value) {
-                                                  if (value!.toString().length <
-                                                      3) {
+                                                  if (value!.toString().length < 3) {
                                                     return 'Inválido';
                                                   }
                                                   return null;
@@ -481,8 +442,7 @@ class _SalePageState extends State<SalePage> {
                                           width: 190,
                                           height: 80,
                                           child: Container(
-                                            padding: const EdgeInsets.symmetric(
-                                                vertical: 10, horizontal: 60),
+                                            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 60),
                                             child: TextFormField(
                                                 onChanged: (value) {
                                                   if (value.length >= 3 && value.length <= 4) {
@@ -492,32 +452,24 @@ class _SalePageState extends State<SalePage> {
                                                   }
                                                   _updateTotalPrice();
                                                 },
-                                                autovalidateMode: AutovalidateMode
-                                                    .onUserInteraction,
-                                                textInputAction:
-                                                    TextInputAction.next,
+                                                autovalidateMode: AutovalidateMode.onUserInteraction,
+                                                textInputAction: TextInputAction.next,
                                                 onTapOutside: _onTapOutside,
-                                                keyboardType:
-                                                    TextInputType.number,
+                                                keyboardType: TextInputType.number,
                                                 controller: _priceText2,
                                                 decoration: InputDecoration(
                                                   labelText: 'Valor',
-                                                  labelStyle:
-                                                      GoogleFonts.openSans(
+                                                  labelStyle: GoogleFonts.openSans(
                                                           color: Colors.black),
                                                   isDense: true,
-                                                  border:
-                                                      const OutlineInputBorder(),
-                                                  focusedBorder:
-                                                      const OutlineInputBorder(
+                                                  border: const OutlineInputBorder(),
+                                                  focusedBorder: const OutlineInputBorder(
                                                     borderSide: BorderSide(
                                                         color: Colors.black),
                                                   ),
                                                 ),
                                                 validator: (value) {
-                                                  if (value!.toString().length <
-                                                          3 ||
-                                                      value.isEmpty) {
+                                                  if (value!.toString().length < 3 || value.isEmpty) {
                                                     return 'Inválido';
                                                   }
                                                   return null;
@@ -528,8 +480,7 @@ class _SalePageState extends State<SalePage> {
                                           width: 190,
                                           height: 80,
                                           child: Container(
-                                            padding: const EdgeInsets.symmetric(
-                                                vertical: 10, horizontal: 60),
+                                            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 60),
                                             child: TextFormField(
                                                 onChanged: (value) {
                                                   if (value.length >= 3 && value.length <= 4) {
@@ -539,30 +490,24 @@ class _SalePageState extends State<SalePage> {
                                                   }
                                                   _updateTotalPrice();
                                                 },
-                                                autovalidateMode: AutovalidateMode
-                                                    .onUserInteraction,
+                                                autovalidateMode: AutovalidateMode.onUserInteraction,
                                                 onTapOutside: _onTapOutside,
-                                                keyboardType:
-                                                    TextInputType.number,
+                                                keyboardType: TextInputType.number,
+                                                textInputAction: TextInputAction.next,
                                                 controller: _priceText3,
                                                 decoration: InputDecoration(
                                                   labelText: 'Valor',
-                                                  labelStyle:
-                                                      GoogleFonts.openSans(
+                                                  labelStyle: GoogleFonts.openSans(
                                                           color: Colors.black),
                                                   isDense: true,
-                                                  border:
-                                                      const OutlineInputBorder(),
-                                                  focusedBorder:
-                                                      const OutlineInputBorder(
+                                                  border: const OutlineInputBorder(),
+                                                  focusedBorder: const OutlineInputBorder(
                                                     borderSide: BorderSide(
                                                         color: Colors.black),
                                                   ),
                                                 ),
                                                 validator: (value) {
-                                                  if (value!.toString().length <
-                                                          3 ||
-                                                      value.isEmpty) {
+                                                  if (value!.toString().length < 3 || value.isEmpty) {
                                                     return 'Inválido';
                                                   }
                                                   return null;
@@ -584,30 +529,24 @@ class _SalePageState extends State<SalePage> {
                                                   }
                                                   _updateTotalPrice();
                                                 },
-                                                autovalidateMode: AutovalidateMode
-                                                    .onUserInteraction,
+                                                autovalidateMode: AutovalidateMode.onUserInteraction,
                                                 onTapOutside: _onTapOutside,
-                                                keyboardType:
-                                                TextInputType.number,
+                                                keyboardType: TextInputType.number,
+                                                textInputAction: TextInputAction.next,
                                                 controller: _priceText4,
                                                 decoration: InputDecoration(
                                                   labelText: 'Valor',
-                                                  labelStyle:
-                                                  GoogleFonts.openSans(
+                                                  labelStyle: GoogleFonts.openSans(
                                                       color: Colors.black),
                                                   isDense: true,
-                                                  border:
-                                                  const OutlineInputBorder(),
-                                                  focusedBorder:
-                                                  const OutlineInputBorder(
+                                                  border: const OutlineInputBorder(),
+                                                  focusedBorder: const OutlineInputBorder(
                                                     borderSide: BorderSide(
                                                         color: Colors.black),
                                                   ),
                                                 ),
                                                 validator: (value) {
-                                                  if (value!.toString().length <
-                                                      3 ||
-                                                      value.isEmpty) {
+                                                  if (value!.toString().length < 3 || value.isEmpty) {
                                                     return 'Inválido';
                                                   }
                                                   return null;
@@ -629,30 +568,24 @@ class _SalePageState extends State<SalePage> {
                                                   }
                                                   _updateTotalPrice();
                                                 },
-                                                autovalidateMode: AutovalidateMode
-                                                    .onUserInteraction,
+                                                autovalidateMode: AutovalidateMode.onUserInteraction,
                                                 onTapOutside: _onTapOutside,
-                                                keyboardType:
-                                                TextInputType.number,
+                                                keyboardType: TextInputType.number,
+                                                textInputAction: TextInputAction.next,
                                                 controller: _priceText5,
                                                 decoration: InputDecoration(
                                                   labelText: 'Valor',
-                                                  labelStyle:
-                                                  GoogleFonts.openSans(
+                                                  labelStyle: GoogleFonts.openSans(
                                                       color: Colors.black),
                                                   isDense: true,
-                                                  border:
-                                                  const OutlineInputBorder(),
-                                                  focusedBorder:
-                                                  const OutlineInputBorder(
+                                                  border: const OutlineInputBorder(),
+                                                  focusedBorder: const OutlineInputBorder(
                                                     borderSide: BorderSide(
                                                         color: Colors.black),
                                                   ),
                                                 ),
                                                 validator: (value) {
-                                                  if (value!.toString().length <
-                                                      3 ||
-                                                      value.isEmpty) {
+                                                  if (value!.toString().length < 3 || value.isEmpty) {
                                                     return 'Inválido';
                                                   }
                                                   return null;
@@ -663,8 +596,7 @@ class _SalePageState extends State<SalePage> {
                                           width: 190,
                                           height: 80,
                                           child: Container(
-                                            padding: const EdgeInsets.symmetric(
-                                                vertical: 10, horizontal: 60),
+                                            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 60),
                                             child: TextFormField(
                                                 onChanged: (value) {
                                                   if (value.length >= 3 && value.length <= 4) {
@@ -674,30 +606,23 @@ class _SalePageState extends State<SalePage> {
                                                   }
                                                   _updateTotalPrice();
                                                 },
-                                                autovalidateMode: AutovalidateMode
-                                                    .onUserInteraction,
+                                                autovalidateMode: AutovalidateMode.onUserInteraction,
                                                 onTapOutside: _onTapOutside,
-                                                keyboardType:
-                                                TextInputType.number,
+                                                keyboardType: TextInputType.number,
                                                 controller: _priceText6,
                                                 decoration: InputDecoration(
                                                   labelText: 'Valor',
-                                                  labelStyle:
-                                                  GoogleFonts.openSans(
+                                                  labelStyle: GoogleFonts.openSans(
                                                       color: Colors.black),
                                                   isDense: true,
-                                                  border:
-                                                  const OutlineInputBorder(),
-                                                  focusedBorder:
-                                                  const OutlineInputBorder(
+                                                  border: const OutlineInputBorder(),
+                                                  focusedBorder: const OutlineInputBorder(
                                                     borderSide: BorderSide(
                                                         color: Colors.black),
                                                   ),
                                                 ),
                                                 validator: (value) {
-                                                  if (value!.toString().length <
-                                                      3 ||
-                                                      value.isEmpty) {
+                                                  if (value!.toString().length < 3 || value.isEmpty) {
                                                     return 'Inválido';
                                                   }
                                                   return null;
@@ -989,167 +914,163 @@ class _SalePageState extends State<SalePage> {
                       ),
                     );
                   }
-                  return SizedBox(
-                    height: size.height,
-                    child: ListView(
-                      children: [
-                        BlocBuilder<LoteriaBloc, LoteriaState>(
-                            builder: (context, state) {
-                              if (state is LoteriasOk) {
-                                voLoteList = state.voListLote;
-                                if (voSeleList.length != state.voListLote.length) {
-                                  voSeleList = List.generate(
-                                      state.voListLote.length, (index) => false);
-                                }
-                                return Padding(
-                                    padding:
-                                    const EdgeInsets.symmetric(vertical: 8.0),
-                                    child: Column(
-                                      children: [
-                                        BlocBuilder<BloqueoBloc, BloqueoState>(
-                                            builder: (context, state) {
-                                              if (state is BloqueoOk) {
-                                                return state.voListBloq.isEmpty
-                                                    ? const Center()
-                                                    : FadeIn(
-                                                  child: Column(
-                                                    crossAxisAlignment:
-                                                    CrossAxisAlignment.center,
-                                                    children: [
-                                                      const Gap(8),
-                                                      Text(
-                                                        'Numeros Bloqueados Hoy:',
-                                                        style: GoogleFonts.openSans(
-                                                            fontSize: 14,
-                                                            color: Colors.black,
-                                                            fontWeight:
-                                                            FontWeight.w500),
-                                                      ),
-                                                      const Gap(8),
-                                                      SizedBox(
-                                                        height: 30,
-                                                        width: size.width * 0.95,
-                                                        child: Center(
-                                                          child: ListView.builder(
-                                                            scrollDirection: Axis.horizontal,
-                                                            shrinkWrap: true,
-                                                            itemCount: state.voListBloq.length,
-                                                            itemBuilder: (BuildContext context, int vnIndex) {
-                                                              return SizedBox(
-                                                                width: 80,
-                                                                height: 16,
-                                                                child: ListTile(
-                                                                  visualDensity: VisualDensity.compact,
-                                                                  dense: true,
-                                                                  title: Text(
-                                                                    '${state.voListBloq[vnIndex].vnNumero}',
-                                                                    style: GoogleFonts.openSans(
-                                                                        fontSize: 14,
-                                                                        color: Colors.black),
-                                                                    textAlign:
-                                                                    TextAlign.center,
-                                                                  ),
-                                                                ),
-                                                              );
-                                                            },
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                );
-                                              }
-                                              return const Center();
-                                            }),
-                                        const Gap(50),
-                                        Padding(
-                                          padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                                          child: GridView.builder(
-                                            physics: const NeverScrollableScrollPhysics(),
-                                            shrinkWrap: true,
-                                            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                                              crossAxisCount: 2,
-                                              mainAxisSpacing: 8,
-                                              crossAxisSpacing: 6,
-                                              childAspectRatio: 1.2,
-                                            ),
-                                            itemCount: state.voListLote.length,
-                                            itemBuilder: (BuildContext context, int vnIndeSele) {
-                                              final voLoteria = state.voListLote[vnIndeSele];
-                                              return ActionChip(
-                                                side: const BorderSide(color: Colors.transparent),
-                                                backgroundColor: voSeleList[vnIndeSele] ? Colors.lightGreen : Colors.grey,
-                                                labelPadding: const EdgeInsets.symmetric(horizontal: 8),
-                                                label: Column(
-                                                  mainAxisAlignment: MainAxisAlignment.center,
+                  return Column(
+                    children: [
+                      BlocBuilder<LoteriaBloc, LoteriaState>(
+                          builder: (context, state) {
+                            if (state is LoteriasOk) {
+                              voLoteList = state.voListLote;
+                              if (voSeleList.length != state.voListLote.length) {
+                                voSeleList = List.generate(
+                                    state.voListLote.length, (index) => false);
+                              }
+                              return Padding(
+                                  padding:
+                                  const EdgeInsets.symmetric(vertical: 8.0),
+                                  child: Column(
+                                    children: [
+                                      BlocBuilder<BloqueoBloc, BloqueoState>(
+                                          builder: (context, state) {
+                                            if (state is BloqueoOk) {
+                                              return state.voListBloq.isEmpty
+                                                  ? const Center()
+                                                  : FadeIn(
+                                                child: Column(
+                                                  crossAxisAlignment:
+                                                  CrossAxisAlignment.center,
                                                   children: [
-                                                    Padding(padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
-                                                        child: FadeInImage(
-                                                          placeholder: const NetworkImage('https://technometrics.net/wp-content/uploads/2020/11/loading-icon-animated-gif-19-1.gif'),
-                                                          image: NetworkImage('https://drive.google.com/uc?export=view&id=${voLoteria.vcUrlLogo}'),
-                                                          width: 90,
-                                                        )
-                                                    ),
                                                     const Gap(8),
                                                     Text(
-                                                      voLoteria.vcNombre,
-                                                      style: GoogleFonts.openSans(fontSize: 12, color: Colors.white),
+                                                      'Numeros Bloqueados Hoy:',
+                                                      style: GoogleFonts.openSans(
+                                                          fontSize: 14,
+                                                          color: Colors.black,
+                                                          fontWeight:
+                                                          FontWeight.w500),
                                                     ),
-                                                    Text(
-                                                      'Cierre: ${voLoteria.vcCierre}',
-                                                      style: GoogleFonts.openSans(fontSize: 12, color: Colors.white),
+                                                    const Gap(8),
+                                                    SizedBox(
+                                                      height: 30,
+                                                      width: size.width * 0.95,
+                                                      child: Center(
+                                                        child: ListView.builder(
+                                                          scrollDirection: Axis.horizontal,
+                                                          shrinkWrap: true,
+                                                          itemCount: state.voListBloq.length,
+                                                          itemBuilder: (BuildContext context, int vnIndex) {
+                                                            return SizedBox(
+                                                              width: 80,
+                                                              height: 16,
+                                                              child: ListTile(
+                                                                visualDensity: VisualDensity.compact,
+                                                                dense: true,
+                                                                title: Text(
+                                                                  '${state.voListBloq[vnIndex].vnNumero}',
+                                                                  style: GoogleFonts.openSans(
+                                                                      fontSize: 14,
+                                                                      color: Colors.black),
+                                                                  textAlign:
+                                                                  TextAlign.center,
+                                                                ),
+                                                              ),
+                                                            );
+                                                          },
+                                                        ),
+                                                      ),
                                                     ),
-
                                                   ],
                                                 ),
-                                                onPressed: () {
-                                                  if (voLoteSele.contains(voLoteria)) {
-                                                    voLoteSele.remove(voLoteria);
-                                                  } else {
-                                                    voLoteSele.add(voLoteria);
-                                                  }
-                                                  setState(() {
-                                                    voSeleList[vnIndeSele] = !voSeleList[vnIndeSele];
-                                                  });
-                                                },
                                               );
-                                              },
+                                            }
+                                            return const Center();
+                                          }),
+                                      const Gap(50),
+                                      Padding(
+                                        padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                                        child: GridView.builder(
+                                          physics: const NeverScrollableScrollPhysics(),
+                                          shrinkWrap: true,
+                                          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                                            crossAxisCount: 2,
+                                            mainAxisSpacing: 8,
+                                            crossAxisSpacing: 6,
+                                            childAspectRatio: 1.2,
                                           ),
-                                        ),
+                                          itemCount: state.voListLote.length,
+                                          itemBuilder: (BuildContext context, int vnIndeSele) {
+                                            final voLoteria = state.voListLote[vnIndeSele];
+                                            return ActionChip(
+                                              side: const BorderSide(color: Colors.transparent),
+                                              backgroundColor: voSeleList[vnIndeSele] ? Colors.lightGreen : Colors.grey,
+                                              labelPadding: const EdgeInsets.symmetric(horizontal: 8),
+                                              label: Column(
+                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                children: [
+                                                  Padding(padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                                                      child: FadeInImage(
+                                                        placeholder: const NetworkImage('https://technometrics.net/wp-content/uploads/2020/11/loading-icon-animated-gif-19-1.gif'),
+                                                        image: NetworkImage('https://drive.google.com/uc?export=view&id=${voLoteria.vcUrlLogo}'),
+                                                        width: 85,
+                                                      )
+                                                  ),
+                                                  const Gap(8),
+                                                  Text(
+                                                    voLoteria.vcNombre,
+                                                    style: GoogleFonts.openSans(fontSize: 12, color: Colors.white),
+                                                  ),
+                                                  Text(
+                                                    'Cierre: ${voLoteria.vcCierre}',
+                                                    style: GoogleFonts.openSans(fontSize: 12, color: Colors.white),
+                                                  ),
 
-                                      ],
-                                    ));
+                                                ],
+                                              ),
+                                              onPressed: () {
+                                                if (voLoteSele.contains(voLoteria)) {
+                                                  voLoteSele.remove(voLoteria);
+                                                } else {
+                                                  voLoteSele.add(voLoteria);
+                                                }
+                                                setState(() {
+                                                  voSeleList[vnIndeSele] = !voSeleList[vnIndeSele];
+                                                });
+                                              },
+                                            );
+                                            },
+                                        ),
+                                      ),
+
+                                    ],
+                                  ));
+                            }
+                            return const Center();
+                          }),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical:  30, horizontal: 100),
+                        child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.lightGreen,
+                                maximumSize: const Size(155, 85),
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10))),
+                            onPressed: () {
+                              if (voLoteSele.isNotEmpty) {
+                                _ventaBloc.add(AgregarLoteria(
+                                    voLoterias: voLoteSele));
+                              } else {
+                                showCoolAlert(
+                                    context,
+                                    CoolAlertType.warning,
+                                    'Nada Seleccionado',
+                                    'Por favor selecione una o más loterias');
                               }
-                              return const Center();
-                            }),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(vertical:  30, horizontal: 100),
-                          child: ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                  backgroundColor: Colors.lightGreen,
-                                  maximumSize: const Size(85, 85),
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius:
-                                      BorderRadius.circular(10))),
-                              onPressed: () {
-                                if (voLoteSele.isNotEmpty) {
-                                  _ventaBloc.add(AgregarLoteria(
-                                      voLoterias: voLoteSele));
-                                } else {
-                                  showCoolAlert(
-                                      context,
-                                      CoolAlertType.warning,
-                                      'Nada Seleccionado',
-                                      'Por favor selecione una o más loterias');
-                                }
-                              },
-                              child: Text('Continuar',
-                                  style: GoogleFonts.openSans(
-                                      fontSize: 20,
-                                      color: Colors.white))),
-                        ),
-                      ],
-                    ),
+                            },
+                            child: Text('Continuar',
+                                style: GoogleFonts.openSans(
+                                    fontSize: 20,
+                                    color: Colors.white))),
+                      ),
+                    ],
                   );
 
                 },
