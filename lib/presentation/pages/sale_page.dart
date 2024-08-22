@@ -1,3 +1,4 @@
+
 import 'package:cool_alert/cool_alert.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -66,12 +67,15 @@ class _SalePageState extends State<SalePage> {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+
+
     return BlocBuilder<LoginBloc, LoginState>(
       builder: (context, state) {
         if (state is LoginOk) {
           _vnUsuaId = state.voSesion.vnUsuario;
           return SafeArea(
-            minimum: const EdgeInsets.symmetric(vertical: 8),
+              minimum: const EdgeInsets.symmetric(vertical: 8),
               child: BlocListener<VentaBloc, VentaState>(
                 listener: (context, state) {
                   if(state is VentaError){
@@ -128,7 +132,7 @@ class _SalePageState extends State<SalePage> {
                                                   .onUserInteraction,
                                               maxLength: 4,
                                               textInputAction:
-                                                  TextInputAction.next,
+                                              TextInputAction.next,
                                               keyboardType: TextInputType.number,
                                               onTapOutside: _onTapOutside,
                                               controller: _numberText,
@@ -138,16 +142,16 @@ class _SalePageState extends State<SalePage> {
                                                 isDense: true,
                                                 labelText: 'Número',
                                                 border:
-                                                    const OutlineInputBorder(),
+                                                const OutlineInputBorder(),
                                                 focusedBorder:
-                                                    const OutlineInputBorder(
+                                                const OutlineInputBorder(
                                                   borderSide: BorderSide(
                                                       color: Colors.black),
                                                 ),
                                               ),
                                               validator: (value) {
                                                 if (value!.toString().length <
-                                                        3 ||
+                                                    3 ||
                                                     value.isEmpty) {
                                                   return 'Inválido';
                                                 }
@@ -166,7 +170,7 @@ class _SalePageState extends State<SalePage> {
                                                   .onUserInteraction,
                                               maxLength: 4,
                                               textInputAction:
-                                                  TextInputAction.next,
+                                              TextInputAction.next,
                                               keyboardType: TextInputType.number,
                                               onTapOutside: _onTapOutside,
                                               controller: _numberText2,
@@ -176,16 +180,16 @@ class _SalePageState extends State<SalePage> {
                                                 labelText: 'Número',
                                                 isDense: true,
                                                 border:
-                                                    const OutlineInputBorder(),
+                                                const OutlineInputBorder(),
                                                 focusedBorder:
-                                                    const OutlineInputBorder(
+                                                const OutlineInputBorder(
                                                   borderSide: BorderSide(
                                                       color: Colors.black),
                                                 ),
                                               ),
                                               validator: (value) {
                                                 if (value!.toString().length <
-                                                        3 ||
+                                                    3 ||
                                                     value.isEmpty) {
                                                   return 'Inválido';
                                                 }
@@ -212,16 +216,16 @@ class _SalePageState extends State<SalePage> {
                                                     color: Colors.black),
                                                 isDense: true,
                                                 border:
-                                                    const OutlineInputBorder(),
+                                                const OutlineInputBorder(),
                                                 focusedBorder:
-                                                    const OutlineInputBorder(
+                                                const OutlineInputBorder(
                                                   borderSide: BorderSide(
                                                       color: Colors.black),
                                                 ),
                                               ),
                                               validator: (value) {
                                                 if (value!.toString().length <
-                                                        3 ||
+                                                    3 ||
                                                     value.isEmpty) {
                                                   return 'Inválido';
                                                 }
@@ -252,7 +256,7 @@ class _SalePageState extends State<SalePage> {
                                               autovalidateMode: AutovalidateMode
                                                   .onUserInteraction,
                                               textInputAction:
-                                                  TextInputAction.next,
+                                              TextInputAction.next,
                                               onTapOutside: _onTapOutside,
                                               onChanged: (value) {
                                                 if (value.length > 3) {
@@ -270,9 +274,9 @@ class _SalePageState extends State<SalePage> {
                                                     color: Colors.black),
                                                 isDense: true,
                                                 border:
-                                                    const OutlineInputBorder(),
+                                                const OutlineInputBorder(),
                                                 focusedBorder:
-                                                    const OutlineInputBorder(
+                                                const OutlineInputBorder(
                                                   borderSide: BorderSide(
                                                       color: Colors.black),
                                                 ),
@@ -295,7 +299,7 @@ class _SalePageState extends State<SalePage> {
                                               autovalidateMode: AutovalidateMode
                                                   .onUserInteraction,
                                               textInputAction:
-                                                  TextInputAction.next,
+                                              TextInputAction.next,
                                               onTapOutside: _onTapOutside,
                                               onChanged: (value) {
                                                 if (value.length > 3) {
@@ -313,9 +317,9 @@ class _SalePageState extends State<SalePage> {
                                                     color: Colors.black),
                                                 isDense: true,
                                                 border:
-                                                    const OutlineInputBorder(),
+                                                const OutlineInputBorder(),
                                                 focusedBorder:
-                                                    const OutlineInputBorder(
+                                                const OutlineInputBorder(
                                                   borderSide: BorderSide(
                                                       color: Colors.black),
                                                 ),
@@ -354,9 +358,9 @@ class _SalePageState extends State<SalePage> {
                                                     color: Colors.black),
                                                 isDense: true,
                                                 border:
-                                                    const OutlineInputBorder(),
+                                                const OutlineInputBorder(),
                                                 focusedBorder:
-                                                    const OutlineInputBorder(
+                                                const OutlineInputBorder(
                                                   borderSide: BorderSide(
                                                       color: Colors.black),
                                                 ),
@@ -394,7 +398,7 @@ class _SalePageState extends State<SalePage> {
                                             minimumSize: const Size(100, 40),
                                             shape: RoundedRectangleBorder(
                                                 borderRadius:
-                                                    BorderRadius.circular(10))),
+                                                BorderRadius.circular(10))),
                                         onPressed: () {
                                           _ventaBloc.add(Atras());
                                           _clearText();
@@ -414,16 +418,16 @@ class _SalePageState extends State<SalePage> {
                                             minimumSize: const Size(100, 40),
                                             shape: RoundedRectangleBorder(
                                                 borderRadius:
-                                                    BorderRadius.circular(10))),
+                                                BorderRadius.circular(10))),
                                         onPressed: () {
                                           for (var item in voLoteSele) {
                                             if (_numberText.text.isNotEmpty &&
                                                 _priceText.text.isNotEmpty) {
                                               Venta voVenta = Venta(
                                                   vnNumero:
-                                                      int.parse(_numberText.text),
+                                                  int.parse(_numberText.text),
                                                   vnPrecio:
-                                                      int.parse(_priceText.text),
+                                                  int.parse(_priceText.text),
                                                   vnLoteId: item.vnId,
                                                   vcLoteria: item.vcNombre);
                                               voVentList.add(voVenta);
@@ -434,7 +438,7 @@ class _SalePageState extends State<SalePage> {
                                                   vnNumero: int.parse(
                                                       _numberText2.text),
                                                   vnPrecio:
-                                                      int.parse(_priceText2.text),
+                                                  int.parse(_priceText2.text),
                                                   vnLoteId: item.vnId,
                                                   vcLoteria: item.vcNombre);
                                               voVentList.add(voVenta);
@@ -445,7 +449,7 @@ class _SalePageState extends State<SalePage> {
                                                   vnNumero: int.parse(
                                                       _numberText3.text),
                                                   vnPrecio:
-                                                      int.parse(_priceText3.text),
+                                                  int.parse(_priceText3.text),
                                                   vnLoteId: item.vnId,
                                                   vcLoteria: item.vcNombre);
                                               voVentList.add(voVenta);
@@ -520,7 +524,7 @@ class _SalePageState extends State<SalePage> {
                                           fontWeight: FontWeight.w700),
                                       leading: const Padding(
                                         padding:
-                                            EdgeInsets.symmetric(horizontal: 24.0),
+                                        EdgeInsets.symmetric(horizontal: 24.0),
                                         child: Icon(
                                           Icons.sell,
                                           color: Colors.lightGreen,
@@ -588,123 +592,121 @@ class _SalePageState extends State<SalePage> {
                         ),
                       );
                     }
-                    return Column(
-                      children: [
-                        BlocBuilder<LoteriaBloc, LoteriaState>(
-                            builder: (context, state) {
-                          if (state is LoteriasOk) {
-                            voLoteList = state.voListLote;
-                            if (voSeleList.length != state.voListLote.length) {
-                              voSeleList = List.generate(
-                                  state.voListLote.length, (index) => false);
-                            }
-                            return Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(vertical: 16.0),
-                                child: Column(
-                                  children: [
-                                    BlocBuilder<BloqueoBloc, BloqueoState>(builder: (context,state){
-                                      if(state is BloqueoOk){
-                                       state.voListBloq.isEmpty? const Center() : Column(
-                                          children: [
-                                            Text('Numeros Bloqueados Hoy:', style: GoogleFonts.openSans(fontSize: 16, color: Colors.black, fontWeight: FontWeight.w500)),
-                                            SingleChildScrollView(
-                                              child: Padding(
-                                                padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 56),
-                                                child: ListView.builder(
-                                                  shrinkWrap: true,
-                                                  itemCount: state.voListBloq.length,
-                                                  itemBuilder: (BuildContext context, int vnIndex){
-                                                    return Text('${state.voListBloq[vnIndex].vnNumero}',
-                                                      style: GoogleFonts.openSans(fontSize: 16, color: Colors.black),
-                                                    );
-                                                  },
+                    return SizedBox(
+                      height: size.height ,
+                      child: ListView(
+                        children: [
+                          BlocBuilder<LoteriaBloc, LoteriaState>(
+                              builder: (context, state) {
+                                if (state is LoteriasOk) {
+                                  voLoteList = state.voListLote;
+                                  if (voSeleList.length != state.voListLote.length) {
+                                    voSeleList = List.generate(
+                                        state.voListLote.length, (index) => false);
+                                  }
+                                  return Padding(
+                                      padding:
+                                      const EdgeInsets.symmetric(vertical: 8.0),
+                                      child: Column(
+                                        children: [
 
-                                                ),
+                                          const Gap(100),
+                                          Padding(
+                                            padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                                            child: GridView.builder(
+                                              physics: const NeverScrollableScrollPhysics(),
+                                              shrinkWrap: true,
+                                              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                                                crossAxisCount: 2,
+                                                mainAxisSpacing: 8,
+                                                crossAxisSpacing: 4,
+                                                childAspectRatio: 1.2,
                                               ),
-                                            ),
-                                          ],
-                                        );
-                                      }
+                                              itemCount: state.voListLote.length,
+                                              itemBuilder: (BuildContext context, int vnIndeSele) {
+                                                final voLoteria = state.voListLote[vnIndeSele];
+                                                return ActionChip(
+                                                  side: const BorderSide(color: Colors.transparent),
+                                                  backgroundColor: voSeleList[vnIndeSele] ? Colors.lightGreen : Colors.grey,
+                                                  labelPadding: const EdgeInsets.symmetric(horizontal: 8),
+                                                  label: Column(
+                                                    mainAxisAlignment: MainAxisAlignment.center,
+                                                    children: [
+                                                      Padding(padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                                                          child: FadeInImage(
+                                                            placeholder: const NetworkImage('https://technometrics.net/wp-content/uploads/2020/11/loading-icon-animated-gif-19-1.gif'),
+                                                            image: NetworkImage('https://drive.google.com/uc?export=view&id=${voLoteria.vcUrlLogo}'),
+                                                            width: 90,
+                                                          )
+                                                      ),
+                                                      const Gap(8),
+                                                      Text(
+                                                        voLoteria.vcNombre,
+                                                        style: GoogleFonts.openSans(fontSize: 12, color: Colors.white),
+                                                      ),
+                                                      Text(
+                                                        'Cierre: ${voLoteria.vcCierre}',
+                                                        style: GoogleFonts.openSans(fontSize: 12, color: Colors.white),
+                                                      ),
 
-                                      return const Center();
-                                    }),
-                                    const Gap(120),
-                                    Padding(
-                                      padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                                      child: GridView.builder(
-                                        shrinkWrap: true,
-                                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                                          crossAxisCount: 2,
-                                          mainAxisSpacing: 8,
-                                          crossAxisSpacing: 8,
-                                          childAspectRatio: 1,
-                                        ),
-                                        itemCount: state.voListLote.length,
-                                        itemBuilder: (BuildContext context, int vnIndeSele) {
-                                          final voLoteria = state.voListLote[vnIndeSele];
-                                          return ActionChip(
-                                            side: const BorderSide(color: Colors.transparent),
-                                            backgroundColor: voSeleList[vnIndeSele] ? Colors.lightGreen : Colors.grey,
-                                            labelPadding: const EdgeInsets.symmetric(horizontal: 16),
-                                            label: Text(
-                                              voLoteria.vcNombre,
-                                              style: GoogleFonts.openSans(fontSize: 16, color: Colors.white),
+                                                    ],
+                                                  ),
+                                                  onPressed: () {
+                                                    if (voLoteSele.contains(voLoteria)) {
+                                                      voLoteSele.remove(voLoteria);
+                                                    } else {
+                                                      voLoteSele.add(voLoteria);
+                                                    }
+                                                    setState(() {
+                                                      voSeleList[vnIndeSele] = !voSeleList[vnIndeSele];
+                                                    });
+                                                  },
+                                                );                                              },
                                             ),
-                                            onPressed: () {
-                                              if (voLoteSele.contains(voLoteria)) {
-                                                voLoteSele.remove(voLoteria);
-                                              } else {
-                                                voLoteSele.add(voLoteria);
-                                              }
-                                              setState(() {
-                                                voSeleList[vnIndeSele] = !voSeleList[vnIndeSele];
-                                              });
-                                            },
-                                          );
-                                        },
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          vertical: 50),
-                                      child: ElevatedButton(
-                                          style: ElevatedButton.styleFrom(
-                                              backgroundColor: Colors.lightGreen,
-                                              minimumSize: const Size(150, 55),
-                                              shape: RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(10))),
-                                          onPressed: () {
-                                            if (voLoteSele.isNotEmpty) {
-                                              _ventaBloc.add(AgregarLoteria(
-                                                  voLoterias: voLoteSele));
-                                            } else {
-                                              showCoolAlert(
-                                                  context,
-                                                  CoolAlertType.warning,
-                                                  'Nada Seleccionado',
-                                                  'Por favor selecione una o más loterias');
-                                            }
-                                          },
-                                          child: Text('Continuar',
-                                              style: GoogleFonts.openSans(
-                                                  fontSize: 20,
-                                                  color: Colors.white))),
-                                    ),
-                                  ],
-                                ));
-                          }
-                          return const Center();
-                        }),
-                      ],
+                                          ),
+
+                                        ],
+                                      ));
+                                }
+                                return const Center();
+                              }),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical:  30, horizontal: 100),
+                            child: ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                    backgroundColor: Colors.lightGreen,
+                                    maximumSize: const Size(85, 85),
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                        BorderRadius.circular(10))),
+                                onPressed: () {
+                                  if (voLoteSele.isNotEmpty) {
+                                    _ventaBloc.add(AgregarLoteria(
+                                        voLoterias: voLoteSele));
+                                  } else {
+                                    showCoolAlert(
+                                        context,
+                                        CoolAlertType.warning,
+                                        'Nada Seleccionado',
+                                        'Por favor selecione una o más loterias');
+                                  }
+                                },
+                                child: Text('Continuar',
+                                    style: GoogleFonts.openSans(
+                                        fontSize: 20,
+                                        color: Colors.white))),
+                          ),
+                        ],
+                      ),
                     );
                   },
                 ),
-              ));
+              )
+          );
         }
         return const Center();
       },
     );
   }
 }
+ 
