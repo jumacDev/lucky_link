@@ -999,42 +999,47 @@ class _SalePageState extends State<SalePage> {
                                           itemCount: state.voListLote.length,
                                           itemBuilder: (BuildContext context, int vnIndeSele) {
                                             final voLoteria = state.voListLote[vnIndeSele];
-                                            return ActionChip(
-                                              side: const BorderSide(color: Colors.transparent),
-                                              backgroundColor: voSeleList[vnIndeSele] ? Colors.lightGreen : Colors.grey,
-                                              labelPadding: const EdgeInsets.symmetric(horizontal: 8),
-                                              label: Column(
-                                                mainAxisAlignment: MainAxisAlignment.center,
-                                                children: [
-                                                  Padding(padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
-                                                      child: FadeInImage(
-                                                        placeholder: const NetworkImage('https://technometrics.net/wp-content/uploads/2020/11/loading-icon-animated-gif-19-1.gif'),
-                                                        image: NetworkImage('https://drive.google.com/uc?export=view&id=${voLoteria.vcUrlLogo}'),
-                                                        width: 85,
-                                                      )
-                                                  ),
-                                                  const Gap(8),
-                                                  Text(
-                                                    voLoteria.vcNombre,
-                                                    style: GoogleFonts.openSans(fontSize: 12, color: Colors.white),
-                                                  ),
-                                                  Text(
-                                                    'Cierre: ${voLoteria.vcCierre}',
-                                                    style: GoogleFonts.openSans(fontSize: 12, color: Colors.white),
-                                                  ),
-
-                                                ],
+                                            return FadeIn(
+                                              child: ActionChip(
+                                                side: const BorderSide(color: Colors.transparent),
+                                                backgroundColor: voSeleList[vnIndeSele] ? Colors.lightGreen : Colors.grey,
+                                                labelPadding: const EdgeInsets.symmetric(horizontal: 8),
+                                                label: Column(
+                                                  mainAxisAlignment: MainAxisAlignment.center,
+                                                  children: [
+                                                    Padding(padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                                                        child: FadeIn(child: Image(image: AssetImage('assets/img/${voLoteria.vnId}.jpg'), width: 80,))
+                                                    ),
+                                                    const Gap(8),
+                                                    FadeIn(
+                                                      child: Text(
+                                                        voLoteria.vcNombre,
+                                                        style: GoogleFonts.openSans(
+                                                            fontSize: voLoteria.vcNombre.length >14 ? 10 : 12,
+                                                            color: Colors.white
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    FadeIn(
+                                                      child: Text(
+                                                        'Cierre: ${voLoteria.vcCierre}',
+                                                        style: GoogleFonts.openSans(fontSize: 12, color: Colors.white),
+                                                      ),
+                                                    ),
+                                              
+                                                  ],
+                                                ),
+                                                onPressed: () {
+                                                  if (voLoteSele.contains(voLoteria)) {
+                                                    voLoteSele.remove(voLoteria);
+                                                  } else {
+                                                    voLoteSele.add(voLoteria);
+                                                  }
+                                                  setState(() {
+                                                    voSeleList[vnIndeSele] = !voSeleList[vnIndeSele];
+                                                  });
+                                                },
                                               ),
-                                              onPressed: () {
-                                                if (voLoteSele.contains(voLoteria)) {
-                                                  voLoteSele.remove(voLoteria);
-                                                } else {
-                                                  voLoteSele.add(voLoteria);
-                                                }
-                                                setState(() {
-                                                  voSeleList[vnIndeSele] = !voSeleList[vnIndeSele];
-                                                });
-                                              },
                                             );
                                             },
                                         ),
