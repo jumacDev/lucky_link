@@ -26,6 +26,12 @@ class _SalePageState extends State<SalePage> {
   final TextEditingController _priceText2 = TextEditingController();
   final TextEditingController _numberText3 = TextEditingController();
   final TextEditingController _priceText3 = TextEditingController();
+  final TextEditingController _numberText4 = TextEditingController();
+  final TextEditingController _priceText4 = TextEditingController();
+  final TextEditingController _numberText5 = TextEditingController();
+  final TextEditingController _priceText5 = TextEditingController();
+  final TextEditingController _numberText6 = TextEditingController();
+  final TextEditingController _priceText6 = TextEditingController();
   int vnTotalPrice = 0;
   int _vnUsuaId = 0;
   List<bool> voSeleList = [];
@@ -40,6 +46,9 @@ class _SalePageState extends State<SalePage> {
   int tempValue1 = 0;
   int tempValue2 = 0;
   int tempValue3 = 0;
+  int tempValue4 = 0;
+  int tempValue5 = 0;
+  int tempValue6 = 0;
 
   @override
   void initState() {
@@ -60,7 +69,7 @@ class _SalePageState extends State<SalePage> {
 
   void _updateTotalPrice() {
     setState(() {
-      vnTotalPrice = (tempValue1 + tempValue2 + tempValue3) * voLoteSele.length;
+      vnTotalPrice = (tempValue1 + tempValue2 + tempValue3 + tempValue4 + tempValue5 + tempValue6) * voLoteSele.length;
     });
   }
 
@@ -68,9 +77,15 @@ class _SalePageState extends State<SalePage> {
     _priceText.clear();
     _priceText2.clear();
     _priceText3.clear();
+    _priceText4.clear();
+    _priceText5.clear();
+    _priceText6.clear();
     _numberText.clear();
     _numberText2.clear();
     _numberText3.clear();
+    _numberText4.clear();
+    _numberText5.clear();
+    _numberText6.clear();
     vnTotalPrice = 0;
   }
 
@@ -79,6 +94,9 @@ class _SalePageState extends State<SalePage> {
     tempValue1 = 0;
     tempValue2 = 0;
     tempValue3 = 0;
+    tempValue4 = 0;
+    tempValue5 = 0;
+    tempValue6 = 0;
   }
 
   @override
@@ -93,7 +111,7 @@ class _SalePageState extends State<SalePage> {
         if (state is LoginOk) {
           _vnUsuaId = state.voSesion.vnUsuario;
           return SingleChildScrollView(
-            physics: size.height < 800 ? const AlwaysScrollableScrollPhysics() : const NeverScrollableScrollPhysics(),
+            physics: size.height < 870 ? const AlwaysScrollableScrollPhysics() : const NeverScrollableScrollPhysics(),
             child: BlocListener<VentaBloc, VentaState>(
               listener: (context, state) async {
                 if (state is VentaError) {
@@ -144,13 +162,13 @@ class _SalePageState extends State<SalePage> {
                                             "Número",
                                             style: GoogleFonts.openSans(
                                                 color: Colors.black,
-                                                fontSize: 24),
+                                                fontSize: 22),
                                           ),
                                         ),
                                         const Gap(8),
                                         SizedBox(
-                                          width: 190,
-                                          height: 90,
+                                          width: 170,
+                                          height: 80,
                                           child: Container(
                                             padding: const EdgeInsets.symmetric(
                                                 vertical: 10, horizontal: 50),
@@ -192,8 +210,8 @@ class _SalePageState extends State<SalePage> {
                                           ),
                                         ),
                                         SizedBox(
-                                          width: 190,
-                                          height: 90,
+                                          width: 170,
+                                          height: 80,
                                           child: Container(
                                             padding: const EdgeInsets.symmetric(
                                                 vertical: 10, horizontal: 50),
@@ -235,8 +253,8 @@ class _SalePageState extends State<SalePage> {
                                           ),
                                         ),
                                         SizedBox(
-                                          width: 190,
-                                          height: 90,
+                                          width: 170,
+                                          height: 80,
                                           child: Container(
                                             padding: const EdgeInsets.symmetric(
                                                 vertical: 10, horizontal: 50),
@@ -275,6 +293,129 @@ class _SalePageState extends State<SalePage> {
                                                 }),
                                           ),
                                         ),
+                                        SizedBox(
+                                          width: 170,
+                                          height: 80,
+                                          child: Container(
+                                            padding: const EdgeInsets.symmetric(
+                                                vertical: 10, horizontal: 50),
+                                            child: TextFormField(
+                                                buildCounter: (BuildContext context, {int? currentLength, bool? isFocused, int? maxLength}) {
+                                                  return null;
+                                                },
+                                                autovalidateMode: AutovalidateMode
+                                                    .onUserInteraction,
+                                                maxLength: 4,
+                                                keyboardType:
+                                                TextInputType.number,
+                                                onTapOutside: _onTapOutside,
+                                                controller: _numberText4,
+                                                decoration: InputDecoration(
+                                                  labelText: 'Número',
+                                                  labelStyle:
+                                                  GoogleFonts.openSans(
+                                                      color: Colors.black),
+                                                  isDense: true,
+                                                  border:
+                                                  const OutlineInputBorder(),
+                                                  focusedBorder:
+                                                  const OutlineInputBorder(
+                                                    borderSide: BorderSide(
+                                                        color: Colors.black),
+                                                  ),
+                                                ),
+                                                validator: (value) {
+                                                  if (value!.toString().length <
+                                                      3 ||
+                                                      value.isEmpty) {
+                                                    return 'Inválido';
+                                                  }
+                                                  return null;
+                                                }),
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          width: 170,
+                                          height: 80,
+                                          child: Container(
+                                            padding: const EdgeInsets.symmetric(
+                                                vertical: 10, horizontal: 50),
+                                            child: TextFormField(
+                                                buildCounter: (BuildContext context, {int? currentLength, bool? isFocused, int? maxLength}) {
+                                                  return null;
+                                                },
+                                                autovalidateMode: AutovalidateMode
+                                                    .onUserInteraction,
+                                                maxLength: 4,
+                                                keyboardType:
+                                                TextInputType.number,
+                                                onTapOutside: _onTapOutside,
+                                                controller: _numberText5,
+                                                decoration: InputDecoration(
+                                                  labelText: 'Número',
+                                                  labelStyle:
+                                                  GoogleFonts.openSans(
+                                                      color: Colors.black),
+                                                  isDense: true,
+                                                  border:
+                                                  const OutlineInputBorder(),
+                                                  focusedBorder:
+                                                  const OutlineInputBorder(
+                                                    borderSide: BorderSide(
+                                                        color: Colors.black),
+                                                  ),
+                                                ),
+                                                validator: (value) {
+                                                  if (value!.toString().length <
+                                                      3 ||
+                                                      value.isEmpty) {
+                                                    return 'Inválido';
+                                                  }
+                                                  return null;
+                                                }),
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          width: 170,
+                                          height: 80,
+                                          child: Container(
+                                            padding: const EdgeInsets.symmetric(
+                                                vertical: 10, horizontal: 50),
+                                            child: TextFormField(
+                                                buildCounter: (BuildContext context, {int? currentLength, bool? isFocused, int? maxLength}) {
+                                                  return null;
+                                                },
+                                                autovalidateMode: AutovalidateMode
+                                                    .onUserInteraction,
+                                                maxLength: 4,
+                                                keyboardType:
+                                                TextInputType.number,
+                                                onTapOutside: _onTapOutside,
+                                                controller: _numberText6,
+                                                decoration: InputDecoration(
+                                                  labelText: 'Número',
+                                                  labelStyle:
+                                                  GoogleFonts.openSans(
+                                                      color: Colors.black),
+                                                  isDense: true,
+                                                  border:
+                                                  const OutlineInputBorder(),
+                                                  focusedBorder:
+                                                  const OutlineInputBorder(
+                                                    borderSide: BorderSide(
+                                                        color: Colors.black),
+                                                  ),
+                                                ),
+                                                validator: (value) {
+                                                  if (value!.toString().length <
+                                                      3 ||
+                                                      value.isEmpty) {
+                                                    return 'Inválido';
+                                                  }
+                                                  return null;
+                                                }),
+                                          ),
+                                        ),
                                       ],
                                     ),
                                   ),
@@ -287,12 +428,12 @@ class _SalePageState extends State<SalePage> {
                                           child: Text("Valor",
                                               style: GoogleFonts.openSans(
                                                   color: Colors.black,
-                                                  fontSize: 24)),
+                                                  fontSize: 22)),
                                         ),
                                         const Gap(8),
                                         SizedBox(
-                                          width: 200,
-                                          height: 90,
+                                          width: 190,
+                                          height: 80,
                                           child: Container(
                                             padding: const EdgeInsets.symmetric(
                                                 vertical: 10, horizontal: 60),
@@ -337,8 +478,8 @@ class _SalePageState extends State<SalePage> {
                                           ),
                                         ),
                                         SizedBox(
-                                          width: 200,
-                                          height: 90,
+                                          width: 190,
+                                          height: 80,
                                           child: Container(
                                             padding: const EdgeInsets.symmetric(
                                                 vertical: 10, horizontal: 60),
@@ -384,8 +525,8 @@ class _SalePageState extends State<SalePage> {
                                           ),
                                         ),
                                         SizedBox(
-                                          width: 200,
-                                          height: 90,
+                                          width: 190,
+                                          height: 80,
                                           child: Container(
                                             padding: const EdgeInsets.symmetric(
                                                 vertical: 10, horizontal: 60),
@@ -428,12 +569,148 @@ class _SalePageState extends State<SalePage> {
                                                 }),
                                           ),
                                         ),
+                                        SizedBox(
+                                          width: 190,
+                                          height: 80,
+                                          child: Container(
+                                            padding: const EdgeInsets.symmetric(
+                                                vertical: 10, horizontal: 60),
+                                            child: TextFormField(
+                                                onChanged: (value) {
+                                                  if (value.length >= 3 && value.length <= 4) {
+                                                    tempValue4 = int.parse(value);
+                                                  } else {
+                                                    tempValue4 = 0;
+                                                  }
+                                                  _updateTotalPrice();
+                                                },
+                                                autovalidateMode: AutovalidateMode
+                                                    .onUserInteraction,
+                                                onTapOutside: _onTapOutside,
+                                                keyboardType:
+                                                TextInputType.number,
+                                                controller: _priceText4,
+                                                decoration: InputDecoration(
+                                                  labelText: 'Valor',
+                                                  labelStyle:
+                                                  GoogleFonts.openSans(
+                                                      color: Colors.black),
+                                                  isDense: true,
+                                                  border:
+                                                  const OutlineInputBorder(),
+                                                  focusedBorder:
+                                                  const OutlineInputBorder(
+                                                    borderSide: BorderSide(
+                                                        color: Colors.black),
+                                                  ),
+                                                ),
+                                                validator: (value) {
+                                                  if (value!.toString().length <
+                                                      3 ||
+                                                      value.isEmpty) {
+                                                    return 'Inválido';
+                                                  }
+                                                  return null;
+                                                }),
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          width: 190,
+                                          height: 80,
+                                          child: Container(
+                                            padding: const EdgeInsets.symmetric(
+                                                vertical: 10, horizontal: 60),
+                                            child: TextFormField(
+                                                onChanged: (value) {
+                                                  if (value.length >= 3 && value.length <= 4) {
+                                                    tempValue5 = int.parse(value);
+                                                  } else {
+                                                    tempValue5 = 0;
+                                                  }
+                                                  _updateTotalPrice();
+                                                },
+                                                autovalidateMode: AutovalidateMode
+                                                    .onUserInteraction,
+                                                onTapOutside: _onTapOutside,
+                                                keyboardType:
+                                                TextInputType.number,
+                                                controller: _priceText5,
+                                                decoration: InputDecoration(
+                                                  labelText: 'Valor',
+                                                  labelStyle:
+                                                  GoogleFonts.openSans(
+                                                      color: Colors.black),
+                                                  isDense: true,
+                                                  border:
+                                                  const OutlineInputBorder(),
+                                                  focusedBorder:
+                                                  const OutlineInputBorder(
+                                                    borderSide: BorderSide(
+                                                        color: Colors.black),
+                                                  ),
+                                                ),
+                                                validator: (value) {
+                                                  if (value!.toString().length <
+                                                      3 ||
+                                                      value.isEmpty) {
+                                                    return 'Inválido';
+                                                  }
+                                                  return null;
+                                                }),
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          width: 190,
+                                          height: 80,
+                                          child: Container(
+                                            padding: const EdgeInsets.symmetric(
+                                                vertical: 10, horizontal: 60),
+                                            child: TextFormField(
+                                                onChanged: (value) {
+                                                  if (value.length >= 3 && value.length <= 4) {
+                                                    tempValue6 = int.parse(value);
+                                                  } else {
+                                                    tempValue6 = 0;
+                                                  }
+                                                  _updateTotalPrice();
+                                                },
+                                                autovalidateMode: AutovalidateMode
+                                                    .onUserInteraction,
+                                                onTapOutside: _onTapOutside,
+                                                keyboardType:
+                                                TextInputType.number,
+                                                controller: _priceText6,
+                                                decoration: InputDecoration(
+                                                  labelText: 'Valor',
+                                                  labelStyle:
+                                                  GoogleFonts.openSans(
+                                                      color: Colors.black),
+                                                  isDense: true,
+                                                  border:
+                                                  const OutlineInputBorder(),
+                                                  focusedBorder:
+                                                  const OutlineInputBorder(
+                                                    borderSide: BorderSide(
+                                                        color: Colors.black),
+                                                  ),
+                                                ),
+                                                validator: (value) {
+                                                  if (value!.toString().length <
+                                                      3 ||
+                                                      value.isEmpty) {
+                                                    return 'Inválido';
+                                                  }
+                                                  return null;
+                                                }),
+                                          ),
+                                        ),
+
                                       ],
                                     ),
                                   )
                                 ],
                               ),
-                              const Gap(24),
+                              const Gap(16),
                               //total
                               FadeIn(
                                 child: Center(
@@ -442,7 +719,7 @@ class _SalePageState extends State<SalePage> {
                                         style: GoogleFonts.openSans(
                                             color: Colors.black))),
                               ),
-                              const Gap(32),
+                              const Gap(24),
                               //botones
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
@@ -515,6 +792,39 @@ class _SalePageState extends State<SalePage> {
                                                     vcLoteria: item.vcNombre);
                                                 voVentList.add(voVenta);
                                               }
+                                              if (_numberText4.text.isNotEmpty &&
+                                                  _priceText4.text.isNotEmpty) {
+                                                Venta voVenta = Venta(
+                                                    vnNumero: int.parse(
+                                                        _numberText4.text),
+                                                    vnPrecio: int.parse(
+                                                        _priceText4.text),
+                                                    vnLoteId: item.vnId,
+                                                    vcLoteria: item.vcNombre);
+                                                voVentList.add(voVenta);
+                                              }
+                                              if (_numberText5.text.isNotEmpty &&
+                                                  _priceText5.text.isNotEmpty) {
+                                                Venta voVenta = Venta(
+                                                    vnNumero: int.parse(
+                                                        _numberText5.text),
+                                                    vnPrecio: int.parse(
+                                                        _priceText5.text),
+                                                    vnLoteId: item.vnId,
+                                                    vcLoteria: item.vcNombre);
+                                                voVentList.add(voVenta);
+                                              }
+                                              if (_numberText6.text.isNotEmpty &&
+                                                  _priceText6.text.isNotEmpty) {
+                                                Venta voVenta = Venta(
+                                                    vnNumero: int.parse(
+                                                        _numberText6.text),
+                                                    vnPrecio: int.parse(
+                                                        _priceText6.text),
+                                                    vnLoteId: item.vnId,
+                                                    vcLoteria: item.vcNombre);
+                                                voVentList.add(voVenta);
+                                              }
                                             }
                                             _ventaBloc.add(AgregarNumero(
                                                 voVentList: voVentList,
@@ -549,21 +859,21 @@ class _SalePageState extends State<SalePage> {
                               children: [
                                 Text('Números A Agregar',
                                     style: GoogleFonts.openSans(
-                                        fontSize: 22, color: Colors.black)),
+                                        fontSize: 20, color: Colors.black)),
                                 const Gap(8),
                                 FadeIn(
                                   child: SizedBox(
                                     height: size.height < 670? size.height * 0.51 :
                                     size.height >= 670 && size.height < 740? size.height * 0.52 :
                                     size.height >= 740 && size.height < 840? size.height * 0.5 :
-                                        size.height == 844 || size.height == 812 ? size.height * 0.54 :
+                                    size.height == 844 || size.height == 812 ? size.height * 0.54 :
+                                    size.height == 825? size.height * 0.61 :
                                     size.height >= 854 && size.height < 890 || size.height == 960? size.height * 0.65 :
                                     size.height == 916? size.height * 0.58 : size.height * 0.59,
                                     child: ListView.builder(
                                       shrinkWrap: true,
                                       itemCount: state.voVentList.length,
-                                      itemBuilder:
-                                          (BuildContext context, int vnIndex) {
+                                      itemBuilder: (BuildContext context, int vnIndex) {
                                         var voVenta = state.voVentList[vnIndex];
                                         String vcLoteria = '';
                                         for (var voLote in voLoteList) {
@@ -578,30 +888,25 @@ class _SalePageState extends State<SalePage> {
                                             child: ListTile(
                                               visualDensity: VisualDensity.compact,
                                               dense: true,
-                                              contentPadding:
-                                                  const EdgeInsets.symmetric(
-                                                      horizontal: 16),
+                                              contentPadding: const EdgeInsets.symmetric(horizontal: 8),
                                               title: Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
+                                                crossAxisAlignment: CrossAxisAlignment.start,
                                                 children: [
                                                   Text('Número: ${voVenta.vnNumero}'),
                                                   Text('Lotería: $vcLoteria')
                                                 ],
                                               ),
-                                              subtitle:
-                                                  Text('Precio: ${voVenta.vnPrecio}'),
+                                              subtitle: Text('Precio: ${voVenta.vnPrecio}'),
                                               subtitleTextStyle: GoogleFonts.openSans(
-                                                  fontSize: 12,
+                                                  fontSize: 11,
                                                   color: Colors.black,
                                                   fontWeight: FontWeight.w100),
                                               titleTextStyle: GoogleFonts.openSans(
-                                                  fontSize: 12,
+                                                  fontSize: 11,
                                                   color: Colors.black,
                                                   fontWeight: FontWeight.w700),
                                               leading: const Padding(
-                                                padding: EdgeInsets.symmetric(
-                                                    horizontal: 24.0),
+                                                padding: EdgeInsets.symmetric(horizontal: 24.0),
                                                 child: Icon(
                                                   Icons.sell,
                                                   color: Colors.lightGreen,
@@ -631,7 +936,7 @@ class _SalePageState extends State<SalePage> {
                                 FadeIn(
                                   child: Text('Total a Pagar: ${state.vnPagoTota}',
                                       style: GoogleFonts.openSans(
-                                          fontSize: 22, color: Colors.black)),
+                                          fontSize: 20, color: Colors.black)),
                                 ),
                                 const Gap(16),
                                 Row(
@@ -684,173 +989,169 @@ class _SalePageState extends State<SalePage> {
                       ),
                     );
                   }
-                  return FadeIn(
-                    child: Column(
+                  return SizedBox(
+                    height: size.height,
+                    child: ListView(
                       children: [
                         BlocBuilder<LoteriaBloc, LoteriaState>(
                             builder: (context, state) {
-                          if (state is LoteriasOk) {
-                            vnTotalPrice = 0;
-                            voLoteList = state.voListLote;
-                            if (voSeleList.length != state.voListLote.length) {
-                              voSeleList = List.generate(
-                                  state.voListLote.length, (index) => false);
-                            }
-                            return Padding(
-                                padding:
+                              if (state is LoteriasOk) {
+                                voLoteList = state.voListLote;
+                                if (voSeleList.length != state.voListLote.length) {
+                                  voSeleList = List.generate(
+                                      state.voListLote.length, (index) => false);
+                                }
+                                return Padding(
+                                    padding:
                                     const EdgeInsets.symmetric(vertical: 8.0),
-                                child: Column(
-                                  children: [
-                                    BlocBuilder<BloqueoBloc, BloqueoState>(
-                                        builder: (context, state) {
-                                      if (state is BloqueoOk) {
-                                        return state.voListBloq.isEmpty
-                                            ? const Center()
-                                            : FadeIn(
-                                                child: Column(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.center,
-                                                  children: [
-                                                    const Gap(8),
-                                                    Text(
-                                                      'Numeros Bloqueados Hoy:',
-                                                      style: GoogleFonts.openSans(
-                                                          fontSize: 16,
-                                                          color: Colors.black,
-                                                          fontWeight:
-                                                              FontWeight.w500),
-                                                    ),
-                                                    const Gap(8),
-                                                    SizedBox(
-                                                      height: 30,
-                                                      width: size.width * 0.95,
-                                                      child: Center(
-                                                        child: ListView.builder(
-                                                          scrollDirection: Axis.horizontal,
-                                                          shrinkWrap: true,
-                                                          itemCount: state.voListBloq.length,
-                                                          itemBuilder: (BuildContext context, int vnIndex) {
-                                                            return SizedBox(
-                                                              width: 80,
-                                                              height: 16,
-                                                              child: ListTile(
-                                                                visualDensity: VisualDensity.compact,
-                                                                dense: true,
-                                                                title: Text(
-                                                                  '${state.voListBloq[vnIndex].vnNumero}',
-                                                                  style: GoogleFonts.openSans(
-                                                                          fontSize: 16,
-                                                                          color: Colors.black),
-                                                                  textAlign:
-                                                                      TextAlign
-                                                                          .center,
+                                    child: Column(
+                                      children: [
+                                        BlocBuilder<BloqueoBloc, BloqueoState>(
+                                            builder: (context, state) {
+                                              if (state is BloqueoOk) {
+                                                return state.voListBloq.isEmpty
+                                                    ? const Center()
+                                                    : FadeIn(
+                                                  child: Column(
+                                                    crossAxisAlignment:
+                                                    CrossAxisAlignment.center,
+                                                    children: [
+                                                      const Gap(8),
+                                                      Text(
+                                                        'Numeros Bloqueados Hoy:',
+                                                        style: GoogleFonts.openSans(
+                                                            fontSize: 14,
+                                                            color: Colors.black,
+                                                            fontWeight:
+                                                            FontWeight.w500),
+                                                      ),
+                                                      const Gap(8),
+                                                      SizedBox(
+                                                        height: 30,
+                                                        width: size.width * 0.95,
+                                                        child: Center(
+                                                          child: ListView.builder(
+                                                            scrollDirection: Axis.horizontal,
+                                                            shrinkWrap: true,
+                                                            itemCount: state.voListBloq.length,
+                                                            itemBuilder: (BuildContext context, int vnIndex) {
+                                                              return SizedBox(
+                                                                width: 80,
+                                                                height: 16,
+                                                                child: ListTile(
+                                                                  visualDensity: VisualDensity.compact,
+                                                                  dense: true,
+                                                                  title: Text(
+                                                                    '${state.voListBloq[vnIndex].vnNumero}',
+                                                                    style: GoogleFonts.openSans(
+                                                                        fontSize: 14,
+                                                                        color: Colors.black),
+                                                                    textAlign:
+                                                                    TextAlign.center,
+                                                                  ),
                                                                 ),
-                                                              ),
-                                                            );
-                                                          },
+                                                              );
+                                                            },
+                                                          ),
                                                         ),
                                                       ),
+                                                    ],
+                                                  ),
+                                                );
+                                              }
+                                              return const Center();
+                                            }),
+                                        const Gap(50),
+                                        Padding(
+                                          padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                                          child: GridView.builder(
+                                            physics: const NeverScrollableScrollPhysics(),
+                                            shrinkWrap: true,
+                                            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                                              crossAxisCount: 2,
+                                              mainAxisSpacing: 8,
+                                              crossAxisSpacing: 6,
+                                              childAspectRatio: 1.2,
+                                            ),
+                                            itemCount: state.voListLote.length,
+                                            itemBuilder: (BuildContext context, int vnIndeSele) {
+                                              final voLoteria = state.voListLote[vnIndeSele];
+                                              return ActionChip(
+                                                side: const BorderSide(color: Colors.transparent),
+                                                backgroundColor: voSeleList[vnIndeSele] ? Colors.lightGreen : Colors.grey,
+                                                labelPadding: const EdgeInsets.symmetric(horizontal: 8),
+                                                label: Column(
+                                                  mainAxisAlignment: MainAxisAlignment.center,
+                                                  children: [
+                                                    Padding(padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                                                        child: FadeInImage(
+                                                          placeholder: const NetworkImage('https://technometrics.net/wp-content/uploads/2020/11/loading-icon-animated-gif-19-1.gif'),
+                                                          image: NetworkImage('https://drive.google.com/uc?export=view&id=${voLoteria.vcUrlLogo}'),
+                                                          width: 90,
+                                                        )
                                                     ),
+                                                    const Gap(8),
+                                                    Text(
+                                                      voLoteria.vcNombre,
+                                                      style: GoogleFonts.openSans(fontSize: 12, color: Colors.white),
+                                                    ),
+                                                    Text(
+                                                      'Cierre: ${voLoteria.vcCierre}',
+                                                      style: GoogleFonts.openSans(fontSize: 12, color: Colors.white),
+                                                    ),
+
                                                   ],
                                                 ),
+                                                onPressed: () {
+                                                  if (voLoteSele.contains(voLoteria)) {
+                                                    voLoteSele.remove(voLoteria);
+                                                  } else {
+                                                    voLoteSele.add(voLoteria);
+                                                  }
+                                                  setState(() {
+                                                    voSeleList[vnIndeSele] = !voSeleList[vnIndeSele];
+                                                  });
+                                                },
                                               );
-                                      }
-                                      return const Center();
-                                    }),
-                                    Gap(size.height < 800? 16: 40),
-                                    FadeIn(
-                                      child: Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 24.0),
-                                        child: GridView.builder(
-                                          physics: const NeverScrollableScrollPhysics(),
-                                          shrinkWrap: true,
-                                          gridDelegate:
-                                              const SliverGridDelegateWithFixedCrossAxisCount(
-                                            crossAxisCount: 2,
-                                            mainAxisSpacing: 0,
-                                            crossAxisSpacing: 0,
-                                            childAspectRatio: 2,
+                                              },
                                           ),
-                                          itemCount: state.voListLote.length,
-                                          itemBuilder: (BuildContext context,
-                                              int vnIndeSele) {
-                                            final voLoteria =
-                                                state.voListLote[vnIndeSele];
-                                            return FadeIn(
-                                              child: Center(
-                                                child: ActionChip(
-                                                  side: const BorderSide(
-                                                      color: Colors.transparent),
-                                                  backgroundColor:
-                                                      voSeleList[vnIndeSele]
-                                                          ? Colors.lightGreen
-                                                          : Colors.grey,
-                                                  labelPadding:
-                                                      const EdgeInsets.symmetric(
-                                                          horizontal: 16),
-                                                  label: Text(
-                                                    voLoteria.vcNombre,
-                                                    style: GoogleFonts.openSans(
-                                                        fontSize: 10,
-                                                        color: Colors.white),
-                                                  ),
-                                                  onPressed: () {
-                                                    if (voLoteSele
-                                                        .contains(voLoteria)) {
-                                                      voLoteSele.remove(voLoteria);
-                                                    } else {
-                                                      voLoteSele.add(voLoteria);
-                                                    }
-                                                    setState(() {
-                                                      voSeleList[vnIndeSele] =
-                                                          !voSeleList[vnIndeSele];
-                                                    });
-                                                  },
-                                                ),
-                                              ),
-                                            );
-                                          },
                                         ),
-                                      ),
-                                    ),
-                                    FadeIn(
-                                      child: Padding(
-                                        padding: EdgeInsets.symmetric(
-                                            vertical: size.height < 800? 8 : 48),
-                                        child: ElevatedButton(
-                                            style: ElevatedButton.styleFrom(
-                                                backgroundColor: Colors.lightGreen,
-                                                minimumSize: const Size(150, 55),
-                                                shape: RoundedRectangleBorder(
-                                                    borderRadius:
-                                                        BorderRadius.circular(10))),
-                                            onPressed: () {
-                                              if (voLoteSele.isNotEmpty) {
-                                                _ventaBloc.add(AgregarLoteria(
-                                                    voLoterias: voLoteSele));
-                                              } else {
-                                                showCoolAlert(
-                                                    context,
-                                                    CoolAlertType.warning,
-                                                    'Nada Seleccionado',
-                                                    'Por favor selecione una o más loterias');
-                                              }
-                                            },
-                                            child: Text('Continuar',
-                                                style: GoogleFonts.openSans(
-                                                    fontSize: 20,
-                                                    color: Colors.white))),
-                                      ),
-                                    ),
-                                  ],
-                                ));
-                          }
-                          return const Center();
-                        }),
+
+                                      ],
+                                    ));
+                              }
+                              return const Center();
+                            }),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical:  30, horizontal: 100),
+                          child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                  backgroundColor: Colors.lightGreen,
+                                  maximumSize: const Size(85, 85),
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius:
+                                      BorderRadius.circular(10))),
+                              onPressed: () {
+                                if (voLoteSele.isNotEmpty) {
+                                  _ventaBloc.add(AgregarLoteria(
+                                      voLoterias: voLoteSele));
+                                } else {
+                                  showCoolAlert(
+                                      context,
+                                      CoolAlertType.warning,
+                                      'Nada Seleccionado',
+                                      'Por favor selecione una o más loterias');
+                                }
+                              },
+                              child: Text('Continuar',
+                                  style: GoogleFonts.openSans(
+                                      fontSize: 20,
+                                      color: Colors.white))),
+                        ),
                       ],
                     ),
                   );
+
                 },
               ),
             ),

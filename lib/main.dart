@@ -5,7 +5,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:vende_bet/presentation/bloc/blocs.dart';
 import '/config/router/app_router.dart';
 
-/*void main() async {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(DevicePreview(
   enabled: true,
@@ -20,8 +20,8 @@ import '/config/router/app_router.dart';
       ],
         child: const MyApp()),
   ));
-}*/
-
+}
+/*
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(MultiBlocProvider(
@@ -35,7 +35,7 @@ void main() async {
       ],
       child: const MyApp()));
 }
-
+*/
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

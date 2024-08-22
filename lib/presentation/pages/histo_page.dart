@@ -81,7 +81,7 @@ class _HistoPageState extends State<HistoPage> {
                     },
                     child:
                     Text(_vdFechSele == null ? 'Seleccione una fecha' : _vcFecha,
-                      style: GoogleFonts.openSans(fontSize: 20),
+                      style: GoogleFonts.openSans(fontSize: 18),
                       textAlign: TextAlign.center,
                     ),
                   ),
@@ -101,13 +101,13 @@ class _HistoPageState extends State<HistoPage> {
                             const Gap(8),
                             Center(child: Text(
                               'Total Ventas: ${state.voPago.vnVentTota}',
-                              style: GoogleFonts.openSans(fontSize: 20),
+                              style: GoogleFonts.openSans(fontSize: 18),
                               textAlign: TextAlign.center,
                             )),
                             const Gap(8),
                             Center(child: Text(
                               'Mi porcentaje: ${state.voPago.vnMiPorc}',
-                              style: GoogleFonts.openSans(fontSize: 20),
+                              style: GoogleFonts.openSans(fontSize: 18),
                               textAlign: TextAlign.center,
                             )),
                             const Padding(
@@ -117,17 +117,18 @@ class _HistoPageState extends State<HistoPage> {
                             const Gap(4),
                             Center(child: Text(
                               'Historial de Ventas',
-                              style: GoogleFonts.openSans(fontSize: 20, fontWeight: FontWeight.bold),
+                              style: GoogleFonts.openSans(fontSize: 18, fontWeight: FontWeight.bold),
                               textAlign: TextAlign.center,
                             )),
                             const Gap(16),
                             state.voVentas.isEmpty ? Center(
                                 child: Text('No tiene ventas para el día seleccionado',
-                                    style: GoogleFonts.openSans(fontSize: 20),
+                                    style: GoogleFonts.openSans(fontSize: 18),
                                     textAlign: TextAlign.center)) :
                             SizedBox(
                               height: size.height < 670? size.height * 0.37 :
                               size.height >= 670 && size.height < 740? size.height * 0.43 :
+                              size.height == 825? size.height * 0.55 :
                               size.height >= 740 && size.height < 850? size.height * 0.42 : size.height * 0.5,
                               child: SingleChildScrollView(
                                 child: ListView.builder(
@@ -150,8 +151,8 @@ class _HistoPageState extends State<HistoPage> {
                                           ],
                                         ),
                                         subtitle: Text('Precio: ${voVenta.vnPrecio}'),
-                                        subtitleTextStyle: GoogleFonts.openSans(fontSize: 16, color: Colors.black, fontWeight: FontWeight.w100),
-                                        titleTextStyle: GoogleFonts.openSans(fontSize: 16, color: Colors.black, fontWeight: FontWeight.w700),
+                                        subtitleTextStyle: GoogleFonts.openSans(fontSize: 14, color: Colors.black, fontWeight: FontWeight.w100),
+                                        titleTextStyle: GoogleFonts.openSans(fontSize: 14, color: Colors.black, fontWeight: FontWeight.w700),
                                         leading: const Padding(
                                           padding: EdgeInsets.symmetric(horizontal: 24.0),
                                           child: Icon(Icons.sell, color: Colors.lightGreen, size: 40,),
@@ -186,7 +187,7 @@ class _HistoPageState extends State<HistoPage> {
                         padding: const EdgeInsets.symmetric(vertical: 56.0, horizontal: 16),
                         child: Center(
                             child: Text('Seleccione una fecha para ver Ventas y Pagos',
-                              style: GoogleFonts.openSans(fontSize: 22),
+                              style: GoogleFonts.openSans(fontSize: 20),
                               textAlign: TextAlign.center,
                             )
                         ),

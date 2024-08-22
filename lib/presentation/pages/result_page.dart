@@ -71,7 +71,7 @@ class _ResultPageState extends State<ResultPage> {
                 },
                 child:
                     Text(_vdFechSele == null ? 'Seleccione una fecha' : _vcFecha,
-                      style: GoogleFonts.openSans(fontSize: 20),
+                      style: GoogleFonts.openSans(fontSize: 18),
                       textAlign: TextAlign.center,
                     ),
               ),
@@ -115,9 +115,9 @@ class _ResultPageState extends State<ResultPage> {
                           child: ListTile(
                             contentPadding: const EdgeInsets.symmetric(horizontal: 54),
                             title: Text('Lotería: ${voResultado.vcLoteria}', textAlign: TextAlign.left,),
-                            titleTextStyle: GoogleFonts.openSans(fontSize: 14, color: Colors.black),
+                            titleTextStyle: GoogleFonts.openSans(fontSize: 12, color: Colors.black),
                             subtitle: Text('Número: ${voResultado.vnNumero}'),
-                            subtitleTextStyle: GoogleFonts.openSans(fontSize: 14, color: Colors.black, fontWeight: FontWeight.w300),
+                            subtitleTextStyle: GoogleFonts.openSans(fontSize: 12, color: Colors.black, fontWeight: FontWeight.w300),
                             leading: const Icon(Icons.fact_check, color: Colors.lightGreen,size: 55),
                           ),
                         );
@@ -141,7 +141,7 @@ class _ResultPageState extends State<ResultPage> {
                 padding: const EdgeInsets.symmetric(vertical: 80.0, horizontal: 16),
                 child: Center(
                     child: Text('Seleccione una fecha para ver resultados',
-                        style: GoogleFonts.openSans(fontSize: 22),
+                        style: GoogleFonts.openSans(fontSize: 20),
                       textAlign: TextAlign.center,
                     )
                 ),
