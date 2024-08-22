@@ -29,7 +29,7 @@ class BloqueoDataSource extends BloqueoDatasource{
       ));
 
       voSalida = Salida(vnCodigo: response.data['codigo'], vcMensaje: response.data['mensaje'],
-          voData: List<Bloqueo>.from(response.data["data"].map((voBloqueo) => Bloqueo.fromJson(voBloqueo))),
+          voData: List<Bloqueo>.from(response.data['data'].map((voBloqueo) => Bloqueo.fromJson(voBloqueo))),
       );
 
     }

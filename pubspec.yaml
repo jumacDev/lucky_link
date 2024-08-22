@@ -3,7 +3,7 @@ description: "Lucky Link"
 
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
-version: 1.0.0+12
+version: 1.0.2
 
 environment:
   sdk: '>=3.4.1 <4.0.0'
@@ -17,6 +17,7 @@ dependencies:
   cool_alert: ^2.0.1
   cupertino_icons: ^1.0.6
   custom_line_indicator_bottom_navbar: ^0.0.8
+  device_preview: ^1.2.0
   dio: ^5.4.3
   flutter_bloc: ^8.1.5
   flutter_dotenv: ^5.1.0
@@ -39,6 +40,10 @@ flutter:
 
   uses-material-design: true
 
+<<<<<<< HEAD
  # assets:
+=======
+  #assets:
+>>>>>>> 40eff1204ed0499f9412cc5db04d814fcd16946f
 
 

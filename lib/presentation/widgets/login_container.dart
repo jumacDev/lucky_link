@@ -5,7 +5,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import '/presentation/widgets/shared/cool_alert.dart';
 import '../bloc/blocs.dart';
 
@@ -66,8 +65,11 @@ class _LoginContainerState extends State<LoginContainer> {
                 Text(
                   'Lucky Link',
                   style: GoogleFonts.openSans(
-                      fontSize: 25, color: Colors.white),
+                      fontSize: 23, color: Colors.white),
                 ),
+                const Gap(8),
+                Text('1.0.2',style: GoogleFonts.openSans(
+                    fontSize: 14, color: Colors.white),),
                 const Gap(16),
                 TextFormField(
                   controller: _userController,
