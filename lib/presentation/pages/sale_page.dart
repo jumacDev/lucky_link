@@ -103,8 +103,6 @@ class _SalePageState extends State<SalePage> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
 
-    debugPrint('width: ${size.width}');
-    debugPrint('height: ${size.height}');
 
     return BlocBuilder<LoginBloc, LoginState>(
       builder: (context, state) {
@@ -138,6 +136,17 @@ class _SalePageState extends State<SalePage> {
               },
               child: BlocBuilder<VentaBloc, VentaState>(
                 builder: (context, state) {
+                  if(state is VentaLoading){
+                    return const Padding(
+                      padding: EdgeInsets.symmetric(vertical: 56.0),
+                      child: Center(
+                        child: CircularProgressIndicator(
+                          strokeWidth: 2,
+                          color: Colors.lightGreen,
+                        ),
+                      ),
+                    );
+                  }
                   if (state is LoteriaSeleccionada) {
                     voVentList.clear();
                     return FadeIn(
@@ -684,8 +693,7 @@ class _SalePageState extends State<SalePage> {
                                                       BorderRadius.circular(10))),
                                           onPressed: () {
                                             for (var item in voLoteSele) {
-                                              if (_numberText.text.isNotEmpty &&
-                                                  _priceText.text.isNotEmpty) {
+                                              if (_numberText.text.isNotEmpty && _priceText.text.isNotEmpty) {
                                                 Venta voVenta = Venta(
                                                     vnNumero: int.parse(
                                                         _numberText.text),
@@ -695,66 +703,56 @@ class _SalePageState extends State<SalePage> {
                                                     vcLoteria: item.vcNombre);
                                                 voVentList.add(voVenta);
                                               }
-                                              if (_numberText2.text.isNotEmpty &&
-                                                  _priceText2.text.isNotEmpty) {
+                                              if (_numberText2.text.isNotEmpty && _priceText2.text.isNotEmpty) {
                                                 Venta voVenta = Venta(
-                                                    vnNumero: int.parse(
-                                                        _numberText2.text),
-                                                    vnPrecio: int.parse(
-                                                        _priceText2.text),
+                                                    vnNumero: int.parse(_numberText2.text),
+                                                    vnPrecio: int.parse(_priceText2.text),
                                                     vnLoteId: item.vnId,
                                                     vcLoteria: item.vcNombre);
                                                 voVentList.add(voVenta);
                                               }
-                                              if (_numberText3.text.isNotEmpty &&
-                                                  _priceText3.text.isNotEmpty) {
+                                              if (_numberText3.text.isNotEmpty && _priceText3.text.isNotEmpty) {
                                                 Venta voVenta = Venta(
-                                                    vnNumero: int.parse(
-                                                        _numberText3.text),
+                                                    vnNumero: int.parse(_numberText3.text),
                                                     vnPrecio: int.parse(
                                                         _priceText3.text),
                                                     vnLoteId: item.vnId,
                                                     vcLoteria: item.vcNombre);
                                                 voVentList.add(voVenta);
                                               }
-                                              if (_numberText4.text.isNotEmpty &&
-                                                  _priceText4.text.isNotEmpty) {
+                                              if (_numberText4.text.isNotEmpty && _priceText4.text.isNotEmpty) {
                                                 Venta voVenta = Venta(
-                                                    vnNumero: int.parse(
-                                                        _numberText4.text),
-                                                    vnPrecio: int.parse(
-                                                        _priceText4.text),
+                                                    vnNumero: int.parse(_numberText4.text),
+                                                    vnPrecio: int.parse(_priceText4.text),
                                                     vnLoteId: item.vnId,
                                                     vcLoteria: item.vcNombre);
                                                 voVentList.add(voVenta);
                                               }
-                                              if (_numberText5.text.isNotEmpty &&
-                                                  _priceText5.text.isNotEmpty) {
+                                              if (_numberText5.text.isNotEmpty && _priceText5.text.isNotEmpty) {
                                                 Venta voVenta = Venta(
-                                                    vnNumero: int.parse(
-                                                        _numberText5.text),
-                                                    vnPrecio: int.parse(
-                                                        _priceText5.text),
+                                                    vnNumero: int.parse(_numberText5.text),
+                                                    vnPrecio: int.parse(_priceText5.text),
                                                     vnLoteId: item.vnId,
                                                     vcLoteria: item.vcNombre);
                                                 voVentList.add(voVenta);
                                               }
-                                              if (_numberText6.text.isNotEmpty &&
-                                                  _priceText6.text.isNotEmpty) {
+                                              if (_numberText6.text.isNotEmpty && _priceText6.text.isNotEmpty) {
                                                 Venta voVenta = Venta(
-                                                    vnNumero: int.parse(
-                                                        _numberText6.text),
-                                                    vnPrecio: int.parse(
-                                                        _priceText6.text),
+                                                    vnNumero: int.parse(_numberText6.text),
+                                                    vnPrecio: int.parse(_priceText6.text),
                                                     vnLoteId: item.vnId,
                                                     vcLoteria: item.vcNombre);
                                                 voVentList.add(voVenta);
                                               }
                                             }
-                                            _ventaBloc.add(AgregarNumero(
-                                                voVentList: voVentList,
-                                                voLoteList: voLoteSele,
-                                                vnPagoTota: vnTotalPrice));
+                                            if(voVentList.isNotEmpty){
+                                              _ventaBloc.add(AgregarNumero(
+                                                  voVentList: voVentList,
+                                                  voLoteList: voLoteSele,
+                                                  vnPagoTota: vnTotalPrice));
+                                            }else{
+                                              _showAlert(CoolAlertType.warning, 'Lista Vacía', 'Agregue al menos un número con su valor para continuar');
+                                            }
                                           },
                                           child: Text(
                                             'Registrar',

@@ -44,7 +44,6 @@ class _LoginContainerState extends State<LoginContainer> {
     return BlocListener<LoginBloc, LoginState>(
       listener: (context, state) {
         if(state is LoginError) {
-          debugPrint(state.vcMensaje);
           showCoolAlert(context, CoolAlertType.error, 'Error de Login', state.vcMensaje);
         } else if(state is LoginOk){
           context.pushReplacement('/');

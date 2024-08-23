@@ -53,9 +53,6 @@ class _HistoPageState extends State<HistoPage> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
 
-    debugPrint('width: ${size.width}');
-    debugPrint('height: ${size.height}');
-
     return BlocBuilder<LoginBloc, LoginState>(
       builder: (context, state) {
         if(state is LoginOk){

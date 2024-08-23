@@ -49,8 +49,6 @@ class _ResultPageState extends State<ResultPage> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
 
-    debugPrint('width: ${size.width}');
-    debugPrint('height: ${size.height}');
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
