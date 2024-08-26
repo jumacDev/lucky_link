@@ -2,7 +2,7 @@
 class Resultado {
   final int vnIdLote;
   final String vcLoteria;
-  final int vnNumero;
+  final String vnNumero;
 
   Resultado({required this.vnIdLote, required this.vcLoteria, required this.vnNumero});
 
