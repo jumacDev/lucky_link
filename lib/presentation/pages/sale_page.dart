@@ -155,7 +155,7 @@ class _SalePageState extends State<SalePage> {
                           ListView(
                             shrinkWrap: true,
                             children: [
-                              const Gap(20),
+                              const Gap(16),
                               //inputs
                               Row(
                                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -165,7 +165,7 @@ class _SalePageState extends State<SalePage> {
                                   FadeIn(
                                     child: Column(
                                       children: [
-                                        const Gap(8),
+                                        const Gap(4),
                                         Center(
                                           child: Text(
                                             "Número",
@@ -174,7 +174,7 @@ class _SalePageState extends State<SalePage> {
                                                 fontSize: 22),
                                           ),
                                         ),
-                                        const Gap(8),
+                                        const Gap(4),
                                         SizedBox(
                                           width: 170,
                                           height: 80,
@@ -400,14 +400,14 @@ class _SalePageState extends State<SalePage> {
                                   FadeIn(
                                     child: Column(
                                       children: [
-                                        const Gap(8),
+                                        const Gap(4),
                                         Center(
                                           child: Text("Valor",
                                               style: GoogleFonts.openSans(
                                                   color: Colors.black,
                                                   fontSize: 22)),
                                         ),
-                                        const Gap(8),
+                                        const Gap(4),
                                         SizedBox(
                                           width: 190,
                                           height: 80,
@@ -653,14 +653,14 @@ class _SalePageState extends State<SalePage> {
                                         style: GoogleFonts.openSans(
                                             color: Colors.black))),
                               ),
-                              const Gap(24),
+                              const Gap(16),
                               //botones
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   FadeIn(
                                     child: Container(
-                                        padding: const EdgeInsets.all(10),
+                                        padding: const EdgeInsets.all(8),
                                         alignment: Alignment.center,
                                         child: ElevatedButton(
                                           style: ElevatedButton.styleFrom(
@@ -681,7 +681,7 @@ class _SalePageState extends State<SalePage> {
                                         )),
                                   ),
                                   Container(
-                                      padding: const EdgeInsets.all(10),
+                                      padding: const EdgeInsets.all(8),
                                       alignment: Alignment.center,
                                       child: FadeIn(
                                         child: ElevatedButton(
