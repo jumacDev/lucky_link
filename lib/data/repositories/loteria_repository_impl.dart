@@ -1,8 +1,8 @@
 
-import 'package:vende_bet/domain/datasource/loteria_datasource.dart';
-import 'package:vende_bet/domain/entities/loteria.dart';
-import 'package:vende_bet/domain/entities/salida.dart';
-import 'package:vende_bet/domain/repositories/loteria_repository.dart';
+import '/domain/datasource/loteria_datasource.dart';
+import '/domain/entities/loteria.dart';
+import '/domain/entities/salida.dart';
+import '/domain/repositories/loteria_repository.dart';
 
 class LoteriaRepositoryImpl extends LoteriaRepository{
 

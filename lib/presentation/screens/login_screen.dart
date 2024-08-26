@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:vende_bet/presentation/widgets/widgets.dart';
+import '/presentation/widgets/widgets.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});

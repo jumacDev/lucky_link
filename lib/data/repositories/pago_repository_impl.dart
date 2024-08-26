@@ -1,5 +1,5 @@
 
-import 'package:vende_bet/domain/datasource/pago_datasource.dart';
+import '/domain/datasource/pago_datasource.dart';
 
 import '../../domain/entities/salida.dart';
 import '/domain/entities/pago.dart';

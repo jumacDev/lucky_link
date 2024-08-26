@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
-import 'package:vende_bet/data/models/environment.dart';
-import 'package:vende_bet/domain/datasource/loteria_datasource.dart';
-import 'package:vende_bet/domain/entities/loteria.dart';
-import 'package:vende_bet/domain/entities/salida.dart';
+import '/data/models/environment.dart';
+import '/domain/datasource/loteria_datasource.dart';
+import '/domain/entities/loteria.dart';
+import '/domain/entities/salida.dart';
 
 class LoteriaDataSource extends LoteriaDatasource{
 

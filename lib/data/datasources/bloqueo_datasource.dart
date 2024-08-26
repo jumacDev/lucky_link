@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:vende_bet/data/models/environment.dart';
+import '/data/models/environment.dart';
 
 import '/domain/entities/salida.dart';
 import '/domain/datasource/bloqueo_datasource.dart';

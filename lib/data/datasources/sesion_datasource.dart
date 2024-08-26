@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:vende_bet/data/models/environment.dart';
+import '/data/models/environment.dart';
 
 import '../../domain/datasource/sesion_datasource.dart';
 import '../../domain/entities/salida.dart';

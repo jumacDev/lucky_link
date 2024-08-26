@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:vende_bet/data/datasources/resultado_datasource.dart';
-import 'package:vende_bet/data/repositories/resultado_repository_impl.dart';
+import '/data/datasources/resultado_datasource.dart';
+import '/data/repositories/resultado_repository_impl.dart';
 
 import '../../../domain/entities/resultado.dart';
 import '../../../domain/entities/salida.dart';

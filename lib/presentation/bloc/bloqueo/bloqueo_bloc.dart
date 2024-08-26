@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:vende_bet/data/datasources/bloqueo_datasource.dart';
-import 'package:vende_bet/data/repositories/bloqueo_repository_impl.dart';
+import '/data/datasources/bloqueo_datasource.dart';
+import '/data/repositories/bloqueo_repository_impl.dart';
 
 import '../../../domain/entities/bloqueo.dart';
 part 'bloqueo_event.dart';

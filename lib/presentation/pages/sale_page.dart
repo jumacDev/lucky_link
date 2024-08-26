@@ -695,8 +695,7 @@ class _SalePageState extends State<SalePage> {
                                             for (var item in voLoteSele) {
                                               if (_numberText.text.isNotEmpty && _priceText.text.isNotEmpty) {
                                                 Venta voVenta = Venta(
-                                                    vnNumero: int.parse(
-                                                        _numberText.text),
+                                                    vnNumero: _numberText.text,
                                                     vnPrecio: int.parse(
                                                         _priceText.text),
                                                     vnLoteId: item.vnId,
@@ -705,7 +704,7 @@ class _SalePageState extends State<SalePage> {
                                               }
                                               if (_numberText2.text.isNotEmpty && _priceText2.text.isNotEmpty) {
                                                 Venta voVenta = Venta(
-                                                    vnNumero: int.parse(_numberText2.text),
+                                                    vnNumero: _numberText2.text,
                                                     vnPrecio: int.parse(_priceText2.text),
                                                     vnLoteId: item.vnId,
                                                     vcLoteria: item.vcNombre);
@@ -713,7 +712,7 @@ class _SalePageState extends State<SalePage> {
                                               }
                                               if (_numberText3.text.isNotEmpty && _priceText3.text.isNotEmpty) {
                                                 Venta voVenta = Venta(
-                                                    vnNumero: int.parse(_numberText3.text),
+                                                    vnNumero: _numberText3.text,
                                                     vnPrecio: int.parse(
                                                         _priceText3.text),
                                                     vnLoteId: item.vnId,
@@ -722,7 +721,7 @@ class _SalePageState extends State<SalePage> {
                                               }
                                               if (_numberText4.text.isNotEmpty && _priceText4.text.isNotEmpty) {
                                                 Venta voVenta = Venta(
-                                                    vnNumero: int.parse(_numberText4.text),
+                                                    vnNumero: _numberText4.text,
                                                     vnPrecio: int.parse(_priceText4.text),
                                                     vnLoteId: item.vnId,
                                                     vcLoteria: item.vcNombre);
@@ -730,7 +729,7 @@ class _SalePageState extends State<SalePage> {
                                               }
                                               if (_numberText5.text.isNotEmpty && _priceText5.text.isNotEmpty) {
                                                 Venta voVenta = Venta(
-                                                    vnNumero: int.parse(_numberText5.text),
+                                                    vnNumero: _numberText5.text,
                                                     vnPrecio: int.parse(_priceText5.text),
                                                     vnLoteId: item.vnId,
                                                     vcLoteria: item.vcNombre);
@@ -738,7 +737,7 @@ class _SalePageState extends State<SalePage> {
                                               }
                                               if (_numberText6.text.isNotEmpty && _priceText6.text.isNotEmpty) {
                                                 Venta voVenta = Venta(
-                                                    vnNumero: int.parse(_numberText6.text),
+                                                    vnNumero: _numberText6.text,
                                                     vnPrecio: int.parse(_priceText6.text),
                                                     vnLoteId: item.vnId,
                                                     vcLoteria: item.vcNombre);
@@ -1024,7 +1023,7 @@ class _SalePageState extends State<SalePage> {
                                                         style: GoogleFonts.openSans(fontSize: 12, color: Colors.white),
                                                       ),
                                                     ),
-                                              
+
                                                   ],
                                                 ),
                                                 onPressed: () {

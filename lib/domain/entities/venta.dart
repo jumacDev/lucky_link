@@ -1,6 +1,6 @@
 
 class Venta{
-  final int vnNumero;
+  final String vnNumero;
   final int vnPrecio;
   final int vnLoteId;
   final String vcLoteria;

@@ -1,6 +1,6 @@
 
-import 'package:vende_bet/domain/datasource/sesion_datasource.dart';
-import 'package:vende_bet/domain/repositories/sesion_repository.dart';
+import '/domain/datasource/sesion_datasource.dart';
+import '/domain/repositories/sesion_repository.dart';
 
 import '../../domain/entities/salida.dart';
 import '../../domain/entities/sesion.dart';

@@ -1,4 +1,4 @@
-import 'package:vende_bet/domain/datasource/resultado_datasource.dart';
+import '/domain/datasource/resultado_datasource.dart';
 
 import '../../domain/entities/resultado.dart';
 import '../../domain/entities/salida.dart';
