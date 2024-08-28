@@ -17,8 +17,6 @@ class BloqueoBloc extends Bloc<BloqueoEvent, BloqueoState> {
 
     final voSalida = await _repositoryImpl.obtenerBloqueos(event.vcFecha);
 
-    print(voSalida.vnCodigo);
-
     if(voSalida.vnCodigo == 1){
       emit(BloqueoOk(voListBloq: voSalida.voData!));
     }else{

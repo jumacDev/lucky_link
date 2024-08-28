@@ -67,7 +67,7 @@ class _LoginContainerState extends State<LoginContainer> {
                       fontSize: 23, color: Colors.white),
                 ),
                 const Gap(8),
-                Text('1.0.2',style: GoogleFonts.openSans(
+                Text('1.0.3',style: GoogleFonts.openSans(
                     fontSize: 14, color: Colors.white),),
                 const Gap(16),
                 TextFormField(

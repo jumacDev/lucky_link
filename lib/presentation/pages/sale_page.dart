@@ -1005,7 +1005,7 @@ class _SalePageState extends State<SalePage> {
                                                   mainAxisAlignment: MainAxisAlignment.center,
                                                   children: [
                                                     Padding(padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
-                                                        child: FadeIn(child: Image(image: AssetImage('assets/img/${voLoteria.vnId}.jpg'), width: 80,))
+                                                        child: FadeIn(child: Image(image: AssetImage('assets/img/${voLoteria.vnLogo}.jpg'), width: 80,))
                                                     ),
                                                     const Gap(8),
                                                     FadeIn(
