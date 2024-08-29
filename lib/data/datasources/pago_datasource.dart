@@ -20,10 +20,15 @@ class PagoDataSource extends PagoDatasource{
     );
 
     try{
-      final vcUrl = '${_environment.base}${_environment.pagos}?pn_usua_id=$pnUsuaId&pf_fecha=$pcFecha';
+      final vcUrl = '${_environment.base}${_environment.pagos}';
 
 
-      final response = await _dio.get(vcUrl);
+      final response = await _dio.get(vcUrl, options: Options(
+        headers: {
+          'pn_usua_id': pnUsuaId,
+          'pf_fecha': pcFecha
+        }
+      ));
 
       voSalida = Salida(vnCodigo: response.data['codigo'], vcMensaje: response.data['mensaje'],
           voData: Pago.fromJson(response.data['data'])
