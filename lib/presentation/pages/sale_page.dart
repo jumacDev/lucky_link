@@ -32,6 +32,14 @@ class _SalePageState extends State<SalePage> {
   final TextEditingController _priceText5 = TextEditingController();
   final TextEditingController _numberText6 = TextEditingController();
   final TextEditingController _priceText6 = TextEditingController();
+  final TextEditingController _numberText7 = TextEditingController();
+  final TextEditingController _priceText7 = TextEditingController();
+  final TextEditingController _numberText8 = TextEditingController();
+  final TextEditingController _priceText8 = TextEditingController();
+  final TextEditingController _numberText9 = TextEditingController();
+  final TextEditingController _priceText9 = TextEditingController();
+  final TextEditingController _numberText10 = TextEditingController();
+  final TextEditingController _priceText10 = TextEditingController();
   int vnTotalPrice = 0;
   int _vnUsuaId = 0;
   List<bool> voSeleList = [];
@@ -49,6 +57,10 @@ class _SalePageState extends State<SalePage> {
   int tempValue4 = 0;
   int tempValue5 = 0;
   int tempValue6 = 0;
+  int tempValue7 = 0;
+  int tempValue8 = 0;
+  int tempValue9 = 0;
+  int tempValue10 = 0;
 
   @override
   void initState() {
@@ -69,7 +81,9 @@ class _SalePageState extends State<SalePage> {
 
   void _updateTotalPrice() {
     setState(() {
-      vnTotalPrice = (tempValue1 + tempValue2 + tempValue3 + tempValue4 + tempValue5 + tempValue6) * voLoteSele.length;
+      vnTotalPrice = (tempValue1 + tempValue2 + tempValue3 + tempValue4 + tempValue5 +
+          tempValue6 + tempValue7 + tempValue8 + tempValue9 + tempValue10)
+          * voLoteSele.length;
     });
   }
 
@@ -80,12 +94,20 @@ class _SalePageState extends State<SalePage> {
     _priceText4.clear();
     _priceText5.clear();
     _priceText6.clear();
+    _priceText7.clear();
+    _priceText8.clear();
+    _priceText9.clear();
+    _priceText10.clear();
     _numberText.clear();
     _numberText2.clear();
     _numberText3.clear();
     _numberText4.clear();
     _numberText5.clear();
     _numberText6.clear();
+    _numberText7.clear();
+    _numberText8.clear();
+    _numberText9.clear();
+    _numberText10.clear();
     vnTotalPrice = 0;
   }
 
@@ -97,6 +119,10 @@ class _SalePageState extends State<SalePage> {
     tempValue4 = 0;
     tempValue5 = 0;
     tempValue6 = 0;
+    tempValue7 = 0;
+    tempValue8 = 0;
+    tempValue9 = 0;
+    tempValue10 = 0;
   }
 
   @override
@@ -393,6 +419,142 @@ class _SalePageState extends State<SalePage> {
                                                 }),
                                           ),
                                         ),
+                                        SizedBox(
+                                          width: 170,
+                                          height: 80,
+                                          child: Container(
+                                            padding: const EdgeInsets.symmetric(
+                                                vertical: 10, horizontal: 50),
+                                            child: TextFormField(
+                                                buildCounter: (BuildContext context, {int? currentLength, bool? isFocused, int? maxLength}) {
+                                                  return null;
+                                                },
+                                                autovalidateMode: AutovalidateMode.onUserInteraction,
+                                                maxLength: 4,
+                                                keyboardType: TextInputType.number,
+                                                onTapOutside: _onTapOutside,
+                                                controller: _numberText7,
+                                                decoration: InputDecoration(
+                                                  labelText: 'Número',
+                                                  labelStyle: GoogleFonts.openSans(
+                                                      color: Colors.black),
+                                                  isDense: true,
+                                                  border: const OutlineInputBorder(),
+                                                  focusedBorder: const OutlineInputBorder(
+                                                    borderSide: BorderSide(
+                                                        color: Colors.black),
+                                                  ),
+                                                ),
+                                                validator: (value) {
+                                                  if (value!.toString().length < 3 || value.isEmpty) {
+                                                    return 'Inválido';
+                                                  }
+                                                  return null;
+                                                }),
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          width: 170,
+                                          height: 80,
+                                          child: Container(
+                                            padding: const EdgeInsets.symmetric(
+                                                vertical: 10, horizontal: 50),
+                                            child: TextFormField(
+                                                buildCounter: (BuildContext context, {int? currentLength, bool? isFocused, int? maxLength}) {
+                                                  return null;
+                                                },
+                                                autovalidateMode: AutovalidateMode.onUserInteraction,
+                                                maxLength: 4,
+                                                keyboardType: TextInputType.number,
+                                                onTapOutside: _onTapOutside,
+                                                controller: _numberText8,
+                                                decoration: InputDecoration(
+                                                  labelText: 'Número',
+                                                  labelStyle: GoogleFonts.openSans(
+                                                      color: Colors.black),
+                                                  isDense: true,
+                                                  border: const OutlineInputBorder(),
+                                                  focusedBorder: const OutlineInputBorder(
+                                                    borderSide: BorderSide(
+                                                        color: Colors.black),
+                                                  ),
+                                                ),
+                                                validator: (value) {
+                                                  if (value!.toString().length < 3 || value.isEmpty) {
+                                                    return 'Inválido';
+                                                  }
+                                                  return null;
+                                                }),
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          width: 170,
+                                          height: 80,
+                                          child: Container(
+                                            padding: const EdgeInsets.symmetric(
+                                                vertical: 10, horizontal: 50),
+                                            child: TextFormField(
+                                                buildCounter: (BuildContext context, {int? currentLength, bool? isFocused, int? maxLength}) {
+                                                  return null;
+                                                },
+                                                autovalidateMode: AutovalidateMode.onUserInteraction,
+                                                maxLength: 4,
+                                                keyboardType: TextInputType.number,
+                                                onTapOutside: _onTapOutside,
+                                                controller: _numberText9,
+                                                decoration: InputDecoration(
+                                                  labelText: 'Número',
+                                                  labelStyle: GoogleFonts.openSans(
+                                                      color: Colors.black),
+                                                  isDense: true,
+                                                  border: const OutlineInputBorder(),
+                                                  focusedBorder: const OutlineInputBorder(
+                                                    borderSide: BorderSide(
+                                                        color: Colors.black),
+                                                  ),
+                                                ),
+                                                validator: (value) {
+                                                  if (value!.toString().length < 3 || value.isEmpty) {
+                                                    return 'Inválido';
+                                                  }
+                                                  return null;
+                                                }),
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          width: 170,
+                                          height: 80,
+                                          child: Container(
+                                            padding: const EdgeInsets.symmetric(
+                                                vertical: 10, horizontal: 50),
+                                            child: TextFormField(
+                                                buildCounter: (BuildContext context, {int? currentLength, bool? isFocused, int? maxLength}) {
+                                                  return null;
+                                                },
+                                                autovalidateMode: AutovalidateMode.onUserInteraction,
+                                                maxLength: 4,
+                                                keyboardType: TextInputType.number,
+                                                onTapOutside: _onTapOutside,
+                                                controller: _numberText10,
+                                                decoration: InputDecoration(
+                                                  labelText: 'Número',
+                                                  labelStyle: GoogleFonts.openSans(
+                                                      color: Colors.black),
+                                                  isDense: true,
+                                                  border: const OutlineInputBorder(),
+                                                  focusedBorder: const OutlineInputBorder(
+                                                    borderSide: BorderSide(
+                                                        color: Colors.black),
+                                                  ),
+                                                ),
+                                                validator: (value) {
+                                                  if (value!.toString().length < 3 || value.isEmpty) {
+                                                    return 'Inválido';
+                                                  }
+                                                  return null;
+                                                }),
+                                          ),
+                                        ),
                                       ],
                                     ),
                                   ),
@@ -638,7 +800,154 @@ class _SalePageState extends State<SalePage> {
                                                 }),
                                           ),
                                         ),
-
+                                        SizedBox(
+                                          width: 190,
+                                          height: 80,
+                                          child: Container(
+                                            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 60),
+                                            child: TextFormField(
+                                                onChanged: (value) {
+                                                  if (value.length >= 3 && value.length <= 4) {
+                                                    tempValue7 = int.parse(value);
+                                                  } else {
+                                                    tempValue7 = 0;
+                                                  }
+                                                  _updateTotalPrice();
+                                                },
+                                                autovalidateMode: AutovalidateMode.onUserInteraction,
+                                                onTapOutside: _onTapOutside,
+                                                keyboardType: TextInputType.number,
+                                                controller: _priceText7,
+                                                decoration: InputDecoration(
+                                                  labelText: 'Valor',
+                                                  labelStyle: GoogleFonts.openSans(
+                                                      color: Colors.black),
+                                                  isDense: true,
+                                                  border: const OutlineInputBorder(),
+                                                  focusedBorder: const OutlineInputBorder(
+                                                    borderSide: BorderSide(
+                                                        color: Colors.black),
+                                                  ),
+                                                ),
+                                                validator: (value) {
+                                                  if (value!.toString().length < 3 || value.isEmpty) {
+                                                    return 'Inválido';
+                                                  }
+                                                  return null;
+                                                }),
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          width: 190,
+                                          height: 80,
+                                          child: Container(
+                                            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 60),
+                                            child: TextFormField(
+                                                onChanged: (value) {
+                                                  if (value.length >= 3 && value.length <= 4) {
+                                                    tempValue8 = int.parse(value);
+                                                  } else {
+                                                    tempValue8 = 0;
+                                                  }
+                                                  _updateTotalPrice();
+                                                },
+                                                autovalidateMode: AutovalidateMode.onUserInteraction,
+                                                onTapOutside: _onTapOutside,
+                                                keyboardType: TextInputType.number,
+                                                controller: _priceText8,
+                                                decoration: InputDecoration(
+                                                  labelText: 'Valor',
+                                                  labelStyle: GoogleFonts.openSans(
+                                                      color: Colors.black),
+                                                  isDense: true,
+                                                  border: const OutlineInputBorder(),
+                                                  focusedBorder: const OutlineInputBorder(
+                                                    borderSide: BorderSide(
+                                                        color: Colors.black),
+                                                  ),
+                                                ),
+                                                validator: (value) {
+                                                  if (value!.toString().length < 3 || value.isEmpty) {
+                                                    return 'Inválido';
+                                                  }
+                                                  return null;
+                                                }),
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          width: 190,
+                                          height: 80,
+                                          child: Container(
+                                            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 60),
+                                            child: TextFormField(
+                                                onChanged: (value) {
+                                                  if (value.length >= 3 && value.length <= 4) {
+                                                    tempValue9 = int.parse(value);
+                                                  } else {
+                                                    tempValue9 = 0;
+                                                  }
+                                                  _updateTotalPrice();
+                                                },
+                                                autovalidateMode: AutovalidateMode.onUserInteraction,
+                                                onTapOutside: _onTapOutside,
+                                                keyboardType: TextInputType.number,
+                                                controller: _priceText9,
+                                                decoration: InputDecoration(
+                                                  labelText: 'Valor',
+                                                  labelStyle: GoogleFonts.openSans(
+                                                      color: Colors.black),
+                                                  isDense: true,
+                                                  border: const OutlineInputBorder(),
+                                                  focusedBorder: const OutlineInputBorder(
+                                                    borderSide: BorderSide(
+                                                        color: Colors.black),
+                                                  ),
+                                                ),
+                                                validator: (value) {
+                                                  if (value!.toString().length < 3 || value.isEmpty) {
+                                                    return 'Inválido';
+                                                  }
+                                                  return null;
+                                                }),
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          width: 190,
+                                          height: 80,
+                                          child: Container(
+                                            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 60),
+                                            child: TextFormField(
+                                                onChanged: (value) {
+                                                  if (value.length >= 3 && value.length <= 4) {
+                                                    tempValue10 = int.parse(value);
+                                                  } else {
+                                                    tempValue10 = 0;
+                                                  }
+                                                  _updateTotalPrice();
+                                                },
+                                                autovalidateMode: AutovalidateMode.onUserInteraction,
+                                                onTapOutside: _onTapOutside,
+                                                keyboardType: TextInputType.number,
+                                                controller: _priceText10,
+                                                decoration: InputDecoration(
+                                                  labelText: 'Valor',
+                                                  labelStyle: GoogleFonts.openSans(
+                                                      color: Colors.black),
+                                                  isDense: true,
+                                                  border: const OutlineInputBorder(),
+                                                  focusedBorder: const OutlineInputBorder(
+                                                    borderSide: BorderSide(
+                                                        color: Colors.black),
+                                                  ),
+                                                ),
+                                                validator: (value) {
+                                                  if (value!.toString().length < 3 || value.isEmpty) {
+                                                    return 'Inválido';
+                                                  }
+                                                  return null;
+                                                }),
+                                          ),
+                                        ),
                                       ],
                                     ),
                                   )
@@ -743,12 +1052,49 @@ class _SalePageState extends State<SalePage> {
                                                     vcLoteria: item.vcNombre);
                                                 voVentList.add(voVenta);
                                               }
+                                              if (_numberText7.text.isNotEmpty && _priceText7.text.isNotEmpty) {
+                                                Venta voVenta = Venta(
+                                                    vnNumero: _numberText.text,
+                                                    vnPrecio: int.parse(
+                                                        _priceText.text),
+                                                    vnLoteId: item.vnId,
+                                                    vcLoteria: item.vcNombre);
+                                                voVentList.add(voVenta);
+                                              }
+                                              if (_numberText8.text.isNotEmpty && _priceText8.text.isNotEmpty) {
+                                                Venta voVenta = Venta(
+                                                    vnNumero: _numberText.text,
+                                                    vnPrecio: int.parse(
+                                                        _priceText.text),
+                                                    vnLoteId: item.vnId,
+                                                    vcLoteria: item.vcNombre);
+                                                voVentList.add(voVenta);
+                                              }
+                                              if (_numberText9.text.isNotEmpty && _priceText9.text.isNotEmpty) {
+                                                Venta voVenta = Venta(
+                                                    vnNumero: _numberText.text,
+                                                    vnPrecio: int.parse(
+                                                        _priceText.text),
+                                                    vnLoteId: item.vnId,
+                                                    vcLoteria: item.vcNombre);
+                                                voVentList.add(voVenta);
+                                              }
+                                              if (_numberText10.text.isNotEmpty && _priceText10.text.isNotEmpty) {
+                                                Venta voVenta = Venta(
+                                                    vnNumero: _numberText.text,
+                                                    vnPrecio: int.parse(
+                                                        _priceText.text),
+                                                    vnLoteId: item.vnId,
+                                                    vcLoteria: item.vcNombre);
+                                                voVentList.add(voVenta);
+                                              }
                                             }
                                             if(voVentList.isNotEmpty){
                                               _ventaBloc.add(AgregarNumero(
                                                   voVentList: voVentList,
                                                   voLoteList: voLoteSele,
-                                                  vnPagoTota: vnTotalPrice));
+                                                  vnPagoTota: vnTotalPrice)
+                                              );
                                             }else{
                                               _showAlert(CoolAlertType.warning, 'Lista Vacía', 'Agregue al menos un número con su valor para continuar');
                                             }
