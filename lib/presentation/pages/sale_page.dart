@@ -1072,8 +1072,7 @@ class _SalePageState extends State<SalePage> {
                                               if (_numberText.text.isNotEmpty && _priceText.text.isNotEmpty) {
                                                 Venta voVenta = Venta(
                                                     vnNumero: _numberText.text,
-                                                    vnPrecio: int.parse(
-                                                        _priceText.text),
+                                                    vnPrecio: int.parse(_priceText.text),
                                                     vnLoteId: item.vnId,
                                                     vcLoteria: item.vcNombre);
                                                 voVentList.add(voVenta);
@@ -1089,8 +1088,7 @@ class _SalePageState extends State<SalePage> {
                                               if (_numberText3.text.isNotEmpty && _priceText3.text.isNotEmpty) {
                                                 Venta voVenta = Venta(
                                                     vnNumero: _numberText3.text,
-                                                    vnPrecio: int.parse(
-                                                        _priceText3.text),
+                                                    vnPrecio: int.parse(_priceText3.text),
                                                     vnLoteId: item.vnId,
                                                     vcLoteria: item.vcNombre);
                                                 voVentList.add(voVenta);
