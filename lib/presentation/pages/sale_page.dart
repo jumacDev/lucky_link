@@ -129,13 +129,18 @@ class _SalePageState extends State<SalePage> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
 
+    const double heightText = 70;
+    const double widthTextPrice = 190;
+    const double widthText = 170;
+    const double scale = 0.8;
+
 
     return BlocBuilder<LoginBloc, LoginState>(
       builder: (context, state) {
         if (state is LoginOk) {
           _vnUsuaId = state.voSesion.vnUsuario;
           return SingleChildScrollView(
-            //physics: size.height < 870 ? const AlwaysScrollableScrollPhysics() : const NeverScrollableScrollPhysics(),
+
             child: BlocListener<VentaBloc, VentaState>(
               listener: (context, state) async {
                 if (state is VentaError) {
@@ -179,11 +184,13 @@ class _SalePageState extends State<SalePage> {
                       child: Column(
                         children: [
                           ListView(
+                            physics: const NeverScrollableScrollPhysics(),
                             shrinkWrap: true,
                             children: [
                               const Gap(16),
                               //inputs
                               Row(
+                                mainAxisSize: MainAxisSize.min,
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
@@ -197,362 +204,392 @@ class _SalePageState extends State<SalePage> {
                                             "Número",
                                             style: GoogleFonts.openSans(
                                                 color: Colors.black,
-                                                fontSize: 22),
+                                                fontSize: 18),
                                           ),
                                         ),
                                         const Gap(4),
                                         SizedBox(
-                                          width: 170,
-                                          height: 80,
+                                          width: widthText,
+                                          height: heightText,
                                           child: Container(
                                             padding: const EdgeInsets.symmetric(
                                                 vertical: 10, horizontal: 50),
-                                            child: TextFormField(
-                                                buildCounter: (BuildContext context, {int? currentLength, bool? isFocused, int? maxLength}) {
-                                                  return null;
-                                                },
-                                                autovalidateMode: AutovalidateMode
-                                                    .onUserInteraction,
-                                                maxLength: 4,
-                                                textInputAction: TextInputAction.next,
-                                                keyboardType: TextInputType.number,
-                                                onTapOutside: _onTapOutside,
-                                                controller: _numberText,
-                                                decoration: InputDecoration(
-                                                  labelStyle:
-                                                      GoogleFonts.openSans(
+                                            child: Transform.scale(
+                                              scale: scale,
+                                              child: TextFormField(
+                                                  buildCounter: (BuildContext context, {int? currentLength, bool? isFocused, int? maxLength}) {
+                                                    return null;
+                                                  },
+                                                  autovalidateMode: AutovalidateMode
+                                                      .onUserInteraction,
+                                                  maxLength: 4,
+                                                  textInputAction: TextInputAction.next,
+                                                  keyboardType: TextInputType.number,
+                                                  onTapOutside: _onTapOutside,
+                                                  controller: _numberText,
+                                                  decoration: InputDecoration(
+                                                    labelStyle:
+                                                        GoogleFonts.openSans(
+                                                            color: Colors.black),
+                                                    isDense: true,
+                                                    labelText: 'Número',
+                                                    border:
+                                                        const OutlineInputBorder(),
+                                                    focusedBorder:
+                                                        const OutlineInputBorder(
+                                                      borderSide: BorderSide(
                                                           color: Colors.black),
-                                                  isDense: true,
-                                                  labelText: 'Número',
-                                                  border:
-                                                      const OutlineInputBorder(),
-                                                  focusedBorder:
-                                                      const OutlineInputBorder(
-                                                    borderSide: BorderSide(
-                                                        color: Colors.black),
+                                                    ),
                                                   ),
-                                                ),
-                                                validator: (value) {
-                                                  if (value!.toString().length <
-                                                          3 ||
-                                                      value.isEmpty) {
-                                                    return 'Inválido';
-                                                  }
-                                                  return null;
-                                                }),
+                                                  validator: (value) {
+                                                    if (value!.toString().length <
+                                                            3 ||
+                                                        value.isEmpty) {
+                                                      return 'Inválido';
+                                                    }
+                                                    return null;
+                                                  }),
+                                            ),
                                           ),
                                         ),
                                         SizedBox(
-                                          width: 170,
-                                          height: 80,
+                                          width: widthText,
+                                          height: heightText,
                                           child: Container(
                                             padding: const EdgeInsets.symmetric(
                                                 vertical: 10, horizontal: 50),
-                                            child: TextFormField(
-                                                buildCounter: (BuildContext context, {int? currentLength, bool? isFocused, int? maxLength}) {
-                                                  return null;
-                                                },
-                                                autovalidateMode: AutovalidateMode.onUserInteraction,
-                                                maxLength: 4,
-                                                textInputAction: TextInputAction.next,
-                                                keyboardType: TextInputType.number,
-                                                onTapOutside: _onTapOutside,
-                                                controller: _numberText2,
-                                                decoration: InputDecoration(
-                                                  labelStyle:
-                                                      GoogleFonts.openSans(color: Colors.black),
-                                                  labelText: 'Número',
-                                                  isDense: true,
-                                                  border: const OutlineInputBorder(),
-                                                  focusedBorder: const OutlineInputBorder(
-                                                    borderSide: BorderSide(
-                                                        color: Colors.black),
-                                                  ),
-                                                ),
-                                                validator: (value) {
-                                                  if (value!.toString().length < 3 || value.isEmpty) {
-                                                    return 'Inválido';
-                                                  }
-                                                  return null;
-                                                }),
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          width: 170,
-                                          height: 80,
-                                          child: Container(
-                                            padding: const EdgeInsets.symmetric(
-                                                vertical: 10, horizontal: 50),
-                                            child: TextFormField(
-                                                buildCounter: (BuildContext context, {int? currentLength, bool? isFocused, int? maxLength}) {
-                                                  return null;
-                                                },
-                                                autovalidateMode: AutovalidateMode.onUserInteraction,
-                                                maxLength: 4,
-                                                keyboardType: TextInputType.number,
-                                                textInputAction: TextInputAction.next,
-                                                onTapOutside: _onTapOutside,
-                                                controller: _numberText3,
-                                                decoration: InputDecoration(
-                                                  labelText: 'Número',
-                                                  labelStyle:
-                                                      GoogleFonts.openSans(
+                                            child: Transform.scale(
+                                              scale: scale,
+                                              child: TextFormField(
+                                                  buildCounter: (BuildContext context, {int? currentLength, bool? isFocused, int? maxLength}) {
+                                                    return null;
+                                                  },
+                                                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                                                  maxLength: 4,
+                                                  textInputAction: TextInputAction.next,
+                                                  keyboardType: TextInputType.number,
+                                                  onTapOutside: _onTapOutside,
+                                                  controller: _numberText2,
+                                                  decoration: InputDecoration(
+                                                    labelStyle:
+                                                        GoogleFonts.openSans(color: Colors.black),
+                                                    labelText: 'Número',
+                                                    isDense: true,
+                                                    border: const OutlineInputBorder(),
+                                                    focusedBorder: const OutlineInputBorder(
+                                                      borderSide: BorderSide(
                                                           color: Colors.black),
-                                                  isDense: true,
-                                                  border: const OutlineInputBorder(),
-                                                  focusedBorder: const OutlineInputBorder(
-                                                    borderSide: BorderSide(
-                                                        color: Colors.black),
+                                                    ),
                                                   ),
-                                                ),
-                                                validator: (value) {
-                                                  if (value!.toString().length < 3 || value.isEmpty) {
-                                                    return 'Inválido';
-                                                  }
-                                                  return null;
-                                                }),
+                                                  validator: (value) {
+                                                    if (value!.toString().length < 3 || value.isEmpty) {
+                                                      return 'Inválido';
+                                                    }
+                                                    return null;
+                                                  }),
+                                            ),
                                           ),
                                         ),
                                         SizedBox(
-                                          width: 170,
-                                          height: 80,
+                                          width: widthText,
+                                          height: heightText,
+                                          child: Container(
+                                            padding: const EdgeInsets.symmetric(
+                                                vertical: 10, horizontal: 50),
+                                            child: Transform.scale(
+                                              scale: scale,
+                                              child: TextFormField(
+                                                  buildCounter: (BuildContext context, {int? currentLength, bool? isFocused, int? maxLength}) {
+                                                    return null;
+                                                  },
+                                                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                                                  maxLength: 4,
+                                                  keyboardType: TextInputType.number,
+                                                  textInputAction: TextInputAction.next,
+                                                  onTapOutside: _onTapOutside,
+                                                  controller: _numberText3,
+                                                  decoration: InputDecoration(
+                                                    labelText: 'Número',
+                                                    labelStyle:
+                                                        GoogleFonts.openSans(
+                                                            color: Colors.black),
+                                                    isDense: true,
+                                                    border: const OutlineInputBorder(),
+                                                    focusedBorder: const OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                          color: Colors.black),
+                                                    ),
+                                                  ),
+                                                  validator: (value) {
+                                                    if (value!.toString().length < 3 || value.isEmpty) {
+                                                      return 'Inválido';
+                                                    }
+                                                    return null;
+                                                  }),
+                                            ),
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          width: widthText,
+                                          height: heightText,
                                           child: Container(
                                             padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 50),
-                                            child: TextFormField(
-                                                buildCounter: (BuildContext context, {int? currentLength, bool? isFocused, int? maxLength}) {
-                                                  return null;
-                                                },
-                                                autovalidateMode: AutovalidateMode.onUserInteraction,
-                                                maxLength: 4,
-                                                keyboardType: TextInputType.number,
-                                                textInputAction: TextInputAction.next,
-                                                onTapOutside: _onTapOutside,
-                                                controller: _numberText4,
-                                                decoration: InputDecoration(
-                                                  labelText: 'Número',
-                                                  labelStyle:
-                                                  GoogleFonts.openSans(
-                                                      color: Colors.black),
-                                                  isDense: true,
-                                                  border: const OutlineInputBorder(),
-                                                  focusedBorder: const OutlineInputBorder(
-                                                    borderSide: BorderSide(
+                                            child: Transform.scale(
+                                              scale: scale,
+                                              child: TextFormField(
+                                                  buildCounter: (BuildContext context, {int? currentLength, bool? isFocused, int? maxLength}) {
+                                                    return null;
+                                                  },
+                                                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                                                  maxLength: 4,
+                                                  keyboardType: TextInputType.number,
+                                                  textInputAction: TextInputAction.next,
+                                                  onTapOutside: _onTapOutside,
+                                                  controller: _numberText4,
+                                                  decoration: InputDecoration(
+                                                    labelText: 'Número',
+                                                    labelStyle:
+                                                    GoogleFonts.openSans(
                                                         color: Colors.black),
+                                                    isDense: true,
+                                                    border: const OutlineInputBorder(),
+                                                    focusedBorder: const OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                          color: Colors.black),
+                                                    ),
                                                   ),
-                                                ),
-                                                validator: (value) {
-                                                  if (value!.toString().length < 3 || value.isEmpty) {
-                                                    return 'Inválido';
-                                                  }
-                                                  return null;
-                                                }),
+                                                  validator: (value) {
+                                                    if (value!.toString().length < 3 || value.isEmpty) {
+                                                      return 'Inválido';
+                                                    }
+                                                    return null;
+                                                  }),
+                                            ),
                                           ),
                                         ),
                                         SizedBox(
-                                          width: 170,
-                                          height: 80,
+                                          width: widthText,
+                                          height: heightText,
                                           child: Container(
                                             padding: const EdgeInsets.symmetric(
                                                 vertical: 10, horizontal: 50),
-                                            child: TextFormField(
-                                                buildCounter: (BuildContext context, {int? currentLength, bool? isFocused, int? maxLength}) {
-                                                  return null;
-                                                },
-                                                autovalidateMode: AutovalidateMode.onUserInteraction,
-                                                maxLength: 4,
-                                                keyboardType: TextInputType.number,
-                                                textInputAction: TextInputAction.next,
-                                                onTapOutside: _onTapOutside,
-                                                controller: _numberText5,
-                                                decoration: InputDecoration(
-                                                  labelText: 'Número',
-                                                  labelStyle: GoogleFonts.openSans(
-                                                      color: Colors.black),
-                                                  isDense: true,
-                                                  border: const OutlineInputBorder(),
-                                                  focusedBorder: const OutlineInputBorder(
-                                                    borderSide: BorderSide(
+                                            child: Transform.scale(
+                                              scale: scale,
+                                              child: TextFormField(
+                                                  buildCounter: (BuildContext context, {int? currentLength, bool? isFocused, int? maxLength}) {
+                                                    return null;
+                                                  },
+                                                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                                                  maxLength: 4,
+                                                  keyboardType: TextInputType.number,
+                                                  textInputAction: TextInputAction.next,
+                                                  onTapOutside: _onTapOutside,
+                                                  controller: _numberText5,
+                                                  decoration: InputDecoration(
+                                                    labelText: 'Número',
+                                                    labelStyle: GoogleFonts.openSans(
                                                         color: Colors.black),
+                                                    isDense: true,
+                                                    border: const OutlineInputBorder(),
+                                                    focusedBorder: const OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                          color: Colors.black),
+                                                    ),
                                                   ),
-                                                ),
-                                                validator: (value) {
-                                                  if (value!.toString().length <
-                                                      3 ||
-                                                      value.isEmpty) {
-                                                    return 'Inválido';
-                                                  }
-                                                  return null;
-                                                }),
+                                                  validator: (value) {
+                                                    if (value!.toString().length <
+                                                        3 ||
+                                                        value.isEmpty) {
+                                                      return 'Inválido';
+                                                    }
+                                                    return null;
+                                                  }),
+                                            ),
                                           ),
                                         ),
                                         SizedBox(
-                                          width: 170,
-                                          height: 80,
+                                          width: widthText,
+                                          height: heightText,
                                           child: Container(
                                             padding: const EdgeInsets.symmetric(
                                                 vertical: 10, horizontal: 50),
-                                            child: TextFormField(
-                                                buildCounter: (BuildContext context, {int? currentLength, bool? isFocused, int? maxLength}) {
-                                                  return null;
-                                                },
-                                                autovalidateMode: AutovalidateMode.onUserInteraction,
-                                                maxLength: 4,
-                                                keyboardType: TextInputType.number,
-                                                onTapOutside: _onTapOutside,
-                                                controller: _numberText6,
-                                                decoration: InputDecoration(
-                                                  labelText: 'Número',
-                                                  labelStyle: GoogleFonts.openSans(
-                                                      color: Colors.black),
-                                                  isDense: true,
-                                                  border: const OutlineInputBorder(),
-                                                  focusedBorder: const OutlineInputBorder(
-                                                    borderSide: BorderSide(
+                                            child: Transform.scale(
+                                              scale: scale,
+                                              child: TextFormField(
+                                                  buildCounter: (BuildContext context, {int? currentLength, bool? isFocused, int? maxLength}) {
+                                                    return null;
+                                                  },
+                                                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                                                  maxLength: 4,
+                                                  keyboardType: TextInputType.number,
+                                                  onTapOutside: _onTapOutside,
+                                                  controller: _numberText6,
+                                                  decoration: InputDecoration(
+                                                    labelText: 'Número',
+                                                    labelStyle: GoogleFonts.openSans(
                                                         color: Colors.black),
+                                                    isDense: true,
+                                                    border: const OutlineInputBorder(),
+                                                    focusedBorder: const OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                          color: Colors.black),
+                                                    ),
                                                   ),
-                                                ),
-                                                validator: (value) {
-                                                  if (value!.toString().length < 3 || value.isEmpty) {
-                                                    return 'Inválido';
-                                                  }
-                                                  return null;
-                                                }),
+                                                  validator: (value) {
+                                                    if (value!.toString().length < 3 || value.isEmpty) {
+                                                      return 'Inválido';
+                                                    }
+                                                    return null;
+                                                  }),
+                                            ),
                                           ),
                                         ),
                                         SizedBox(
-                                          width: 170,
-                                          height: 80,
+                                          width: widthText,
+                                          height: heightText,
                                           child: Container(
                                             padding: const EdgeInsets.symmetric(
                                                 vertical: 10, horizontal: 50),
-                                            child: TextFormField(
-                                                buildCounter: (BuildContext context, {int? currentLength, bool? isFocused, int? maxLength}) {
-                                                  return null;
-                                                },
-                                                autovalidateMode: AutovalidateMode.onUserInteraction,
-                                                maxLength: 4,
-                                                keyboardType: TextInputType.number,
-                                                onTapOutside: _onTapOutside,
-                                                controller: _numberText7,
-                                                decoration: InputDecoration(
-                                                  labelText: 'Número',
-                                                  labelStyle: GoogleFonts.openSans(
-                                                      color: Colors.black),
-                                                  isDense: true,
-                                                  border: const OutlineInputBorder(),
-                                                  focusedBorder: const OutlineInputBorder(
-                                                    borderSide: BorderSide(
+                                            child: Transform.scale(
+                                              scale: scale,
+                                              child: TextFormField(
+                                                  buildCounter: (BuildContext context, {int? currentLength, bool? isFocused, int? maxLength}) {
+                                                    return null;
+                                                  },
+                                                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                                                  maxLength: 4,
+                                                  keyboardType: TextInputType.number,
+                                                  onTapOutside: _onTapOutside,
+                                                  controller: _numberText7,
+                                                  decoration: InputDecoration(
+                                                    labelText: 'Número',
+                                                    labelStyle: GoogleFonts.openSans(
                                                         color: Colors.black),
+                                                    isDense: true,
+                                                    border: const OutlineInputBorder(),
+                                                    focusedBorder: const OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                          color: Colors.black),
+                                                    ),
                                                   ),
-                                                ),
-                                                validator: (value) {
-                                                  if (value!.toString().length < 3 || value.isEmpty) {
-                                                    return 'Inválido';
-                                                  }
-                                                  return null;
-                                                }),
+                                                  validator: (value) {
+                                                    if (value!.toString().length < 3 || value.isEmpty) {
+                                                      return 'Inválido';
+                                                    }
+                                                    return null;
+                                                  }),
+                                            ),
                                           ),
                                         ),
                                         SizedBox(
-                                          width: 170,
-                                          height: 80,
+                                          width: widthText,
+                                          height: heightText,
                                           child: Container(
                                             padding: const EdgeInsets.symmetric(
                                                 vertical: 10, horizontal: 50),
-                                            child: TextFormField(
-                                                buildCounter: (BuildContext context, {int? currentLength, bool? isFocused, int? maxLength}) {
-                                                  return null;
-                                                },
-                                                autovalidateMode: AutovalidateMode.onUserInteraction,
-                                                maxLength: 4,
-                                                keyboardType: TextInputType.number,
-                                                onTapOutside: _onTapOutside,
-                                                controller: _numberText8,
-                                                decoration: InputDecoration(
-                                                  labelText: 'Número',
-                                                  labelStyle: GoogleFonts.openSans(
-                                                      color: Colors.black),
-                                                  isDense: true,
-                                                  border: const OutlineInputBorder(),
-                                                  focusedBorder: const OutlineInputBorder(
-                                                    borderSide: BorderSide(
+                                            child: Transform.scale(
+                                              scale: scale,
+                                              child: TextFormField(
+                                                  buildCounter: (BuildContext context, {int? currentLength, bool? isFocused, int? maxLength}) {
+                                                    return null;
+                                                  },
+                                                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                                                  maxLength: 4,
+                                                  keyboardType: TextInputType.number,
+                                                  onTapOutside: _onTapOutside,
+                                                  controller: _numberText8,
+                                                  decoration: InputDecoration(
+                                                    labelText: 'Número',
+                                                    labelStyle: GoogleFonts.openSans(
                                                         color: Colors.black),
+                                                    isDense: true,
+                                                    border: const OutlineInputBorder(),
+                                                    focusedBorder: const OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                          color: Colors.black),
+                                                    ),
                                                   ),
-                                                ),
-                                                validator: (value) {
-                                                  if (value!.toString().length < 3 || value.isEmpty) {
-                                                    return 'Inválido';
-                                                  }
-                                                  return null;
-                                                }),
+                                                  validator: (value) {
+                                                    if (value!.toString().length < 3 || value.isEmpty) {
+                                                      return 'Inválido';
+                                                    }
+                                                    return null;
+                                                  }),
+                                            ),
                                           ),
                                         ),
                                         SizedBox(
-                                          width: 170,
-                                          height: 80,
+                                          width: widthText,
+                                          height: heightText,
                                           child: Container(
                                             padding: const EdgeInsets.symmetric(
                                                 vertical: 10, horizontal: 50),
-                                            child: TextFormField(
-                                                buildCounter: (BuildContext context, {int? currentLength, bool? isFocused, int? maxLength}) {
-                                                  return null;
-                                                },
-                                                autovalidateMode: AutovalidateMode.onUserInteraction,
-                                                maxLength: 4,
-                                                keyboardType: TextInputType.number,
-                                                onTapOutside: _onTapOutside,
-                                                controller: _numberText9,
-                                                decoration: InputDecoration(
-                                                  labelText: 'Número',
-                                                  labelStyle: GoogleFonts.openSans(
-                                                      color: Colors.black),
-                                                  isDense: true,
-                                                  border: const OutlineInputBorder(),
-                                                  focusedBorder: const OutlineInputBorder(
-                                                    borderSide: BorderSide(
+                                            child: Transform.scale(
+                                              scale: scale,
+                                              child: TextFormField(
+                                                  buildCounter: (BuildContext context, {int? currentLength, bool? isFocused, int? maxLength}) {
+                                                    return null;
+                                                  },
+                                                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                                                  maxLength: 4,
+                                                  keyboardType: TextInputType.number,
+                                                  onTapOutside: _onTapOutside,
+                                                  controller: _numberText9,
+                                                  decoration: InputDecoration(
+                                                    labelText: 'Número',
+                                                    labelStyle: GoogleFonts.openSans(
                                                         color: Colors.black),
+                                                    isDense: true,
+                                                    border: const OutlineInputBorder(),
+                                                    focusedBorder: const OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                          color: Colors.black),
+                                                    ),
                                                   ),
-                                                ),
-                                                validator: (value) {
-                                                  if (value!.toString().length < 3 || value.isEmpty) {
-                                                    return 'Inválido';
-                                                  }
-                                                  return null;
-                                                }),
+                                                  validator: (value) {
+                                                    if (value!.toString().length < 3 || value.isEmpty) {
+                                                      return 'Inválido';
+                                                    }
+                                                    return null;
+                                                  }),
+                                            ),
                                           ),
                                         ),
                                         SizedBox(
-                                          width: 170,
-                                          height: 80,
+                                          width: widthText,
+                                          height: heightText,
                                           child: Container(
                                             padding: const EdgeInsets.symmetric(
                                                 vertical: 10, horizontal: 50),
-                                            child: TextFormField(
-                                                buildCounter: (BuildContext context, {int? currentLength, bool? isFocused, int? maxLength}) {
-                                                  return null;
-                                                },
-                                                autovalidateMode: AutovalidateMode.onUserInteraction,
-                                                maxLength: 4,
-                                                keyboardType: TextInputType.number,
-                                                onTapOutside: _onTapOutside,
-                                                controller: _numberText10,
-                                                decoration: InputDecoration(
-                                                  labelText: 'Número',
-                                                  labelStyle: GoogleFonts.openSans(
-                                                      color: Colors.black),
-                                                  isDense: true,
-                                                  border: const OutlineInputBorder(),
-                                                  focusedBorder: const OutlineInputBorder(
-                                                    borderSide: BorderSide(
+                                            child: Transform.scale(
+                                              scale: scale,
+                                              child: TextFormField(
+                                                  buildCounter: (BuildContext context, {int? currentLength, bool? isFocused, int? maxLength}) {
+                                                    return null;
+                                                  },
+                                                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                                                  maxLength: 4,
+                                                  keyboardType: TextInputType.number,
+                                                  onTapOutside: _onTapOutside,
+                                                  controller: _numberText10,
+                                                  decoration: InputDecoration(
+                                                    labelText: 'Número',
+                                                    labelStyle: GoogleFonts.openSans(
                                                         color: Colors.black),
+                                                    isDense: true,
+                                                    border: const OutlineInputBorder(),
+                                                    focusedBorder: const OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                          color: Colors.black),
+                                                    ),
                                                   ),
-                                                ),
-                                                validator: (value) {
-                                                  if (value!.toString().length < 3 || value.isEmpty) {
-                                                    return 'Inválido';
-                                                  }
-                                                  return null;
-                                                }),
+                                                  validator: (value) {
+                                                    if (value!.toString().length < 3 || value.isEmpty) {
+                                                      return 'Inválido';
+                                                    }
+                                                    return null;
+                                                  }),
+                                            ),
                                           ),
                                         ),
                                       ],
@@ -567,385 +604,415 @@ class _SalePageState extends State<SalePage> {
                                           child: Text("Valor",
                                               style: GoogleFonts.openSans(
                                                   color: Colors.black,
-                                                  fontSize: 22)),
+                                                  fontSize: 18)),
                                         ),
                                         const Gap(4),
                                         SizedBox(
-                                          width: 190,
-                                          height: 80,
+                                          width: widthTextPrice,
+                                          height: heightText,
                                           child: Container(
                                             padding: const EdgeInsets.symmetric(
                                                 vertical: 10, horizontal: 60),
-                                            child: TextFormField(
-                                                onChanged: (value) {
-                                                  if (value.length >= 3 && value.length <= 4) {
-                                                    tempValue1 = int.parse(value);
-                                                  } else {
-                                                    tempValue1 = 0;
-                                                  }
-                                                  _updateTotalPrice();
-                                                },
-                                                autovalidateMode: AutovalidateMode.onUserInteraction,
-                                                textInputAction: TextInputAction.next,
-                                                onTapOutside: _onTapOutside,
-                                                keyboardType: TextInputType.number,
-                                                controller: _priceText,
-                                                decoration: InputDecoration(
-                                                  labelText: 'Valor',
-                                                  labelStyle: GoogleFonts.openSans(
+                                            child: Transform.scale(
+                                              scale: scale,
+                                              child: TextFormField(
+                                                  onChanged: (value) {
+                                                    if (value.length >= 3 && value.length <= 4) {
+                                                      tempValue1 = int.parse(value);
+                                                    } else {
+                                                      tempValue1 = 0;
+                                                    }
+                                                    _updateTotalPrice();
+                                                  },
+                                                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                                                  textInputAction: TextInputAction.next,
+                                                  onTapOutside: _onTapOutside,
+                                                  keyboardType: TextInputType.number,
+                                                  controller: _priceText,
+                                                  decoration: InputDecoration(
+                                                    labelText: 'Valor',
+                                                    labelStyle: GoogleFonts.openSans(
+                                                            color: Colors.black),
+                                                    isDense: true,
+                                                    border: const OutlineInputBorder(),
+                                                    focusedBorder: const OutlineInputBorder(
+                                                      borderSide: BorderSide(
                                                           color: Colors.black),
-                                                  isDense: true,
-                                                  border: const OutlineInputBorder(),
-                                                  focusedBorder: const OutlineInputBorder(
-                                                    borderSide: BorderSide(
-                                                        color: Colors.black),
+                                                    ),
                                                   ),
-                                                ),
-                                                validator: (value) {
-                                                  if (value!.toString().length < 3) {
-                                                    return 'Inválido';
-                                                  }
-                                                  return null;
-                                                }),
+                                                  validator: (value) {
+                                                    if (value!.toString().length < 3) {
+                                                      return 'Inválido';
+                                                    }
+                                                    return null;
+                                                  }),
+                                            ),
                                           ),
                                         ),
                                         SizedBox(
-                                          width: 190,
-                                          height: 80,
+                                          width: widthTextPrice,
+                                          height: heightText,
                                           child: Container(
                                             padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 60),
-                                            child: TextFormField(
-                                                onChanged: (value) {
-                                                  if (value.length >= 3 && value.length <= 4) {
-                                                    tempValue2 = int.parse(value);
-                                                  } else {
-                                                    tempValue2 = 0;
-                                                  }
-                                                  _updateTotalPrice();
-                                                },
-                                                autovalidateMode: AutovalidateMode.onUserInteraction,
-                                                textInputAction: TextInputAction.next,
-                                                onTapOutside: _onTapOutside,
-                                                keyboardType: TextInputType.number,
-                                                controller: _priceText2,
-                                                decoration: InputDecoration(
-                                                  labelText: 'Valor',
-                                                  labelStyle: GoogleFonts.openSans(
+                                            child: Transform.scale(
+                                              scale: scale,
+                                              child: TextFormField(
+                                                  onChanged: (value) {
+                                                    if (value.length >= 3 && value.length <= 4) {
+                                                      tempValue2 = int.parse(value);
+                                                    } else {
+                                                      tempValue2 = 0;
+                                                    }
+                                                    _updateTotalPrice();
+                                                  },
+                                                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                                                  textInputAction: TextInputAction.next,
+                                                  onTapOutside: _onTapOutside,
+                                                  keyboardType: TextInputType.number,
+                                                  controller: _priceText2,
+                                                  decoration: InputDecoration(
+                                                    labelText: 'Valor',
+                                                    labelStyle: GoogleFonts.openSans(
+                                                            color: Colors.black),
+                                                    isDense: true,
+                                                    border: const OutlineInputBorder(),
+                                                    focusedBorder: const OutlineInputBorder(
+                                                      borderSide: BorderSide(
                                                           color: Colors.black),
-                                                  isDense: true,
-                                                  border: const OutlineInputBorder(),
-                                                  focusedBorder: const OutlineInputBorder(
-                                                    borderSide: BorderSide(
-                                                        color: Colors.black),
+                                                    ),
                                                   ),
-                                                ),
-                                                validator: (value) {
-                                                  if (value!.toString().length < 3 || value.isEmpty) {
-                                                    return 'Inválido';
-                                                  }
-                                                  return null;
-                                                }),
+                                                  validator: (value) {
+                                                    if (value!.toString().length < 3 || value.isEmpty) {
+                                                      return 'Inválido';
+                                                    }
+                                                    return null;
+                                                  }),
+                                            ),
                                           ),
                                         ),
                                         SizedBox(
-                                          width: 190,
-                                          height: 80,
+                                          width: widthTextPrice,
+                                          height: heightText,
                                           child: Container(
                                             padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 60),
-                                            child: TextFormField(
-                                                onChanged: (value) {
-                                                  if (value.length >= 3 && value.length <= 4) {
-                                                    tempValue3 = int.parse(value);
-                                                  } else {
-                                                    tempValue3 = 0;
-                                                  }
-                                                  _updateTotalPrice();
-                                                },
-                                                autovalidateMode: AutovalidateMode.onUserInteraction,
-                                                onTapOutside: _onTapOutside,
-                                                keyboardType: TextInputType.number,
-                                                textInputAction: TextInputAction.next,
-                                                controller: _priceText3,
-                                                decoration: InputDecoration(
-                                                  labelText: 'Valor',
-                                                  labelStyle: GoogleFonts.openSans(
+                                            child:  Transform.scale(
+                                              scale: scale,
+                                              child: TextFormField(
+                                                  onChanged: (value) {
+                                                    if (value.length >= 3 && value.length <= 4) {
+                                                      tempValue3 = int.parse(value);
+                                                    } else {
+                                                      tempValue3 = 0;
+                                                    }
+                                                    _updateTotalPrice();
+                                                  },
+                                                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                                                  onTapOutside: _onTapOutside,
+                                                  keyboardType: TextInputType.number,
+                                                  textInputAction: TextInputAction.next,
+                                                  controller: _priceText3,
+                                                  decoration: InputDecoration(
+                                                    labelText: 'Valor',
+                                                    labelStyle: GoogleFonts.openSans(
+                                                            color: Colors.black),
+                                                    isDense: true,
+                                                    border: const OutlineInputBorder(),
+                                                    focusedBorder: const OutlineInputBorder(
+                                                      borderSide: BorderSide(
                                                           color: Colors.black),
-                                                  isDense: true,
-                                                  border: const OutlineInputBorder(),
-                                                  focusedBorder: const OutlineInputBorder(
-                                                    borderSide: BorderSide(
-                                                        color: Colors.black),
+                                                    ),
                                                   ),
-                                                ),
-                                                validator: (value) {
-                                                  if (value!.toString().length < 3 || value.isEmpty) {
-                                                    return 'Inválido';
-                                                  }
-                                                  return null;
-                                                }),
+                                                  validator: (value) {
+                                                    if (value!.toString().length < 3 || value.isEmpty) {
+                                                      return 'Inválido';
+                                                    }
+                                                    return null;
+                                                  }),
+                                            ),
                                           ),
                                         ),
                                         SizedBox(
-                                          width: 190,
-                                          height: 80,
+                                          width: widthTextPrice,
+                                          height: heightText,
                                           child: Container(
                                             padding: const EdgeInsets.symmetric(
                                                 vertical: 10, horizontal: 60),
-                                            child: TextFormField(
-                                                onChanged: (value) {
-                                                  if (value.length >= 3 && value.length <= 4) {
-                                                    tempValue4 = int.parse(value);
-                                                  } else {
-                                                    tempValue4 = 0;
-                                                  }
-                                                  _updateTotalPrice();
-                                                },
-                                                autovalidateMode: AutovalidateMode.onUserInteraction,
-                                                onTapOutside: _onTapOutside,
-                                                keyboardType: TextInputType.number,
-                                                textInputAction: TextInputAction.next,
-                                                controller: _priceText4,
-                                                decoration: InputDecoration(
-                                                  labelText: 'Valor',
-                                                  labelStyle: GoogleFonts.openSans(
-                                                      color: Colors.black),
-                                                  isDense: true,
-                                                  border: const OutlineInputBorder(),
-                                                  focusedBorder: const OutlineInputBorder(
-                                                    borderSide: BorderSide(
+                                            child:  Transform.scale(
+                                              scale: scale,
+                                              child: TextFormField(
+                                                  onChanged: (value) {
+                                                    if (value.length >= 3 && value.length <= 4) {
+                                                      tempValue4 = int.parse(value);
+                                                    } else {
+                                                      tempValue4 = 0;
+                                                    }
+                                                    _updateTotalPrice();
+                                                  },
+                                                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                                                  onTapOutside: _onTapOutside,
+                                                  keyboardType: TextInputType.number,
+                                                  textInputAction: TextInputAction.next,
+                                                  controller: _priceText4,
+                                                  decoration: InputDecoration(
+                                                    labelText: 'Valor',
+                                                    labelStyle: GoogleFonts.openSans(
                                                         color: Colors.black),
+                                                    isDense: true,
+                                                    border: const OutlineInputBorder(),
+                                                    focusedBorder: const OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                          color: Colors.black),
+                                                    ),
                                                   ),
-                                                ),
-                                                validator: (value) {
-                                                  if (value!.toString().length < 3 || value.isEmpty) {
-                                                    return 'Inválido';
-                                                  }
-                                                  return null;
-                                                }),
+                                                  validator: (value) {
+                                                    if (value!.toString().length < 3 || value.isEmpty) {
+                                                      return 'Inválido';
+                                                    }
+                                                    return null;
+                                                  }),
+                                            ),
                                           ),
                                         ),
                                         SizedBox(
-                                          width: 190,
-                                          height: 80,
+                                          width: widthTextPrice,
+                                          height: heightText,
                                           child: Container(
                                             padding: const EdgeInsets.symmetric(
                                                 vertical: 10, horizontal: 60),
-                                            child: TextFormField(
-                                                onChanged: (value) {
-                                                  if (value.length >= 3 && value.length <= 4) {
-                                                    tempValue5 = int.parse(value);
-                                                  } else {
-                                                    tempValue5 = 0;
-                                                  }
-                                                  _updateTotalPrice();
-                                                },
-                                                autovalidateMode: AutovalidateMode.onUserInteraction,
-                                                onTapOutside: _onTapOutside,
-                                                keyboardType: TextInputType.number,
-                                                textInputAction: TextInputAction.next,
-                                                controller: _priceText5,
-                                                decoration: InputDecoration(
-                                                  labelText: 'Valor',
-                                                  labelStyle: GoogleFonts.openSans(
-                                                      color: Colors.black),
-                                                  isDense: true,
-                                                  border: const OutlineInputBorder(),
-                                                  focusedBorder: const OutlineInputBorder(
-                                                    borderSide: BorderSide(
+                                            child: Transform.scale(
+                                              scale: scale,
+                                              child: TextFormField(
+                                                  onChanged: (value) {
+                                                    if (value.length >= 3 && value.length <= 4) {
+                                                      tempValue5 = int.parse(value);
+                                                    } else {
+                                                      tempValue5 = 0;
+                                                    }
+                                                    _updateTotalPrice();
+                                                  },
+                                                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                                                  onTapOutside: _onTapOutside,
+                                                  keyboardType: TextInputType.number,
+                                                  textInputAction: TextInputAction.next,
+                                                  controller: _priceText5,
+                                                  decoration: InputDecoration(
+                                                    labelText: 'Valor',
+                                                    labelStyle: GoogleFonts.openSans(
                                                         color: Colors.black),
+                                                    isDense: true,
+                                                    border: const OutlineInputBorder(),
+                                                    focusedBorder: const OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                          color: Colors.black),
+                                                    ),
                                                   ),
-                                                ),
-                                                validator: (value) {
-                                                  if (value!.toString().length < 3 || value.isEmpty) {
-                                                    return 'Inválido';
-                                                  }
-                                                  return null;
-                                                }),
+                                                  validator: (value) {
+                                                    if (value!.toString().length < 3 || value.isEmpty) {
+                                                      return 'Inválido';
+                                                    }
+                                                    return null;
+                                                  }),
+                                            ),
                                           ),
                                         ),
                                         SizedBox(
-                                          width: 190,
-                                          height: 80,
+                                          width: widthTextPrice,
+                                          height: heightText,
                                           child: Container(
                                             padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 60),
-                                            child: TextFormField(
-                                                onChanged: (value) {
-                                                  if (value.length >= 3 && value.length <= 4) {
-                                                    tempValue6 = int.parse(value);
-                                                  } else {
-                                                    tempValue6 = 0;
-                                                  }
-                                                  _updateTotalPrice();
-                                                },
-                                                autovalidateMode: AutovalidateMode.onUserInteraction,
-                                                onTapOutside: _onTapOutside,
-                                                keyboardType: TextInputType.number,
-                                                controller: _priceText6,
-                                                decoration: InputDecoration(
-                                                  labelText: 'Valor',
-                                                  labelStyle: GoogleFonts.openSans(
-                                                      color: Colors.black),
-                                                  isDense: true,
-                                                  border: const OutlineInputBorder(),
-                                                  focusedBorder: const OutlineInputBorder(
-                                                    borderSide: BorderSide(
+                                            child:  Transform.scale(
+                                              scale: scale,
+                                              child: TextFormField(
+                                                  onChanged: (value) {
+                                                    if (value.length >= 3 && value.length <= 4) {
+                                                      tempValue6 = int.parse(value);
+                                                    } else {
+                                                      tempValue6 = 0;
+                                                    }
+                                                    _updateTotalPrice();
+                                                  },
+                                                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                                                  onTapOutside: _onTapOutside,
+                                                  keyboardType: TextInputType.number,
+                                                  controller: _priceText6,
+                                                  decoration: InputDecoration(
+                                                    labelText: 'Valor',
+                                                    labelStyle: GoogleFonts.openSans(
                                                         color: Colors.black),
+                                                    isDense: true,
+                                                    border: const OutlineInputBorder(),
+                                                    focusedBorder: const OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                          color: Colors.black),
+                                                    ),
                                                   ),
-                                                ),
-                                                validator: (value) {
-                                                  if (value!.toString().length < 3 || value.isEmpty) {
-                                                    return 'Inválido';
-                                                  }
-                                                  return null;
-                                                }),
+                                                  validator: (value) {
+                                                    if (value!.toString().length < 3 || value.isEmpty) {
+                                                      return 'Inválido';
+                                                    }
+                                                    return null;
+                                                  }),
+                                            ),
                                           ),
                                         ),
                                         SizedBox(
-                                          width: 190,
-                                          height: 80,
+                                          width: widthTextPrice,
+                                          height: heightText,
                                           child: Container(
                                             padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 60),
-                                            child: TextFormField(
-                                                onChanged: (value) {
-                                                  if (value.length >= 3 && value.length <= 4) {
-                                                    tempValue7 = int.parse(value);
-                                                  } else {
-                                                    tempValue7 = 0;
-                                                  }
-                                                  _updateTotalPrice();
-                                                },
-                                                autovalidateMode: AutovalidateMode.onUserInteraction,
-                                                onTapOutside: _onTapOutside,
-                                                keyboardType: TextInputType.number,
-                                                controller: _priceText7,
-                                                decoration: InputDecoration(
-                                                  labelText: 'Valor',
-                                                  labelStyle: GoogleFonts.openSans(
-                                                      color: Colors.black),
-                                                  isDense: true,
-                                                  border: const OutlineInputBorder(),
-                                                  focusedBorder: const OutlineInputBorder(
-                                                    borderSide: BorderSide(
+                                            child:  Transform.scale(
+                                              scale: scale,
+                                              child: TextFormField(
+                                                  onChanged: (value) {
+                                                    if (value.length >= 3 && value.length <= 4) {
+                                                      tempValue7 = int.parse(value);
+                                                    } else {
+                                                      tempValue7 = 0;
+                                                    }
+                                                    _updateTotalPrice();
+                                                  },
+                                                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                                                  onTapOutside: _onTapOutside,
+                                                  keyboardType: TextInputType.number,
+                                                  controller: _priceText7,
+                                                  decoration: InputDecoration(
+                                                    labelText: 'Valor',
+                                                    labelStyle: GoogleFonts.openSans(
                                                         color: Colors.black),
+                                                    isDense: true,
+                                                    border: const OutlineInputBorder(),
+                                                    focusedBorder: const OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                          color: Colors.black),
+                                                    ),
                                                   ),
-                                                ),
-                                                validator: (value) {
-                                                  if (value!.toString().length < 3 || value.isEmpty) {
-                                                    return 'Inválido';
-                                                  }
-                                                  return null;
-                                                }),
+                                                  validator: (value) {
+                                                    if (value!.toString().length < 3 || value.isEmpty) {
+                                                      return 'Inválido';
+                                                    }
+                                                    return null;
+                                                  }),
+                                            ),
                                           ),
                                         ),
                                         SizedBox(
-                                          width: 190,
-                                          height: 80,
+                                          width: widthTextPrice,
+                                          height: heightText,
                                           child: Container(
                                             padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 60),
-                                            child: TextFormField(
-                                                onChanged: (value) {
-                                                  if (value.length >= 3 && value.length <= 4) {
-                                                    tempValue8 = int.parse(value);
-                                                  } else {
-                                                    tempValue8 = 0;
-                                                  }
-                                                  _updateTotalPrice();
-                                                },
-                                                autovalidateMode: AutovalidateMode.onUserInteraction,
-                                                onTapOutside: _onTapOutside,
-                                                keyboardType: TextInputType.number,
-                                                controller: _priceText8,
-                                                decoration: InputDecoration(
-                                                  labelText: 'Valor',
-                                                  labelStyle: GoogleFonts.openSans(
-                                                      color: Colors.black),
-                                                  isDense: true,
-                                                  border: const OutlineInputBorder(),
-                                                  focusedBorder: const OutlineInputBorder(
-                                                    borderSide: BorderSide(
+                                            child:  Transform.scale(
+                                              scale: scale,
+                                              child: TextFormField(
+                                                  onChanged: (value) {
+                                                    if (value.length >= 3 && value.length <= 4) {
+                                                      tempValue8 = int.parse(value);
+                                                    } else {
+                                                      tempValue8 = 0;
+                                                    }
+                                                    _updateTotalPrice();
+                                                  },
+                                                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                                                  onTapOutside: _onTapOutside,
+                                                  keyboardType: TextInputType.number,
+                                                  controller: _priceText8,
+                                                  decoration: InputDecoration(
+                                                    labelText: 'Valor',
+                                                    labelStyle: GoogleFonts.openSans(
                                                         color: Colors.black),
+                                                    isDense: true,
+                                                    border: const OutlineInputBorder(),
+                                                    focusedBorder: const OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                          color: Colors.black),
+                                                    ),
                                                   ),
-                                                ),
-                                                validator: (value) {
-                                                  if (value!.toString().length < 3 || value.isEmpty) {
-                                                    return 'Inválido';
-                                                  }
-                                                  return null;
-                                                }),
+                                                  validator: (value) {
+                                                    if (value!.toString().length < 3 || value.isEmpty) {
+                                                      return 'Inválido';
+                                                    }
+                                                    return null;
+                                                  }),
+                                            ),
                                           ),
                                         ),
                                         SizedBox(
-                                          width: 190,
-                                          height: 80,
+                                          width: widthTextPrice,
+                                          height: heightText,
                                           child: Container(
                                             padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 60),
-                                            child: TextFormField(
-                                                onChanged: (value) {
-                                                  if (value.length >= 3 && value.length <= 4) {
-                                                    tempValue9 = int.parse(value);
-                                                  } else {
-                                                    tempValue9 = 0;
-                                                  }
-                                                  _updateTotalPrice();
-                                                },
-                                                autovalidateMode: AutovalidateMode.onUserInteraction,
-                                                onTapOutside: _onTapOutside,
-                                                keyboardType: TextInputType.number,
-                                                controller: _priceText9,
-                                                decoration: InputDecoration(
-                                                  labelText: 'Valor',
-                                                  labelStyle: GoogleFonts.openSans(
-                                                      color: Colors.black),
-                                                  isDense: true,
-                                                  border: const OutlineInputBorder(),
-                                                  focusedBorder: const OutlineInputBorder(
-                                                    borderSide: BorderSide(
+                                            child: Transform.scale(
+                                              scale: scale,
+                                              child: TextFormField(
+                                                  onChanged: (value) {
+                                                    if (value.length >= 3 && value.length <= 4) {
+                                                      tempValue9 = int.parse(value);
+                                                    } else {
+                                                      tempValue9 = 0;
+                                                    }
+                                                    _updateTotalPrice();
+                                                  },
+                                                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                                                  onTapOutside: _onTapOutside,
+                                                  keyboardType: TextInputType.number,
+                                                  controller: _priceText9,
+                                                  decoration: InputDecoration(
+                                                    labelText: 'Valor',
+                                                    labelStyle: GoogleFonts.openSans(
                                                         color: Colors.black),
+                                                    isDense: true,
+                                                    border: const OutlineInputBorder(),
+                                                    focusedBorder: const OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                          color: Colors.black),
+                                                    ),
                                                   ),
-                                                ),
-                                                validator: (value) {
-                                                  if (value!.toString().length < 3 || value.isEmpty) {
-                                                    return 'Inválido';
-                                                  }
-                                                  return null;
-                                                }),
+                                                  validator: (value) {
+                                                    if (value!.toString().length < 3 || value.isEmpty) {
+                                                      return 'Inválido';
+                                                    }
+                                                    return null;
+                                                  }),
+                                            ),
                                           ),
                                         ),
                                         SizedBox(
-                                          width: 190,
-                                          height: 80,
+                                          width: widthTextPrice,
+                                          height: heightText,
                                           child: Container(
                                             padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 60),
-                                            child: TextFormField(
-                                                onChanged: (value) {
-                                                  if (value.length >= 3 && value.length <= 4) {
-                                                    tempValue10 = int.parse(value);
-                                                  } else {
-                                                    tempValue10 = 0;
-                                                  }
-                                                  _updateTotalPrice();
-                                                },
-                                                autovalidateMode: AutovalidateMode.onUserInteraction,
-                                                onTapOutside: _onTapOutside,
-                                                keyboardType: TextInputType.number,
-                                                controller: _priceText10,
-                                                decoration: InputDecoration(
-                                                  labelText: 'Valor',
-                                                  labelStyle: GoogleFonts.openSans(
-                                                      color: Colors.black),
-                                                  isDense: true,
-                                                  border: const OutlineInputBorder(),
-                                                  focusedBorder: const OutlineInputBorder(
-                                                    borderSide: BorderSide(
+                                            child:  Transform.scale(
+                                              scale: scale,
+                                              child: TextFormField(
+                                                  onChanged: (value) {
+                                                    if (value.length >= 3 && value.length <= 4) {
+                                                      tempValue10 = int.parse(value);
+                                                    } else {
+                                                      tempValue10 = 0;
+                                                    }
+                                                    _updateTotalPrice();
+                                                  },
+                                                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                                                  onTapOutside: _onTapOutside,
+                                                  keyboardType: TextInputType.number,
+                                                  controller: _priceText10,
+                                                  decoration: InputDecoration(
+                                                    labelText: 'Valor',
+                                                    labelStyle: GoogleFonts.openSans(
                                                         color: Colors.black),
+                                                    isDense: true,
+                                                    border: const OutlineInputBorder(),
+                                                    focusedBorder: const OutlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                          color: Colors.black),
+                                                    ),
                                                   ),
-                                                ),
-                                                validator: (value) {
-                                                  if (value!.toString().length < 3 || value.isEmpty) {
-                                                    return 'Inválido';
-                                                  }
-                                                  return null;
-                                                }),
+                                                  validator: (value) {
+                                                    if (value!.toString().length < 3 || value.isEmpty) {
+                                                      return 'Inválido';
+                                                    }
+                                                    return null;
+                                                  }),
+                                            ),
                                           ),
                                         ),
                                       ],
@@ -1054,36 +1121,32 @@ class _SalePageState extends State<SalePage> {
                                               }
                                               if (_numberText7.text.isNotEmpty && _priceText7.text.isNotEmpty) {
                                                 Venta voVenta = Venta(
-                                                    vnNumero: _numberText.text,
-                                                    vnPrecio: int.parse(
-                                                        _priceText.text),
+                                                    vnNumero: _numberText7.text,
+                                                    vnPrecio: int.parse(_priceText7.text),
                                                     vnLoteId: item.vnId,
                                                     vcLoteria: item.vcNombre);
                                                 voVentList.add(voVenta);
                                               }
                                               if (_numberText8.text.isNotEmpty && _priceText8.text.isNotEmpty) {
                                                 Venta voVenta = Venta(
-                                                    vnNumero: _numberText.text,
-                                                    vnPrecio: int.parse(
-                                                        _priceText.text),
+                                                    vnNumero: _numberText8.text,
+                                                    vnPrecio: int.parse(_priceText8.text),
                                                     vnLoteId: item.vnId,
                                                     vcLoteria: item.vcNombre);
                                                 voVentList.add(voVenta);
                                               }
                                               if (_numberText9.text.isNotEmpty && _priceText9.text.isNotEmpty) {
                                                 Venta voVenta = Venta(
-                                                    vnNumero: _numberText.text,
-                                                    vnPrecio: int.parse(
-                                                        _priceText.text),
+                                                    vnNumero: _numberText9.text,
+                                                    vnPrecio: int.parse(_priceText9.text),
                                                     vnLoteId: item.vnId,
                                                     vcLoteria: item.vcNombre);
                                                 voVentList.add(voVenta);
                                               }
                                               if (_numberText10.text.isNotEmpty && _priceText10.text.isNotEmpty) {
                                                 Venta voVenta = Venta(
-                                                    vnNumero: _numberText.text,
-                                                    vnPrecio: int.parse(
-                                                        _priceText.text),
+                                                    vnNumero: _numberText10.text,
+                                                    vnPrecio: int.parse(_priceText10.text),
                                                     vnLoteId: item.vnId,
                                                     vcLoteria: item.vcNombre);
                                                 voVentList.add(voVenta);
@@ -1415,7 +1478,7 @@ class _SalePageState extends State<SalePage> {
                             },
                             child: Text('Continuar',
                                 style: GoogleFonts.openSans(
-                                    fontSize: 20,
+                                    fontSize: 18,
                                     color: Colors.white))),
                       ),
                     ],
