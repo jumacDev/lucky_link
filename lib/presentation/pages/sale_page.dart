@@ -1005,8 +1005,7 @@ class _SalePageState extends State<SalePage> {
                                               if (_numberText.text.isNotEmpty && _priceText.text.isNotEmpty) {
                                                 Venta voVenta = Venta(
                                                     vnNumero: _numberText.text,
-                                                    vnPrecio: int.parse(
-                                                        _priceText.text),
+                                                    vnPrecio: int.parse(_priceText.text),
                                                     vnLoteId: item.vnId,
                                                     vcLoteria: item.vcNombre);
                                                 voVentList.add(voVenta);
@@ -1022,8 +1021,7 @@ class _SalePageState extends State<SalePage> {
                                               if (_numberText3.text.isNotEmpty && _priceText3.text.isNotEmpty) {
                                                 Venta voVenta = Venta(
                                                     vnNumero: _numberText3.text,
-                                                    vnPrecio: int.parse(
-                                                        _priceText3.text),
+                                                    vnPrecio: int.parse(_priceText3.text),
                                                     vnLoteId: item.vnId,
                                                     vcLoteria: item.vcNombre);
                                                 voVentList.add(voVenta);
@@ -1054,36 +1052,32 @@ class _SalePageState extends State<SalePage> {
                                               }
                                               if (_numberText7.text.isNotEmpty && _priceText7.text.isNotEmpty) {
                                                 Venta voVenta = Venta(
-                                                    vnNumero: _numberText.text,
-                                                    vnPrecio: int.parse(
-                                                        _priceText.text),
+                                                    vnNumero: _numberText7.text,
+                                                    vnPrecio: int.parse(_priceText7.text),
                                                     vnLoteId: item.vnId,
                                                     vcLoteria: item.vcNombre);
                                                 voVentList.add(voVenta);
                                               }
                                               if (_numberText8.text.isNotEmpty && _priceText8.text.isNotEmpty) {
                                                 Venta voVenta = Venta(
-                                                    vnNumero: _numberText.text,
-                                                    vnPrecio: int.parse(
-                                                        _priceText.text),
+                                                    vnNumero: _numberText8.text,
+                                                    vnPrecio: int.parse(_priceText8.text),
                                                     vnLoteId: item.vnId,
                                                     vcLoteria: item.vcNombre);
                                                 voVentList.add(voVenta);
                                               }
                                               if (_numberText9.text.isNotEmpty && _priceText9.text.isNotEmpty) {
                                                 Venta voVenta = Venta(
-                                                    vnNumero: _numberText.text,
-                                                    vnPrecio: int.parse(
-                                                        _priceText.text),
+                                                    vnNumero: _numberText9.text,
+                                                    vnPrecio: int.parse(_priceText9.text),
                                                     vnLoteId: item.vnId,
                                                     vcLoteria: item.vcNombre);
                                                 voVentList.add(voVenta);
                                               }
                                               if (_numberText10.text.isNotEmpty && _priceText10.text.isNotEmpty) {
                                                 Venta voVenta = Venta(
-                                                    vnNumero: _numberText.text,
-                                                    vnPrecio: int.parse(
-                                                        _priceText.text),
+                                                    vnNumero: _numberText10.text,
+                                                    vnPrecio: int.parse(_priceText10.text),
                                                     vnLoteId: item.vnId,
                                                     vcLoteria: item.vcNombre);
                                                 voVentList.add(voVenta);
