@@ -20,6 +20,8 @@ class SalePage extends StatefulWidget {
 }
 
 class _SalePageState extends State<SalePage> {
+  final ScrollController _controller = ScrollController();
+
   final TextEditingController _numberText = TextEditingController();
   final TextEditingController _priceText = TextEditingController();
   final TextEditingController _numberText2 = TextEditingController();
@@ -61,6 +63,7 @@ class _SalePageState extends State<SalePage> {
   int tempValue8 = 0;
   int tempValue9 = 0;
   int tempValue10 = 0;
+  int counter = 0;
 
   @override
   void initState() {
@@ -140,9 +143,15 @@ class _SalePageState extends State<SalePage> {
         if (state is LoginOk) {
           _vnUsuaId = state.voSesion.vnUsuario;
           return SingleChildScrollView(
-
+            controller: _controller,
             child: BlocListener<VentaBloc, VentaState>(
               listener: (context, state) async {
+                if(state is LoteriaSeleccionada){
+                  if(counter < 1){
+                    _controller.jumpTo(0);
+                    counter++;
+                  }
+                }
                 if (state is VentaError) {
                   _showAlert(CoolAlertType.error,
                       'No se pudo realizar la venta', state.vcMensaje);
